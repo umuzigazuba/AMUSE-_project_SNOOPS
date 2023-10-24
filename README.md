@@ -1,1 +1,1 @@
-# AMUSE-_project_SNOOPS
+# AMUSE_project_SNOOPS
