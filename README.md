@@ -4,6 +4,13 @@ Authors: Yiqi Wu, Kostas Tsalapatas and Erin Umuzigazuba
 
 Project: The formation of a second generation of stars in a globular cluster after a collision with a molecular cloud
 
+### Young population
+### Emergence in old
+### Star clusters after
+### Smashing with the dense
+### Interstellar clouds leading to the
+### Regeneration of stars
+
 General Concepts:
 	We simulate the collision of a globular cluster with a certain velocity and inclination, and a dense molecular cloud that is actively forming stars, 
 	in the Galactic disk. We are interested in the formation mechanism of a second generation of stars in the globular cluster. 
