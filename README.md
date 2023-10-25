@@ -26,5 +26,5 @@ Experimental setup:
 	Optionally: see if mass is accreted to the first generation of stars
 		Are they rejuvenated?
 
-More details can be found inside the AMUSE_project_YESSIR file
+More details can be found inside the AMUSE_project_YESSIR folder
 
