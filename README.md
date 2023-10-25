@@ -1,5 +1,7 @@
 # AMUSE_project_YESSIR
 
+Authors: Yiqi Wu, Kostas 
+
 Project: The formation of a second generation of stars in a globular cluster after a collision with a molecular cloud
 
 General Concepts:
@@ -34,3 +36,10 @@ Figure:
 HR diagram before and after collision
 Also compare first and second generations after collision
 Star formation rate as a function of time
+
+Tools to improve quality of the code/GitHub:
+- ruff
+- pytest
+- nedbat/coveragepy
+- pyscaffold => see pyscaffoldext-dsproject
+- use branches! squash branches
