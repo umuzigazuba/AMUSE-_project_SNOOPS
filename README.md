@@ -27,4 +27,11 @@ Experimental setup:
 		Are they rejuvenated?
 
 More details can be found inside the AMUSE_project_YESSIR folder
+\textbf{Y}oung population
+E mergence in old
+S tar clusters after
+S mashing with the dense
+I nterstellar clouds leading to the
+R egeneration of stars
+
 
