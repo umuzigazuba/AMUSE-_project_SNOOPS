@@ -28,6 +28,8 @@ Experimental setup:
 
 More details can be found inside the AMUSE_project_YESSIR folder
 
+------------
+
 **Y**oung population
 
 **E**mergence in old
