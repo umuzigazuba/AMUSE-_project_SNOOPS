@@ -1,34 +1,33 @@
 #%%
 from amuse.units import units
-from amuse.lab import Particles, new_kroupa_mass_distribution
 from amuse.community.seba.interface import SeBa
 import numpy as np
-from amuse.ic.kingmodel import new_king_model
 import matplotlib.pyplot as plt
 from amuse.ext.masc import new_star_cluster
 
 # %%
-def stellar_evolution(bodies, time, code, random_seed):
+def stellar_evolution(bodies, time, random_seed):
     np.random.seed(random_seed)
-    stellar_evolution_code = code
+    stellar_evolution_code = SeBa()
     stellar_evolution_code.particles.add_particles(bodies)
+    stellar_evolution_code.parameters.metallicity = bodies[0].metallicity
+    
     stellar_channel = stellar_evolution_code.particles.new_channel_to(bodies)
     stellar_channel.copy()
-
+    
 
     end_time = time
     model_time = 0 | units.Myr
     dt = end_time/50
-
+    print(dt.in_(units.Myr))
     while(model_time<end_time):
         np.random.seed(random_seed)
-
         model_time += dt
         stellar_evolution_code.evolve_model(model_time)
         stellar_channel.copy()
   
     stellar_evolution_code.stop()
-
+    plot_snapshot(bodies)
     return bodies
 
 #%%
@@ -58,28 +57,44 @@ def plot_snapshot(bodies):
 
 #%%
 
-def make_globular_cluster(star_count, imf, metallicity, random_seed):
+def make_globular_cluster(star_count, imf, metallicity, age, random_seed):
+    '''
+    Description:
+        
+    Inputs:
+        star_count (Int): Number of stars in the cluster
+        
+        imf (str): Either 'kroupa' or 'salpeter'
+        
+        metallicity (float): The stars' metallicity
+        
+        age (units.quantity): Stellar evolution's timescale 
+    '''
     np.random.seed(random_seed)
     cluster = new_star_cluster(
         number_of_stars=star_count,
         initial_mass_function=imf,
-        upper_mass_limit= 0.8 | units.MSun,
-        effective_radius= 50 | units.parsec, ##assuming this is the overall radius of the cluster
-        star_distribution='kings',
+        upper_mass_limit= 100 | units.MSun, 
+        effective_radius= 50 | units.parsec, #assuming this is the overall radius of the cluster
+        star_distribution='king',
         star_distribution_w0=7.0,
         star_metallicity=metallicity,
     )
     print("cluster generated")
 
-    evolved_cluster = stellar_evolution(cluster, 3 | units.Gyr, SeBa(), random_seed)
+    evolved_cluster = stellar_evolution(cluster, age, random_seed)
 
-    plot_snapshot(evolved_cluster)
+    plot_snapshot(cluster)
     
     return evolved_cluster
 
 # %%
 
-new_cluster = make_globular_cluster(1000,"kroupa",0.002,723476)
+new_cluster = make_globular_cluster(1000,'kroupa',0.002,3 ,723476)
 
 # %%
+
+
+
+
 
