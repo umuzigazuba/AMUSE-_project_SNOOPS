@@ -96,6 +96,8 @@ Tools to improve quality of the code/GitHub:
 - use branches! squash branches
 
 
+## required installation 
+AMUSE-masc 
 --------
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
