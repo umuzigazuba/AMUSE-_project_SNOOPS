@@ -19,7 +19,7 @@ def stellar_evolution(bodies, time, random_seed):
     end_time = time
     model_time = 0 | units.Myr
     dt = end_time/50
-    print(dt.in_(units.Myr))
+    # print(dt.in_(units.Myr))
     while(model_time<end_time):
         np.random.seed(random_seed)
         model_time += dt
@@ -27,7 +27,6 @@ def stellar_evolution(bodies, time, random_seed):
         stellar_channel.copy()
   
     stellar_evolution_code.stop()
-    plot_snapshot(bodies)
     return bodies
 
 #%%
@@ -90,10 +89,9 @@ def make_globular_cluster(star_count, imf, metallicity, age, random_seed):
 
 # %%
 
-new_cluster = make_globular_cluster(1000,'kroupa',0.002,3 ,723476)
+new_cluster = make_globular_cluster(1000,'kroupa',0.002,3|units.Gyr,723476)
 
 # %%
-
 
 
 
