@@ -38,8 +38,8 @@ def plot_snapshot(bodies):
                 bodies.luminosity.value_in(units.LSun), 
                 c='k',
                 s= 10)
-    ax1.set_xlim(7E+3, 2.5E+3)
-    #ax1.set_ylim(1.e+3, 1.e+7)
+    ax1.set_xlim(8.5E+3, 2.5E+3)
+    ax1.set_ylim(1.e-5, 1.e+3)
     ax1.loglog()
     ax1.set_xlabel("T [K]")
     ax1.set_ylabel("L [$L_\odot$]")
@@ -83,14 +83,15 @@ def make_globular_cluster(star_count, imf, metallicity, age, random_seed):
 
     evolved_cluster = stellar_evolution(cluster, age, random_seed)
 
-    plot_snapshot(cluster)
+    plot_snapshot(evolved_cluster)
     
     return evolved_cluster
 
 # %%
 
 new_cluster = make_globular_cluster(1000,'kroupa',0.002,3|units.Gyr,723476)
-
+# IMPORTANT: The age has a large effect on the amount of evolved stars present (e.g. 3 vs 10 Gyr) 
+# QUESTION: evolve until the average age difference between populations in globular clusters
 # %%
 
 
