@@ -89,7 +89,7 @@ def make_globular_cluster(star_count, imf, metallicity, age, random_seed):
 
 # %%
 
-new_cluster = make_globular_cluster(1000,'kroupa',0.002,3|units.Gyr,723476)
+#new_cluster = make_globular_cluster(1000,'kroupa',0.002,3|units.Gyr,723476)
 # IMPORTANT: The age has a large effect on the amount of evolved stars present (e.g. 3 vs 10 Gyr) 
 # QUESTION: evolve until the average age difference between populations in globular clusters
 # %%

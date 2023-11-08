@@ -106,5 +106,5 @@ def evolve_molecular_cloud(particles_cloud, converter_cloud, t_end, dt, resoluti
 
 # %%
 
-particles_cloud, converter_cloud = make_molecular_cloud(100_000, 10_000_000 | units.MSun, 200 | units.parsec, 1312)
-particles_cloud = evolve_molecular_cloud(particles_cloud, converter_cloud, 2 | units.Myr, 0.2 | units.Myr, 1 | units.RSun, 1312)
+# particles_cloud, converter_cloud = make_molecular_cloud(100_000, 10_000_000 | units.MSun, 200 | units.parsec, 1312)
+# particles_cloud = evolve_molecular_cloud(particles_cloud, converter_cloud, 2 | units.Myr, 0.2 | units.Myr, 1 | units.RSun, 1312)
