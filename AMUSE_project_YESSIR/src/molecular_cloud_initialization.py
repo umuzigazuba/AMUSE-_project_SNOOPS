@@ -1,13 +1,10 @@
 from amuse.lab import nbody_system
-from amuse.units.constants import G
 
 from amuse.ext.molecular_cloud import molecular_cloud
 from amuse.ext.evrard_test import body_centered_grid_unit_cube
 
 from amuse.community.fi.interface import Fi
-from amuse.community.bhtree.interface import BHTree
 
-from amuse.couple import bridge
 from amuse.units import units
 import numpy as np
 from matplotlib import pyplot as plt
