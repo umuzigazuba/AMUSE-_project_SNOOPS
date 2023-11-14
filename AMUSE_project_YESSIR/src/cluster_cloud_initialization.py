@@ -7,6 +7,20 @@ from amuse.ext.masc import new_star_cluster
 
 # %%
 def stellar_evolution(bodies, time, random_seed):
+    '''
+    Description:
+        Evolve a existing star particles system to a desired age. 
+        
+    Inputs:
+        bodies (Object): AMUSE particle set for a star system
+        
+        time (units.quantity): Evolution time scale 
+        
+        random_seed (int): Randomness of the function
+    
+    Returns:
+        bodies (Object): AMUSE particle set for the evolved star system
+    '''
     np.random.seed(random_seed)
     stellar_evolution_code = SeBa()
     stellar_evolution_code.particles.add_particles(bodies)
@@ -59,7 +73,9 @@ def plot_snapshot(bodies):
 def make_globular_cluster(star_count, imf, metallicity, age, random_seed):
     '''
     Description:
-        
+        Generate a globular cluster with specific number of stars,
+         inital mass function, metallicity, and age.
+
     Inputs:
         star_count (Int): Number of stars in the cluster
         
@@ -68,6 +84,9 @@ def make_globular_cluster(star_count, imf, metallicity, age, random_seed):
         metallicity (float): The stars' metallicity
         
         age (units.quantity): Stellar evolution's timescale 
+    
+    Returns:
+        evolved_cluster (object): AMUSE particle system resembling the desired globular cluster
     '''
     np.random.seed(random_seed)
     cluster = new_star_cluster(

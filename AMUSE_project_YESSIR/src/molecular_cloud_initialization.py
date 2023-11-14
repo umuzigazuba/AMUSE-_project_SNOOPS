@@ -13,6 +13,17 @@ from matplotlib import pyplot as plt
 
 # plot molecular cloud density function (smooth)
 def make_map(hydro, L, N):
+    '''
+    Description:
+
+    Inputs:
+        hydro (object): AMUSE Fi hydrodynamic integrator
+        L (int): Axis length 
+        N (int): Number of grid points
+
+    Return: 
+        rho ()
+    '''
 
     x = np.linspace(-L, L, N + 1)
     y = np.linspace(-L, L, N + 1)
@@ -31,6 +42,7 @@ def make_map(hydro, L, N):
     return rho
     
 def plot_hydro(time, hydro, L, N):
+
     fig = plt.figure(figsize = (9, 5))
     
     rho = make_map(hydro, L = L, N = N)
@@ -41,10 +53,28 @@ def plot_hydro(time, hydro, L, N):
     plt.title("Molecular cloud at time = " + time.as_string_in(units.Myr))
     plt.xlabel("x [pc]")
     plt.ylabel("x [pc]")
+    plt.show()
 
 # %%
 
 def make_molecular_cloud(N_cloud, M_cloud, R_cloud, seed):
+    '''
+    Description:
+        Generating a molecular cloud
+        
+    Inputs:
+        N_cloud (Int): Number of particles in the molecular cloud
+        
+        M_cloud (units.quantity): Total mass of the cloud
+        
+        R_cloud (units.quantity): Radius of the cloud
+        
+        seed (int): Randomness of the function
+    
+    Returns:
+        particles_cloud (object): AMUSE particle set for the molecular cloud
+        converter_cloud (object): AMUSE generic unit converter for the cloud 
+    '''
 
     converter_cloud = nbody_system.nbody_to_si(M_cloud, R_cloud)
 
@@ -59,6 +89,22 @@ def make_molecular_cloud(N_cloud, M_cloud, R_cloud, seed):
 # %%
 
 def evolve_molecular_cloud(particles_cloud, converter_cloud, t_end, dt, resolution, seed):
+    '''
+    Description:
+        Evolve a existing molecular cloud to a certain age
+
+    Inputs:
+        particles_cloud (object): AMUSE particle set for the molecular cloud 
+        converter_cloud (object): AMUSE generic unit converter
+        t_end (units.quantity): Total length of the evolution
+        dt (units.quantity): Time step of the evolution
+        resolution (units.quantity): Gas particle smoothing length 
+        seed (int): Randomness of the function 
+
+    Return:
+        particles_cloud (object): AMUSE particle set for the evolved molecular cloud
+
+    '''
 
     np.random.seed(seed)
 
@@ -89,6 +135,7 @@ def evolve_molecular_cloud(particles_cloud, converter_cloud, t_end, dt, resoluti
     model_time = 0 | units.Myr
 
     plot_hydro(model_time, hydro_cloud, L, N)
+    print("ready for evolution")
 
     while model_time < t_end:
 

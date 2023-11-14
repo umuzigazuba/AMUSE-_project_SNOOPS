@@ -1,12 +1,3 @@
-import sys
-import os
-
-SCRIPT_DIR = os.path.dirname(os.path.abspath("AMUSE_project_YESSIR"))
-sys.path.append(os.path.dirname(SCRIPT_DIR))
-
-from src.molecular_cloud_initialization import make_molecular_cloud, \
-                                            evolve_molecular_cloud, make_map
-
 #%%
 import numpy as np
 import matplotlib.pyplot as plt
@@ -15,10 +6,16 @@ from amuse.lab import Particles, nbody_system
 from amuse.couple import bridge
 from amuse.units import units
 from amuse.community.bhtree.interface import Bhtree
+import os
+os.chdir(os.path.dirname(os.path.abspath("AMUSE_project_YESSIR")))
+
+from molecular_cloud_initialization import *
+from cluster_cloud_initialization import *
+
 #%%
    
 particles_cloud, converter_cloud  = make_molecular_cloud(N_cloud = 10_000,
-                                                         M_cloud = 1_000 | units.MSun,
+                                                         M_cloud = 1000 | units.MSun,
                                                          R_cloud = 20 | units.parsec,
                                                          seed = 1312)
 particles_cloud = evolve_molecular_cloud(particles_cloud, 
@@ -43,13 +40,14 @@ gravity_code = Bhtree(converter_star)
 gravity_code.particles.add_particles(collision_bodies)
 ch_gravity2star = gravity_code.particles.new_channel_to(collision_bodies)
 
+
 #%%
 resolution = 1 | units.RSun
 timestep = 0.2 | units.Myr
 
 np.random.seed(1312)
 
-hydro_code = Fi(converter_cloud)
+hydro_code = Fi(converter_cloud, mode = "openmp")
 
 hydro_code.parameters.use_hydro_flag = True # Hydrodynamics flag. True means: 
                                              #SPH hydro included, False means: gravity only.
@@ -67,7 +65,8 @@ hydro_code.parameters.gas_epsilon = resolution # The gas gravitational smoothing
 hydro_code.parameters.sph_h_const = resolution # SPH smoothing length if constant
 particles_cloud.h_smooth= resolution
 
-hydro_code.gas_particles.add_particles(particles_cloud)
+
+hydro_code.particles.add_particles(particles_cloud)
 
 
 
@@ -80,7 +79,6 @@ channel = {"from star": collision_bodies.new_channel_to(gravity_code.particles),
             "to_cloud":hydro_code.particles.new_channel_to(particles_cloud),
             "hydro_from_star": collision_bodies.new_channel_to(hydro_code.dm_particles),
             "hydro_to_star": hydro_code.dm_particles.new_channel_to(collision_bodies)}
-
 
 collision_bodies.add_particles(particles_cloud)
 #%%
@@ -95,13 +93,14 @@ def plot_cloud_star(time, hydro_code, star_particle, L, N):
     
     rho = make_map(hydro_code, L = L, N = N)
     cax = plt.imshow(np.log10(rho.value_in(units.amu/units.cm**3)), extent=[-L, L, -L, L]) # , vmin = 0, vmax = 5
-    plt.scatter(star.x.value_in(units.pc), star.y.value_in(units.pc), c = 'red')
+    plt.scatter(star_particle.x.value_in(units.pc), star_particle.y.value_in(units.pc), c = 'red')
     cbar = fig.colorbar(cax)
     cbar.set_label('log density [$amu/cm^3$]', labelpad = 5)
         
     plt.title("Molecular cloud at time = " + time.as_string_in(units.Myr))
     plt.xlabel("x [pc]")
     plt.ylabel("x [pc]")
+    plt.show()
 #%%
 
 model_time = 0 | units.Myr
@@ -116,7 +115,7 @@ while model_time < t_end:
     channel["to_star"].copy()
     channel["to_cloud"].copy()
     channel["hydro_to_star"].copy()
-    print('I am ',model_time.value_in(units.Myr), 'Myr old')
+    print('Collision in progress at',model_time.value_in(units.Myr), ' Myr')
     plot_cloud_star(model_time, hydro_code, collision_bodies[0], 200, 1000)
     
 gravity_code.stop()
