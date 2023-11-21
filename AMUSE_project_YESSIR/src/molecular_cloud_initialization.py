@@ -129,7 +129,7 @@ def evolve_molecular_cloud(particles_cloud, converter_cloud, t_end, dt, resoluti
     channel = {"hydro_to_part": hydro_cloud.gas_particles.new_channel_to(particles_cloud),
             "part_to_hydro": particles_cloud.new_channel_to(hydro_cloud.gas_particles)}
 
-    L = int(max(particles_cloud.x.value_in(units.pc))) + 30  # x and y lim of plot. 
+    L = int(max(particles_cloud.x.value_in(units.pc)))*1.5  # x and y lim of plot. 
     N = 1000 # amount of grid points
 
     model_time = 0 | units.Myr
