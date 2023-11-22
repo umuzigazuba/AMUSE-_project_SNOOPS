@@ -28,6 +28,21 @@ Experimental setup:
 
 More details can be found inside the AMUSE_project_YESSIR folder
 
+Passing Grade:
+---------------
+- MINIMUM passing grade:
+	Sending a globular cluster of sink cells through the molecular cloud and observe the mass accretion. Bridge N-body and Hydro. Compared with theoretical mass accretion values.
+
+	- The change in mass accretion rate of the individual stars as they passing through the cloud. (dM VS T)
+
+	- A histogram of final accreted mass and compare with the amount of mass accretion needed for multiple population. (dM VS N(dM))
+
+- Bouns points:
+	- Testing with different velocity and impact parameters, see if they have any effect on the mass accretion.
+	- Adding stellar evolution in the sink cell particles, observe the effect of stellar dynamics (wind preventing accretion)
+
+
+
 ------------
 
 **Y**oung population
