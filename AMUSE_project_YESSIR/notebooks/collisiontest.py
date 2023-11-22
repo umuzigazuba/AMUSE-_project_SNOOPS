@@ -106,6 +106,7 @@ def plot_cloud_star(time, hydro_code, star_particle, L,N):
     plt.ylabel("y [pc]")
     plt.show()
 
+
 def zoomed_in_star(time, hydro_code, star_particle, L, x_center,y_center,N):
     fig = plt.figure(figsize = (9, 5))
  
