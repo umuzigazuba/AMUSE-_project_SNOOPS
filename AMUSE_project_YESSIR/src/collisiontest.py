@@ -82,43 +82,13 @@ gravhydrobridge = bridge.Bridge(use_threading=False)
 gravhydrobridge.add_system(gravity_code, (hydro_code,) )
 gravhydrobridge.add_system(hydro_code, (gravity_code,) )
 gravhydrobridge.timestep = 0.2|units.Myr
-#%%
-
-def plot_cloud_star(time, hydro_code, star_particle, L, x_center, y_center, N, colorbar):
-    rho = make_map(hydro_code, L=L, N=N)
-    
-    fig, (ax_full, ax_zoom) = plt.subplots(nrows = 2, ncols = 1, figsize=(10.5, 7))
- 
-    im_full = ax_full.imshow(np.log10(rho.value_in(units.amu/units.cm**3)), extent=[-L, L, -L, L])
-    ax_full.scatter(star_particle.x.value_in(units.pc), star_particle.y.value_in(units.pc), c='red')
-
-    ax_full.set_title("Molecular cloud at time = " + time.as_string_in(units.Myr))
-    ax_full.set_xlabel("x [pc]")
-    ax_full.set_ylabel("y [pc]")
-
-    im_zoom = ax_zoom.imshow(np.log10(rho.value_in(units.amu/units.cm**3)), extent=[-L, L, -L, L])
-    ax_zoom.scatter(star_particle.x.value_in(units.pc), star_particle.y.value_in(units.pc), c='red')
-
-    offset = L/10 + 5
-
-    ax_zoom.axis([x_center - offset, x_center + offset, y_center - 5, y_center + 5])
-    ax_zoom.set_title("Zoomed in molecular cloud at time = " + time.as_string_in(units.Myr))
-    ax_zoom.set_xlabel("x [pc]")
-    ax_zoom.set_ylabel("y [pc]")
-    
-    cbar_ax = fig.add_axes([0.75, 0.1, 0.02, 0.85])
-    cbar = fig.colorbar(colorbar, cax = cbar_ax)
-    cbar.set_label('log density [$amu/cm^3$]', labelpad = 5)
-
-    plt.tight_layout()
-    plt.show()
 
 #%%
 
 model_time = 0 | units.Myr
 dt = timestep
 t_end = 2 | units.Myr
-L = int(max(particles_cloud.x.value_in(units.pc))) 
+L = int(abs(star.position[0][0].value_in(units.pc)))*1.5  # x and y lim of plot. 
 L = L + L
 
 star_x_position = []

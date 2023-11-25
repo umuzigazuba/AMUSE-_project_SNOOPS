@@ -10,63 +10,7 @@ from amuse.units import units
 import numpy as np
 from matplotlib import pyplot as plt
 
-# %%
-
-# plot molecular cloud density function (smooth)
-def make_map(hydro, L, N):
-    '''
-    Description:
-
-    Inputs:
-        hydro (object): AMUSE Fi hydrodynamic integrator
-        L (int): Axis length 
-        N (int): Number of grid points
-
-    Return: 
-        rho ()
-    '''
-
-    x = np.linspace(-L, L, N + 1)
-    y = np.linspace(-L, L, N + 1)
-    xv, yv = np.meshgrid(x, y)
-
-    x = xv.flatten() | units.pc
-    y = yv.flatten() | units.pc
-    z = 0 | units.pc
-    vx = 0 | units.kms
-    vy = 0 | units.kms
-    vz = 0 | units.kms
-
-    rho = hydro.get_hydro_state_at_point(x, y, z, vx, vy, vz)[0]
-    rho = rho.reshape((N + 1, N + 1))
-    
-    return rho
-    
-def plot_hydro(time, hydro, L, N):
-
-    fig = plt.figure(figsize = (9, 5))
-    
-    rho = make_map(hydro, L = L, N = N)
-    cax = plt.imshow(np.log10(rho.value_in(units.amu/units.cm**3)), extent=[-L, L, -L, L])
-    cbar = fig.colorbar(cax)
-    cbar.set_label('log density [$amu/cm^3$]', labelpad = 5)
-        
-    plt.title("Molecular cloud at time = " + time.as_string_in(units.Myr))
-    plt.xlabel("x [pc]")
-    plt.ylabel("y [pc]")
-    plt.show()
-
-    return cax
-
-def plot_cloud_particles(time, particles_cloud):
-
-    fig = plt.figure(figsize = (9, 5))
-
-    plt.scatter(particles_cloud.x.value_in(units.pc), particles_cloud.y.value_in(units.pc), s = 1)
-    plt.title("Molecular cloud at time = " + time.as_string_in(units.Myr))
-    plt.xlabel("x [pc]")
-    plt.ylabel("y [pc]")
-    plt.show()
+from plotters import plot_hydro
 
 # %%
 
@@ -86,6 +30,7 @@ def make_molecular_cloud(N_cloud, M_cloud, R_cloud, seed):
     
     Returns:
         particles_cloud (object): AMUSE particle set for the molecular cloud
+
         converter_cloud (object): AMUSE generic unit converter for the cloud 
     '''
 
@@ -108,14 +53,19 @@ def evolve_molecular_cloud(particles_cloud, converter_cloud, t_end, dt, seed):
 
     Inputs:
         particles_cloud (object): AMUSE particle set for the molecular cloud 
+
         converter_cloud (object): AMUSE generic unit converter
+
         t_end (units.quantity): Total length of the evolution
+
         dt (units.quantity): Time step of the evolution
-        resolution (units.quantity): Gas particle smoothing length 
+
         seed (int): Randomness of the function 
 
     Return:
         particles_cloud (object): AMUSE particle set for the evolved molecular cloud
+
+        density_map (matplotlib.image.AxesImage): AxesImage object containing the plotted log density map of the evolved molecular cloud
 
     '''
 
@@ -141,27 +91,22 @@ def evolve_molecular_cloud(particles_cloud, converter_cloud, t_end, dt, seed):
 
     model_time = 0 | units.Myr
 
-    initial_colorbar = plot_hydro(model_time, hydro_cloud, L, N)
+    density_map = plot_hydro(model_time, hydro_cloud, L, N)
+    
     print("ready for evolution")
-
     while model_time < t_end:
 
         model_time += dt
-        model_time = model_time.round(1)
+        model_time = model_time.round(2)
 
         hydro_cloud.evolve_model(model_time)
         print("Time", model_time.in_(units.Myr))
         channel["hydro_to_part"].copy()
 
-    final_colorbar = plot_hydro(model_time, hydro_cloud, L, N)
+    density_map = plot_hydro(model_time, hydro_cloud, L, N)
 
     hydro_cloud.stop()
 
     print(f"Average mass of a SPH particle {particles_cloud.mass.sum().value_in(units.MSun)/len(particles_cloud.mass)}.")
 
-    return particles_cloud, final_colorbar
-
-# %%
-
-# particles_cloud, converter_cloud = make_molecular_cloud(100_000, 10_000_000 | units.MSun, 200 | units.parsec, 1312)
-# particles_cloud = evolve_molecular_cloud(particles_cloud, converter_cloud, 2 | units.Myr, 0.2 | units.Myr, 1312)
+    return particles_cloud, density_map
