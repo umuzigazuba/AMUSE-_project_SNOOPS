@@ -148,7 +148,7 @@ def plot_hydro_and_star(time, hydro, star_particle, L, N, density_map_MC):
     ax_zoom.imshow(np.log10(rho.value_in(units.amu/units.cm**3)), extent = [-L, L, -L, L])
     ax_zoom.scatter(star_x, star_y, c = 'red')
 
-    offset = 5 # parsecs
+    offset = L/5 # parsecs
 
     ax_zoom.axis([star_x - offset*2, star_x + offset*2, star_y - offset, star_y + offset])
     ax_zoom.set_title(f"Zoomed in molecular cloud at time = {time.value_in(units.Myr)} Myr")
