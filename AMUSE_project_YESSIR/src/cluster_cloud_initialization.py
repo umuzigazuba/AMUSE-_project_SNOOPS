@@ -48,7 +48,7 @@ def stellar_evolution(bodies, time, seed):
 
 #%%
 
-def make_globular_cluster(star_count, imf, metallicity, age, seed):
+def make_globular_cluster(star_count, imf, radius, metallicity, age, seed):
     '''
     Description:
         Generate a globular cluster with specific number of stars,
@@ -58,6 +58,8 @@ def make_globular_cluster(star_count, imf, metallicity, age, seed):
         star_count (Int): Number of stars in the cluster
         
         imf (str): Initial mass function. Either 'kroupa' or 'salpeter'
+
+        radius (units.quantity): The effective radius of the cluster
         
         metallicity (float): The stars' metallicity
         
@@ -75,7 +77,7 @@ def make_globular_cluster(star_count, imf, metallicity, age, seed):
         number_of_stars = star_count,
         initial_mass_function = imf,
         upper_mass_limit = 100 | units.MSun, 
-        effective_radius = 50 | units.parsec, #assuming this is the overall radius of the cluster
+        effective_radius = radius, #assuming this is the overall radius of the cluster
         star_distribution = 'king',
         star_distribution_w0 = 7.0,
         star_metallicity = metallicity,
