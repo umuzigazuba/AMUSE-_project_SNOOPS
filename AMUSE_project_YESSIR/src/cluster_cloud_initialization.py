@@ -76,7 +76,7 @@ def make_globular_cluster(star_count, imf, radius, metallicity, age, seed):
     cluster = new_star_cluster(
         number_of_stars = star_count,
         initial_mass_function = imf,
-        upper_mass_limit = 100 | units.MSun, 
+        upper_mass_limit = 7 | units.MSun, 
         effective_radius = radius, #assuming this is the overall radius of the cluster
         star_distribution = 'king',
         star_distribution_w0 = 7.0,
