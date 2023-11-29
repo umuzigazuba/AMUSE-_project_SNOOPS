@@ -75,7 +75,7 @@ def make_map(hydro, L, N):
     
     return rho
 
-# %%  
+#%%  
 def plot_hydro(time, hydro, L, N):
     '''
     Description: 
@@ -213,7 +213,7 @@ def make_3Dmap(hydro, L, N):
     rho = hydro.get_hydro_state_at_point(x, y, z, vx, vy, vz)[0]
     rho = rho.reshape((N + 1, N + 1, N+1))
     
-    return rho
+    return rho, xv, yv, zv
 # %%
 
 
