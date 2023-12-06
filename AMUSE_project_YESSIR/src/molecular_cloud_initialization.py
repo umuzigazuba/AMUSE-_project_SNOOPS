@@ -110,3 +110,30 @@ def evolve_molecular_cloud(particles_cloud, converter_cloud, t_end, dt, seed):
     print(f"Average mass of a SPH particle {particles_cloud.mass.sum().value_in(units.MSun)/len(particles_cloud.mass)}.")
 
     return particles_cloud, density_map
+
+#%%
+
+def hydro_code(Code, dt, converter, particles, seed):
+    '''
+    This function contains the parameters we want to initialise the 
+    hydro code with. (hard Coded)
+    '''
+    
+    np.random.seed(seed)
+
+    hydro = Code(converter)
+    hydro.parameters.use_hydro_flag = True # Hydrodynamics flag. True means:
+                            # SPH hydro included, False means: gravity only.
+    hydro.parameters.gamma = 1 # gas polytropic index (1.6666667)
+                        # (default value:1.6666667). In this case-> Ideal Gas   
+    hydro.parameters.timestep = dt
+    hydro.parameters.eps_is_h_flag = True # Default value
+    hydro.parameters.radiation_flag = False # turns off radiatiative cooling/heat.
+    hydro.parameters.isothermal_flag = True  # Isothermal flag. True means:
+                # isothermal gas (requires integrate_entropy_flag == False)
+    hydro.parameters.integrate_entropy_flag = False #True means: integrate
+                                          # entropy, else: internal energy. 
+    hydro.gas_particles.add_particles(particles) # add the particles
+   
+    return hydro 
+
