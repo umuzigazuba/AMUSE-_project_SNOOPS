@@ -51,6 +51,19 @@ def bondi_accretion_rate(rho,v,r):
 
     return dM
 
+def accrete_mass(sinks, hydro_particles):
+    # For each sink, find the hydro particles that are located within the sink radius
+    particles_within_sink_radius = sinks.select_too_close(hydro_particles)
+
+    for idx in range(len(sinks)):
+        # Select the ones that are gravitationally bound to the sink
+        bounded_particles = detect_bounded_gas(sinks[idx], particles_within_sink_radius[idx], hardness = 0.1)
+        if len(bounded_particles) != 0:
+            # Update the mass of the sink
+            sinks[idx].mass += bounded_particles.mass.sum()
+            # Remove the accreted particles from the particle cloud
+            hydro_particles.remove_particles(bounded_particles)
+
 
 def make_cluster_with_vinit(velocity,position,random_seed):
     star_cluster = make_globular_cluster(star_count = 200,
@@ -104,13 +117,49 @@ def AMUSE_bridge_initialization(star_cluster,converter_cluster,init_cloud,init_c
     return gravhydrobridge,sinks,channel,particles_cloud,gravity_code,hydro_cloud
 
 
-def let_them_collide(directory_path,t_end,dt,sinks,gravhydrobridge,\
-                     channel,particles_cloud,gravity_code,hydro_cloud,density_plot_flag=0):
+def detect_bounded_gas(star,particles,hardness):
+
+    n = len(particles)
+
+    if n == 0:
+        return Particles()
+    
+    total_Ek=(0.5*particles.mass*(particles.vx*2+particles.vy2+particles.vz*2)).sum()
+    average_Ek=total_Ek/particles.mass.sum()
+    limitE=hardness*average_Ek
+
+    a=np.argsort(particles.x.number)
+    binaries = Particles()
+
+    for i in range(n):
+        r2=(star.x-particles.x[a[i]])**2+ \
+            (star.y-particles.y[a[i]])**2+ \
+            (star.z-particles.z[a[i]])**2 
+        v2=(star.vx-particles.vx[a[i]])**2+ \
+            (star.vy-particles.vy[a[i]])**2+ \
+            (star.vz-particles.vz[a[i]])**2 
+        r=r2**0.5
+        #Specific binding energy in units energy per mass
+        eb=abs(units.constants.G*(particles.mass[a[i]]+star.mass)/r-0.5*v2)
+        if eb > limitE:
+            binary=particles[[a[i]]].copy()
+            binary.hardness=eb/average_Ek
+            binaries.add_particle(binary)
+    
+    return binaries
+
+
+
+def let_them_collide_and_save(directory_path,t_end,dt,sinks,gravhydrobridge,\
+                     channel,particles_cloud,gravity_code,hydro_cloud):
     t_end = t_end | units.Myr
     model_time = 0 | units.Myr
     dt = dt | units.Myr
 
     sinks_mass_snapshots = []
+    star_position = []
+    cloud_density_cubes =[]
+
     current_velocity = sum(sinks.vx.value_in(units.kms))/len(sinks.vx)
     print("Colliding with cluster velocity", current_velocity)
 
@@ -134,36 +183,46 @@ def let_them_collide(directory_path,t_end,dt,sinks,gravhydrobridge,\
         channel["to_sinks"].copy()
         channel["to_cloud"].copy()
 
+
         print("Sinks in progress at", model_time.value_in(units.Myr), " Myr.")
         # add the acretted mass to the sinks's total mass
-        sinks.accrete(particles_cloud)
+
+        accrete_mass(sinks,particles_cloud)
 
         # update channels (copy the information from the particle set to the gravity code)
         channel["from_sinks"].copy()
         channel["from_cloud"].copy()
 
-        # save the total mass of each step
+        # save necessary diagnostics of each step
+        rho,_,_,_ = make_3Dmap(hydro_cloud,50,20)
+        rho = rho.value_in(units.amu / units.cm**3)
         sinks_mass_snapshots.append(sinks.mass.value_in(units.MSun))
+        star_position.append(sinks.position.value_in(units.pc))
+        cloud_density_cubes.append(rho)
+
+        if model_time+dt >= t_end:
+            _, xgrid, ygrid, zgrid = make_3Dmap(hydro_cloud,50,20)
 
         print("Post accretion cluster mass", sinks.mass.sum().in_(units.MSun))
         print(len(particles_cloud.mass), "number of cloud particles now")
 
-        if density_plot_flag == 1:
-                fig = plt.figure(figsize = (9, 5))
-                L=30
-                N=500
-                rho = make_map(hydro_cloud, L = L, N = N)
-                density_map = plt.imshow(np.log10(rho.value_in(units.amu/units.cm**3)), extent = [-L, L, -L, L])
-                plt.scatter(sinks.x.value_in(units.pc),sinks.y.value_in(units.pc),c='red')
-                color_bar = fig.colorbar(density_map)
-                color_bar.set_label('log density [$amu/cm^3$]', labelpad = 5)
 
-                plt.title(f"Molecular cloud at time = {model_time.value_in(units.Myr)} Myr and z = 0 pc")
-                plt.xlabel("x [pc]")
-                plt.ylabel("y [pc]")
-                plt.savefig(os.path.join(directory_path, f"density map \
-                                         at time_{model_time.value_in(units.Myr)}.png"))
-                plt.show()
+        # if density_plot_flag == 1:
+        #         fig = plt.figure(figsize = (9, 5))
+        #         L=30
+        #         N=500
+        #         rho = make_map(hydro_cloud, L = L, N = N)
+        #         density_map = plt.imshow(np.log10(rho.value_in(units.amu/units.cm**3)), extent = [-L, L, -L, L])
+        #         plt.scatter(sinks.x.value_in(units.pc),sinks.y.value_in(units.pc),c='red')
+        #         color_bar = fig.colorbar(density_map)
+        #         color_bar.set_label('log density [$amu/cm^3$]', labelpad = 5)
+
+        #         plt.title(f"Molecular cloud at time = {model_time.value_in(units.Myr)} Myr and z = 0 pc")
+        #         plt.xlabel("x [pc]")
+        #         plt.ylabel("y [pc]")
+        #         plt.savefig(os.path.join(directory_path, f"density map \
+        #                                  at time_{model_time.value_in(units.Myr)}.png"))
+        #         plt.show()
 
         
 
@@ -202,5 +261,9 @@ def let_them_collide(directory_path,t_end,dt,sinks,gravhydrobridge,\
     gravity_code.stop()
     hydro_cloud.stop()
     gravhydrobridge.stop()
+
+    final_cluster = sinks.copy()
+
+    return final_cluster,cloud_density_cubes,star_position,xgrid, ygrid, zgrid
 
 
