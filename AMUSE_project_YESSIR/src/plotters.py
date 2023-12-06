@@ -75,13 +75,8 @@ def make_map(hydro, x_lim, y_lim, N):
     
     return rho
 
-<<<<<<< HEAD
 # %%  
 def plot_hydro(time, hydro, x_lim, y_lim, N):
-=======
-#%%  
-def plot_hydro(time, hydro, L, N):
->>>>>>> 5e7c6d5c8f96ae190f588079b5b48cdb14f413a6
     '''
     Description: 
         Plot the log density of a molecular cloud at a given time
