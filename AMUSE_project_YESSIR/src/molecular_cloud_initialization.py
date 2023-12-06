@@ -91,7 +91,7 @@ def evolve_molecular_cloud(particles_cloud, converter_cloud, t_end, dt, seed):
 
     model_time = 0 | units.Myr
 
-    density_map = plot_hydro(model_time, hydro_cloud, L, N)
+    density_map = plot_hydro(model_time, hydro_cloud, L, L, N)
     
     print("ready for evolution")
     while model_time < t_end:
@@ -103,7 +103,7 @@ def evolve_molecular_cloud(particles_cloud, converter_cloud, t_end, dt, seed):
         print("Time", model_time.in_(units.Myr))
         channel["hydro_to_part"].copy()
 
-    density_map = plot_hydro(model_time, hydro_cloud, L, N)
+    density_map = plot_hydro(model_time, hydro_cloud, L, L, N)
 
     hydro_cloud.stop()
 

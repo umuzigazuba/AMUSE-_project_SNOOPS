@@ -43,7 +43,7 @@ def plot_snapshot_and_HR(cluster):
 
     plt.show()
 # %%
-def make_map(hydro, L, N):
+def make_map(hydro, x_lim, y_lim, N):
     '''
     Description: 
         For a molecular cloud centered around x, y, z = 0 pc, calculate its density over a grid at z = 0 pc
@@ -59,8 +59,8 @@ def make_map(hydro, L, N):
         rho (numpy.ndarray): Two-dimensional array containing the density of the molecular cloud over the grid
     '''
 
-    x = np.linspace(-L, L, N)
-    y = np.linspace(-L, L, N)
+    x = np.linspace(-x_lim, x_lim, N)
+    y = np.linspace(-y_lim, y_lim, N)
     xv, yv = np.meshgrid(x, y)
 
     x = xv.flatten() | units.pc
@@ -75,8 +75,13 @@ def make_map(hydro, L, N):
     
     return rho
 
+<<<<<<< HEAD
+# %%  
+def plot_hydro(time, hydro, x_lim, y_lim, N):
+=======
 #%%  
 def plot_hydro(time, hydro, L, N):
+>>>>>>> 5e7c6d5c8f96ae190f588079b5b48cdb14f413a6
     '''
     Description: 
         Plot the log density of a molecular cloud at a given time
@@ -96,8 +101,8 @@ def plot_hydro(time, hydro, L, N):
 
     fig = plt.figure(figsize = (9, 5))
     
-    rho = make_map(hydro, L = L, N = N)
-    density_map = plt.imshow(np.log10(rho.value_in(units.amu/units.cm**3)), extent = [-L, L, -L, L])
+    rho = make_map(hydro, x_lim = x_lim, y_lim = y_lim, N = N)
+    density_map = plt.imshow(np.log10(rho.value_in(units.amu/units.cm**3)), cmap = "plasma", extent = [-x_lim, x_lim, -y_lim, y_lim])
     color_bar = fig.colorbar(density_map)
     color_bar.set_label('log density [$amu/cm^3$]', labelpad = 5)
         
@@ -109,7 +114,7 @@ def plot_hydro(time, hydro, L, N):
     return density_map
 
 # %%
-def plot_hydro_and_star(time, hydro, star_particle, L, N, density_map_MC):
+def plot_hydro_and_star(time, hydro, star_particle, x_lim, y_lim, N, density_map_MC):
     '''
     Description: 
         Plot the log density of a molecular cloud and the position of a colliding star at a given time
@@ -134,21 +139,21 @@ def plot_hydro_and_star(time, hydro, star_particle, L, N, density_map_MC):
     star_x = star_particle.x.value_in(units.pc)
     star_y = star_particle.y.value_in(units.pc)
 
-    rho = make_map(hydro, L = L, N = N)
+    rho = make_map(hydro, x_lim = x_lim, y_lim = y_lim, N = N)
     
     fig, (ax_full, ax_zoom) = plt.subplots(nrows = 2, ncols = 1, figsize = (10.5, 7))
  
-    ax_full.imshow(np.log10(rho.value_in(units.amu/units.cm**3)), extent = [-L, L, -L, L])
+    ax_full.imshow(np.log10(rho.value_in(units.amu/units.cm**3)), cmap = "plasma", extent = [-x_lim, x_lim, -y_lim, y_lim])
     ax_full.scatter(star_x, star_y, c = 'red')
 
     ax_full.set_title(f"Molecular cloud at time = {time.value_in(units.Myr)} Myr and z = 0 pc")
     ax_full.set_xlabel("x [pc]")
     ax_full.set_ylabel("y [pc]")
 
-    ax_zoom.imshow(np.log10(rho.value_in(units.amu/units.cm**3)), extent = [-L, L, -L, L])
+    ax_zoom.imshow(np.log10(rho.value_in(units.amu/units.cm**3)), cmap = "plasma", extent = [-x_lim, x_lim, -y_lim, y_lim])
     ax_zoom.scatter(star_x, star_y, c = 'red')
 
-    offset = L/5 # parsecs
+    offset = x_lim/5 # parsecs
 
     ax_zoom.axis([star_x - offset*2, star_x + offset*2, star_y - offset, star_y + offset])
     ax_zoom.set_title(f"Zoomed in molecular cloud at time = {time.value_in(units.Myr)} Myr")
@@ -161,6 +166,30 @@ def plot_hydro_and_star(time, hydro, star_particle, L, N, density_map_MC):
 
     plt.tight_layout()
     plt.show()
+
+# %%
+
+def plot_cloud_and_star_cluster(time, hydro, sinks, x_lim, y_lim, N, density_map_MC):
+    
+    rho = make_map(hydro, x_lim = x_lim, y_lim = y_lim, N = N)
+
+    fig = plt.figure(figsize = (9, 5))
+
+    plt.imshow(np.log10(rho.value_in(units.amu/units.cm**3)), cmap = "plasma", extent = [-x_lim, x_lim, -y_lim, y_lim])
+    plt.scatter(sinks.position.x.value_in(units.pc), sinks.position.y.value_in(units.pc), c = "red", s = sinks.mass.value_in(units.MSun)*2)
+
+    plt.title(f"Molecular cloud at time = {time.value_in(units.Myr)} Myr and z = 0 pc")
+    plt.xlabel("x [pc]")
+    plt.ylabel("y [pc]")
+    plt.xlim([-x_lim, x_lim])
+    plt.ylim([-y_lim, y_lim])
+
+    colorbar_axis = fig.add_axes([0.95, 0.1, 0.02, 0.85])
+    colorbar = plt.colorbar(density_map_MC, cax = colorbar_axis, fraction = 0.046, pad = 0.04)
+    colorbar.set_label('log density [$amu/cm^3$]', labelpad = 5)
+
+    plt.show()
+
 # %% 
 def plot_cloud_particles(time, particles_cloud):
     # Did not fill in doc string because not sure this function will stay in the final version
