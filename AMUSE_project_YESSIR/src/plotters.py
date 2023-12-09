@@ -3,7 +3,8 @@
 from amuse.units import units
 import numpy as np
 from matplotlib import pyplot as plt
-
+import plotly.graph_objects as go
+import os
 # %%
 def plot_snapshot_and_HR(cluster):
 
@@ -164,16 +165,19 @@ def plot_hydro_and_star(time, hydro, star_particle, x_lim, y_lim, N, density_map
 
 # %%
 
-def plot_cloud_and_star_cluster(time, hydro, sinks, x_lim, y_lim, N, density_map_MC):
+def plot_cloud_and_star_cluster(time, hydro, sinks, x_lim, y_lim, N, density_map_MC,saveto=None):
     
     rho = make_map(hydro, x_lim = x_lim, y_lim = y_lim, N = N)
+
+    colors = np.array(["black", "aliceblue"])
+    colors_sink = np.array([0 if sink.name == "Unchanged star" else 1 for sink in sinks])
 
     fig = plt.figure(figsize = (9, 5))
 
     plt.imshow(np.log10(rho.value_in(units.amu/units.cm**3)), cmap = "plasma", extent = [-x_lim, x_lim, -y_lim, y_lim])
-    plt.scatter(sinks.position.x.value_in(units.pc), sinks.position.y.value_in(units.pc), c = "red", s = sinks.mass.value_in(units.MSun)*2)
+    plt.scatter(sinks.position.x.value_in(units.pc), sinks.position.y.value_in(units.pc), c = colors[colors_sink], s = sinks.mass.value_in(units.MSun)*5)
 
-    plt.title(f"Molecular cloud at time = {time.value_in(units.Myr)} Myr and z = 0 pc")
+    plt.title(f"Molecular cloud at time = {time.value_in(units.Myr)} Myr")
     plt.xlabel("x [pc]")
     plt.ylabel("y [pc]")
     plt.xlim([-x_lim, x_lim])
@@ -183,7 +187,13 @@ def plot_cloud_and_star_cluster(time, hydro, sinks, x_lim, y_lim, N, density_map
     colorbar = plt.colorbar(density_map_MC, cax = colorbar_axis, fraction = 0.046, pad = 0.04)
     colorbar.set_label('log density [$amu/cm^3$]', labelpad = 5)
 
-    plt.show()
+    if saveto is not None:
+        os.makedirs(saveto, exist_ok=True)
+        plt.savefig(os.path.join(saveto, f"Molecular cloud at time = {time.value_in(units.Myr)} Myr.png"))
+        plt.close()
+    
+    else:
+        plt.show()
 
 # %% 
 def plot_cloud_particles(time, particles_cloud):
@@ -238,6 +248,106 @@ def make_3Dmap(hydro, L, N):
     rho = rho.reshape((N + 1, N + 1, N+1))
     
     return rho, xv, yv, zv
+
+def animate_collision_3D(star_position,cloud_density_cubes,xgrid,ygrid,zgrid):
+    fig_dict = {
+    "data": [],
+    "layout": {},
+    "frames": []
+    }
+
+    fig_dict["layout"]["scene"] = {
+                    "xaxis": {"range": [xgrid.min()-5, xgrid.max()+5],"title": "x (kpc)"},
+                    "yaxis": {"range": [xgrid.min()-5, xgrid.max()+5],"title": "y (kpc)"},
+                    "zaxis": {"range": [xgrid.min()-5, xgrid.max()+5],"title": "z (kpc)"},
+                    "aspectmode": "cube"
+    }
+
+    fig_dict["layout"]["hovermode"] = "closest"
+
+    fig_dict["layout"]["updatemenus"] = [
+        {
+            "buttons": [
+                {
+                    "args": [None, {"fromcurrent": True}],
+                    "label": "Play",
+                    "method": "animate"
+                },
+                {
+                    "args": [[None], {"frame": {"duration": 0, "redraw": False},
+                                    "mode": "immediate",
+                                    "transition": {"duration": 0}}],
+                    "label": "Pause",
+                    "method": "animate"
+                }
+            ],
+            "direction": "left",
+            "pad": {"r": 10, "t": 87},
+            "type": "buttons",
+            "x": 0.1,
+            "xanchor": "center",
+            "y": 0,
+            "yanchor": "top"
+        }
+    ]
+
+
+
+    steps = len(cloud_density_cubes)
+
+    star_position = np.array(star_position)
+
+    for i in range(steps):
+        frame = {"data": []}
+        X = star_position[i,:,0]
+        Y = star_position[i,:,1]
+        Z = star_position[i,:,2]
+
+        data1 = go.Scatter3d(x=X, y=Y, z=Z,
+                        marker = dict(size=2, color= 'red'),mode='markers')
+
+        rho = cloud_density_cubes[i]
+
+        data2 = go.Volume(
+        x=xgrid.flatten(),
+        y=ygrid.flatten(),
+        z=zgrid.flatten(),
+        value=rho.flatten(),
+        isomin=cloud_density_cubes[0].min(),
+        isomax=cloud_density_cubes[0].max(),
+        opacity=0.1, # needs to be small to see through all surfaces
+        surface_count=15 # needs to be a large number for good volume rendering
+        )
+
+        if i == 0:
+            fig_dict["data"].append(data1)
+            fig_dict["data"].append(data2)
+        frame["data"].append(data1)
+        frame["data"].append(data2)
+        fig_dict["frames"].append(frame)
+
+        fig = go.Figure(fig_dict)
+
+    fig.update_layout(
+        autosize=False,
+        width=500,
+        height=500,
+        margin=dict(
+            l=10,
+            r=10,
+            b=5,
+            t=1,
+            pad=4
+        ),
+        paper_bgcolor="whitesmoke",
+    )
+
+    fig.show()
+
+    return fig
+
+
+
 # %%
 
 
