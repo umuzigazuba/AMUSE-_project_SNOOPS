@@ -58,31 +58,47 @@ def detect_bounded_gas(star,particles,hardness):
     
     return binaries
 
-def free_fall_time(star, particles, time_step,bondi_radius):
+def free_fall_time(star,particles,binary_particles,time_step):
 
-    n = len(particles)
+    n = len(binary_particles)
+    dm = []
     
     if n == 0:
-        return Particles()
+        return Particles(), dm
     
-    a = np.argsort(particles.x.number)
+    a = np.argsort(binary_particles.x.number)
     binaries = Particles()
     
-    rho = particles.mass.sum()/(4/3*np.pi*bondi_radius**3)
+    bg_rho = particles.mass.sum()/(4/3*np.pi*star.sink_radius**3)
+    
+
 
     for i in range(n):
         
-        distance = np.sqrt((star.x-particles.x[a[i]])**2 + \
-                            (star.y-particles.y[a[i]])**2 + \
-                            (star.z-particles.z[a[i]])**2)
+        distance = np.sqrt((star.x-binary_particles.x[a[i]])**2 + \
+                            (star.y-binary_particles.y[a[i]])**2 + \
+                            (star.z-binary_particles.z[a[i]])**2)
         
-        tff = 0.5*np.pi*distance**(3/2)/np.sqrt(2*units.constants.G*(star.mass + particles.mass[a[i]]))
+        free_fall_radius = (2*time_step*np.sqrt(2*units.constants.G \
+                                            *(star.mass + binary_particles.mass[a[i]]))/np.pi)**(2/3)
+        free_fall_radius = free_fall_radius.in_(units.m)
+        
+    
+        binary = binary_particles[[a[i]]].copy()
+        binaries.add_particle(binary)
 
-        if tff < time_step:
-            binary = particles[[a[i]]].copy()
-            binaries.add_particle(binary)
+        if free_fall_radius >= distance:
+            dm.append(binary.mass.value_in(units.MSun))
 
-    return binaries
+        else:
+            gas_rho = binary_particles.mass[a[i]]/(4/3*np.pi*distance**3)
+            mean_rho = (bg_rho+gas_rho)/2
+            acquired_mass = mean_rho * 4*np.pi*(free_fall_radius**3)/3 
+            acquired_mass = acquired_mass.value_in(units.MSun)
+            dm.append(acquired_mass)
+    
+    dm = dm | units.MSun
+    return binaries,dm
 
 
 def accrete_mass(sinks, hydro_particles,time_step):
@@ -92,13 +108,20 @@ def accrete_mass(sinks, hydro_particles,time_step):
     for idx in range(len(sinks)):
         # Select the ones that are gravitationally bound to the sink
         bounded_particles = detect_bounded_gas(sinks[idx], particles_within_sink_radius[idx], hardness = 0.1)
-        #bounded_particles = free_fall_time(sinks[idx], bounded_particles, time_step)
+        bounded_particles,dmass = free_fall_time(sinks[idx],particles_within_sink_radius[idx],\
+                                               bounded_particles, time_step)
         if len(bounded_particles) != 0:
             # Update the mass of the sink
             sinks[idx].name = "Accreted star"
-            sinks[idx].mass += bounded_particles.mass.sum()
-            # Remove the accreted particles from the particle cloud
-            hydro_particles.remove_particles(bounded_particles)
+            sinks[idx].mass += np.sum(dmass)
+            #Update particles mass for the particle cloud
+            bounded_particles.mass -= dmass
+
+            for i in range(len(bounded_particles)):
+                for particles in hydro_particles:
+                    if particles.key == bounded_particles.key[i]:
+                        particles.mass = bounded_particles.mass[i]
+                    
 
 
 def make_cluster_with_vinit(velocity,position,random_seed):
@@ -240,7 +263,7 @@ def let_them_collide_and_save(directory_path,t_end,dt,sinks,gravhydrobridge,\
             _, xgrid, ygrid, zgrid = make_3Dmap(hydro_cloud,20,20)
 
         print("Post accretion cluster mass", sinks.mass.sum().in_(units.MSun))
-        print(len(particles_cloud.mass), "number of cloud particles now")
+        # print(len(particles_cloud.mass), "number of cloud particles now")
 
         density_plots_path = os.path.join(directory_path,"density_snapshots/")
         plot_cloud_and_star_cluster(model_time, hydro_cloud, sinks, x_lim, y_lim, N,density_map,saveto=density_plots_path)
