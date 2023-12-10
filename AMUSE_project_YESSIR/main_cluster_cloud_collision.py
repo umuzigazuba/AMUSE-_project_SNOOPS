@@ -1,6 +1,8 @@
 #%%
 import os
 os.chdir('./src')
+import sys
+sys.path.append("./src")
 
 from time import time
 from datetime import datetime
@@ -11,13 +13,13 @@ import matplotlib.pyplot as plt
 from molecular_cloud_initialization import *
 from plotters import *
 from cluster_cloud_initialization import *
-from utils import *
+import utils
 
 from amuse.units import units
 #%%
 
 
-tot_cloud_mass = 4/3 *units.constants.pi * (15 | units.pc)**3 * ( 2.3 | units.amu * 15 / (units.cm**3))
+tot_cloud_mass = 4/3 *units.constants.pi * (15 | units.pc)**3 * ( 2.3 | units.amu * 10 / (units.cm**3))
 tot_cloud_mass=tot_cloud_mass.value_in(units.MSun)
 n_particles = tot_cloud_mass*15
 print("Cloud with MSun", tot_cloud_mass)
@@ -30,42 +32,47 @@ init_cloud, init_cloud_converter  = make_molecular_cloud(N_cloud = n_particles,
 
 init_cloud, density_map = evolve_molecular_cloud(init_cloud, 
                                                     init_cloud_converter, 
-                                                    t_end = 2 | units.Myr, 
+                                                    t_end = 1 | units.Myr, 
                                                     dt = 0.2 | units.Myr, 
                                                     seed = 6829)
 
 print("Mean density of the moelcular cloud", np.mean(init_cloud.density))
 #%%
 
-velocity = np.array([50])
+velocity = np.array([30,40,50,60])
+t_end = np.array([2.0,1.8,1.5,1.2])
+velocity = list(reversed(velocity))
+t_end = list(reversed(t_end))
 
-# for i in range (len(velocity)):
-#   v = velocity[i]
-v=50
-print("Starting with cluster velocity",v)
+final_clusters = []
 
-star_cluster,converter_cluster = make_cluster_with_vinit(v,30,207349)
+for i in range (len(velocity)):
+    v = velocity[i]
+    tot_t = t_end[i]
+  
+    print("Starting with cluster velocity",v)
 
-gravhydrobridge,sinks,channel,particles_cloud,gravity_code,\
-    hydro_cloud = AMUSE_bridge_initialization(star_cluster,converter_cluster,\
-                                                init_cloud,init_cloud_converter)
+    star_cluster,converter_cluster = utils.make_cluster_with_vinit(v,30,207349)
 
-path = '../results/dt=0.2'
-variable_name = v
-directory_path = os.path.join(path, str(variable_name))
-os.makedirs(directory_path, exist_ok=True)
+    stellar_code,gravhydrostellarbridge,sinks,channel,particles_cloud,gravity_code,\
+        hydro_cloud = utils.hydro_gravo_stella_bridge_initialization(star_cluster,converter_cluster,\
+                                                    init_cloud,init_cloud_converter)
 
-if __name__ == "__main__":
-    start_time = time()
-    date_time = datetime.utcfromtimestamp(start_time).strftime('%Y-%m-%d_%H-%M-%S')
-    print("Collision started on {}".format(socket.gethostname()),f"at time {format(date_time)}")
-    
-    post_collision_cluster,cloud_density_cubes,\
-        star_position,xgrid, ygrid, zgrid = let_them_collide_and_save\
-                                            (directory_path,1.8,0.2,sinks,gravhydrobridge,channel,\
-                                            particles_cloud,gravity_code,hydro_cloud)
+    path = '../results/final_with_stellar_evolution'
+    variable_name = str(v) + " kms"
+    directory_path = os.path.join(path, str(variable_name))
+    os.makedirs(directory_path, exist_ok=True)
 
-    print("Collision finished (running time: {0:.1f}s)".format(time() - start_time))
+    if __name__ == "__main__":
+        start_time = time()
+        date_time = datetime.utcfromtimestamp(start_time).strftime('%Y-%m-%d_%H-%M-%S')
+        print("Collision started on {}".format(socket.gethostname()),f"at time {format(date_time)}")
+        
+        post_collision_cluster = utils.collision_with_stellar_evolution(v,directory_path,tot_t,0.1,sinks,gravhydrostellarbridge,channel,\
+                                                particles_cloud,gravity_code,hydro_cloud,stellar_code)
+
+        print("Collision finished (running time: {0:.1f}s)".format(time() - start_time))
+        final_clusters.append(post_collision_cluster)
 
 
 #%%
@@ -102,4 +109,10 @@ if __name__ == "__main__":
 # diff = (data_without_max_increase[-1,:] - data_without_max_increase[0,:])
 # plt.hist(diff)
 # plt.show()
+
+# %%
+gravity_code.stop()
+hydro_cloud.stop()
+#stellar_evolution_code.stop()
+gravhydrostellarbridge.stop()
 # %%
