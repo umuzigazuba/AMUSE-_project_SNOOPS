@@ -119,6 +119,8 @@ def accrete_mass(sinks, hydro_particles,time_step):
             bounded_particles.mass -= dmass
 
             for i in range(len(bounded_particles)):
+                if bounded_particles[i].mass.value_in(units.MSun) <= 1e-15:
+                    hydro_particles.remove_particle(bounded_particles[i])
                 for particles in hydro_particles:
                     if particles.key == bounded_particles.key[i]:
                         particles.mass = bounded_particles.mass[i]
@@ -173,7 +175,7 @@ def hydro_code(Code, dt, converter, particles, seed):
     return hydro    
 
 
-def AMUSE_bridge_initialization(star_cluster,converter_cluster,init_cloud,init_cloud_converter):
+def AMUSE_bridge_initialization(dt,star_cluster,converter_cluster,init_cloud,init_cloud_converter):
     #initiate the gravity code with sink particles
     gravity_code = Bhtree(converter_cluster)
     sinks = new_sink_particles(star_cluster)
@@ -198,7 +200,7 @@ def AMUSE_bridge_initialization(star_cluster,converter_cluster,init_cloud,init_c
     gravhydrobridge = bridge.Bridge(use_threading = False)
     gravhydrobridge.add_system(gravity_code, (hydro_cloud,) )
     gravhydrobridge.add_system(hydro_cloud, (gravity_code,) )
-    gravhydrobridge.timestep = 0.1 | units.Myr
+    gravhydrobridge.timestep = dt | units.Myr
 
     return gravhydrobridge,sinks,channel,particles_cloud,gravity_code,hydro_cloud
 
@@ -285,6 +287,7 @@ def let_them_collide_and_save(name,directory_path,t_end,dt,sinks,gravhydrobridge
     print("Mass snapshots saved.")
 
     mask = np.where(mass_difference > 1e-15)
+    sinks_mass_snapshots = np.array(sinks_mass_snapshots)
     relative_mass = sinks_mass_snapshots - sinks_mass_snapshots[0,:]
 
     plt.plot(np.arange(0, t_end.value_in(units.Myr), dt.value_in(units.Myr)), \
