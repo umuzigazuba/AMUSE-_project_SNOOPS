@@ -5,14 +5,12 @@ os.chdir('./src')
 import numpy as np
 import matplotlib.pyplot as plt
 
-
-from amuse.units import nbody_system
 from amuse.units import units
 from amuse.community.seba.interface import SeBa
 from amuse.datamodel import Particles
 #%%
 
-file_path = '../results/45/Sink mass_44.97776491875698.txt'
+file_path = '../results/tests_with_animation/20/Sink mass_19.977764918756957.txt'
 # import the mass snapshots file (in Solar Mass)
 sinks_mass_snapshots = np.loadtxt(file_path)
 # get the masses of the Cluster's stars before and after the collision
@@ -83,23 +81,7 @@ fig.supylabel('N')
 fig.supxlabel('Z')
 ax.legend()
 plt.tight_layout()
-#%%
 
-
-def start_stellar_code(stars):
-    
-    stellar = SeBa()
-    
-    if len(stars) ==1:   
-        stellar.particles.add_particle(stars)
-        
-    
-    elif len(stars) >1:   
-        stellar.particles.add_particles(stars)
-    
-    channels = {"to_stars": stellar.particles.new_channel_to(stars), 
-                "to_stellar": stars.new_channel_to(stellar.particles)}
-    return stellar, channels
 #%%
 # make the mask for the non-accreting stars
 mask_non_accretion = np.where(new_metallicities == 0.002)
@@ -109,20 +91,27 @@ non_accreted_masses = initial_masses[mask_non_accretion[0]] | units.MSun
 old_population = Particles(mass = non_accreted_masses)
 
 # Stellar evolution of old population
-stellar_II, channels_II = start_stellar_code(old_population) 
+ 
 
+stellar_II = SeBa()
+# ALWAYS ADD THE METALLICITY FIRST AND THEN THE PARTICLES
 stellar_II.parameters.metallicity = 0.002
+stellar_II.particles.add_particles(old_population)
+channel_II = stellar_II.particles.new_channel_to(old_population)
+channel_II.copy()
+
+
 # evovle for the age of the cluster + the time spend in the collision with the
 # molecular cloud
 end_time = (10 |units.Gyr) +(1.8 |units.Myr)
 model_time = 0.0 |units.Gyr
-step = 0.5 |units.Gyr
+step = 2 |units.Gyr
 
 
 while model_time < end_time:
     
     stellar_II.evolve_model(model_time)
-    channels_II["to_stars"].copy()
+    channel_II.copy()
     
     print('Evolution at', model_time.value_in(units.Gyr), 'Gyr' )
     model_time += step
@@ -155,13 +144,14 @@ def evolve_single_star(stars, indx, metallicity, end_time, step):
     '''
     
     stellar = SeBa()
+    # ALWAYS ADD THE METALLICITY FIRST AND THEN THE PARTICLES
+    stellar.parameters.metallicity = metallicity
     stellar.particles.add_particle(stars[indx])
     channels = {"to_stars": stellar.particles.new_channel_to(stars), 
                 "to_stellar": stars.new_channel_to(stellar.particles)}
     
-    stellar.parameters.metallicity = metallicity
 
-    print(stellar.parameters.metallicity)
+    print('The metallicity of the current star is Z = ',stellar.parameters.metallicity)
     model_time = 0.0 |units.Gyr
 
     while model_time < end_time:
@@ -198,12 +188,14 @@ ax.scatter(old_population.temperature.value_in(units.K),
                 c='k', s= 4,
                 label = 'old population')
 
+
 ax.scatter(rejuvenated_population.temperature.value_in(units.K),
-                rejuvenated_population.luminosity.value_in(units.LSun), 
-                c='red', s=4,
-                label = 'rejuvenated population')
+                  rejuvenated_population.luminosity.value_in(units.LSun), 
+                  c='red', s=4,
+                  label = 'rejuvenated population')
+
 ax.set_xlim(10E+3, 2.5E+3)
-#ax1.set_ylim(1.e+3, 1.e+7)
+#ax.set_ylim(1.e+3, 1.e+7)
 ax.loglog()
 ax.legend()
 ax.set_xlabel("T [K]")
