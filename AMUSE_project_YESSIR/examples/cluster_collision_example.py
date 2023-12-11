@@ -27,26 +27,32 @@ init_cloud, init_cloud_converter  = make_molecular_cloud(N_cloud = n_particles,
 
 init_cloud, density_map = evolve_molecular_cloud(init_cloud, 
                                                     init_cloud_converter, 
-                                                    t_end = 1 | units.Myr, 
+                                                    t_end = 2 | units.Myr, 
                                                     dt = 0.2 | units.Myr, 
                                                     seed = 6829)
 
 print("Mean density of the moelcular cloud", np.mean(init_cloud.density))
 
 #%%
-velocity = np.array([20])
+velocity = np.array([20,30,40,50,60])
+t_end = np.array([5.0,4.4,4.0,3.8,3.4])
+# velocity = list(reversed(velocity))
+# t_end = list(reversed(t_end))
+
+final_clusters = []
 
 for i in range (len(velocity)):
     v = velocity[i]
+    tot_t = t_end[i]
     print("Starting with cluster velocity",v)
 
-    star_cluster,converter_cluster = utils.make_cluster_with_vinit(v,25,207349)
+    star_cluster,converter_cluster = utils.make_cluster_with_vinit(v,45,207349)
 
     gravhydrobridge,sinks,channel,particles_cloud,gravity_code,\
-        hydro_cloud = utils.AMUSE_bridge_initialization(star_cluster,converter_cluster,\
+        hydro_cloud = utils.AMUSE_bridge_initialization(0.1,star_cluster,converter_cluster,\
                                                     init_cloud,init_cloud_converter)
 
-    path = '../results/tests_with_different_criteria/ff_ratio_0.5/'
+    path = '../results/final_without_stellar/dt=0.1/'
     variable_name = str(v) + " kms"
     directory_path = os.path.join(path, str(variable_name))
     os.makedirs(directory_path, exist_ok=True)
@@ -56,14 +62,14 @@ for i in range (len(velocity)):
         date_time = datetime.utcfromtimestamp(start_time).strftime('%Y-%m-%d_%H-%M-%S')
         print("Collision started on {}".format(socket.gethostname()),f"at time {format(date_time)}")
         
-        post_collision_cluster = utils.let_them_collide_and_save(v,directory_path,2.4,0.2,sinks,gravhydrobridge,channel,\
+        post_collision_cluster = utils.let_them_collide_and_save(v,directory_path,tot_t,0.1,sinks,gravhydrobridge,channel,\
                                                 particles_cloud,gravity_code,hydro_cloud)
 
         print("Collision finished (running time: {0:.1f}s)".format(time() - start_time))
 
 #%%
 #retrieve the data and plot trends 
-file_path = '../results/tests_with_different_criteria/ff_ratio_0.5/20 kms/Sink mass_19.977764918756957.txt' 
+file_path = '../results/final_without_stellar/60 kms/Sink mass_59.977764918756975.txt' 
 data = np.loadtxt(file_path)
 x_values = np.arange(1, len(data) + 1)
 
@@ -73,15 +79,36 @@ plt.ylabel('Accretion')
 plt.title('Accretion Trend')
 plt.grid(True)
 plt.show()
+plt.close()
 
-
+sinks_mass_snapshots = data
 relative_mass = data - data[0,:]
+mass_difference = sinks_mass_snapshots[-1] - sinks_mass_snapshots[0]
 
 # Remove the column with the most increase
 plt.plot(x_values, relative_mass)
 plt.xlabel('Time (0.1 Myr)')
 plt.ylabel('Accretion')
+plt.title("Collision with velocity 60 kms")
 plt.grid(True)
+plt.savefig('../results/final_without_stellar/60 kms/accretion_over_time_60kms.png')
 plt.show()
+plt.close()
+
+mask = np.where(mass_difference> 1e-15)
+
+
+mass_ratio = np.array(mass_difference)[mask[0]]/np.array(sinks_mass_snapshots[0])[mask[0]]
+plt.hist(mass_ratio*100, bins  = 30)
+plt.xlabel("Relative mass difference [%]")
+plt.title('Collision with velocity 60 kms')
+plt.savefig('../results/final_without_stellar/60 kms/accretion_hist_60kms.png')
+plt.show()
+plt.close()
+
+# %%
+gravity_code.stop()
+hydro_cloud.stop()
+gravhydrobridge.stop()
 
 # %%

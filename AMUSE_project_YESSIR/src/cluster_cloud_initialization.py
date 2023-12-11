@@ -3,7 +3,7 @@ from amuse.units import units
 from amuse.community.seba.interface import SeBa
 import numpy as np
 import matplotlib.pyplot as plt
-from amuse.ext.masc import new_star_cluster
+from masc.cluster import new_star_cluster
 
 from plotters import plot_snapshot_and_HR
 
