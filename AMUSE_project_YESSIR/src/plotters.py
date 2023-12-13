@@ -257,9 +257,9 @@ def animate_collision_3D(star_position,cloud_density_cubes,xgrid,ygrid,zgrid):
     }
 
     fig_dict["layout"]["scene"] = {
-                    "xaxis": {"range": [xgrid.min()-5, xgrid.max()+5],"title": "x (kpc)"},
-                    "yaxis": {"range": [xgrid.min()-5, xgrid.max()+5],"title": "y (kpc)"},
-                    "zaxis": {"range": [xgrid.min()-5, xgrid.max()+5],"title": "z (kpc)"},
+                    "xaxis": {"range": [xgrid.min()-5, xgrid.max()+5],"title": "x (pc)"},
+                    "yaxis": {"range": [xgrid.min()-5, xgrid.max()+5],"title": "y (pc)"},
+                    "zaxis": {"range": [xgrid.min()-5, xgrid.max()+5],"title": "z (pc)"},
                     "aspectmode": "cube"
     }
 

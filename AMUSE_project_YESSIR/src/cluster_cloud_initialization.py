@@ -101,6 +101,7 @@ def make_globular_cluster(star_count, radius, metallicity, age, seed):
     evolved_cluster.mass = bodies.mass
     evolved_cluster.luminosity = bodies.luminosity
     evolved_cluster.temperature = bodies.temperature
+    evolved_cluster.metallicity = metallicity
 
     plot_snapshot_and_HR(evolved_cluster)
     

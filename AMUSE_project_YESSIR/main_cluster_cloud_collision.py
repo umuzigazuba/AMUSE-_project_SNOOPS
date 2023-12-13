@@ -39,8 +39,8 @@ init_cloud, density_map = evolve_molecular_cloud(init_cloud,
 print("Mean density of the moelcular cloud", np.mean(init_cloud.density))
 #%%
 
-velocity = np.array([30,40,50,60])
-t_end = np.array([2.0,1.8,1.5,1.2])
+velocity = np.array([20,30,40,50,60])
+t_end = np.array([2.8,2.0,1.6,1.2,1.0])
 velocity = list(reversed(velocity))
 t_end = list(reversed(t_end))
 
