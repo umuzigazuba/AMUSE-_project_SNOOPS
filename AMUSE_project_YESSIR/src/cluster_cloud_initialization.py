@@ -1,14 +1,15 @@
 #%%
 from amuse.units import units
+from amuse.lab import Particles, nbody_system, new_kroupa_mass_distribution
 from amuse.community.seba.interface import SeBa
+from amuse.ic.kingmodel import new_king_model
+
 import numpy as np
-import matplotlib.pyplot as plt
-from masc.cluster import new_star_cluster
 
 from plotters import plot_snapshot_and_HR
 
 # %%
-def stellar_evolution(bodies, time, seed):
+def stellar_evolution(bodies, metallicity, time, seed):
     '''
     Description:
         Evolve an existing star particles system to a desired age 
@@ -26,8 +27,8 @@ def stellar_evolution(bodies, time, seed):
     np.random.seed(seed)
 
     stellar_evolution_code = SeBa()
+    stellar_evolution_code.parameters.metallicity = metallicity
     stellar_evolution_code.particles.add_particles(bodies)
-    stellar_evolution_code.parameters.metallicity = bodies[0].metallicity
     
     stellar_channel = stellar_evolution_code.particles.new_channel_to(bodies)
     stellar_channel.copy()
@@ -40,15 +41,16 @@ def stellar_evolution(bodies, time, seed):
     while(model_time < end_time):
 
         model_time += dt
+
         stellar_evolution_code.evolve_model(model_time)
         stellar_channel.copy()
-  
+
     stellar_evolution_code.stop()
     return bodies
 
 #%%
 
-def make_globular_cluster(star_count, imf, radius, metallicity, age, seed):
+def make_globular_cluster(star_count, radius, metallicity, age, seed):
     '''
     Description:
         Generate a globular cluster with specific number of stars,
@@ -68,24 +70,37 @@ def make_globular_cluster(star_count, imf, radius, metallicity, age, seed):
         seed (int): Randomness of the function
     
     Returns:
-        evolved_cluster (object): AMUSE particle system resembling the desired globular cluster
+        bodies (object): AMUSE particle system resembling the desired globular cluster
     '''
 
     np.random.seed(seed)
 
-    cluster = new_star_cluster(
-        number_of_stars = star_count,
-        initial_mass_function = imf,
-        upper_mass_limit = 7 | units.MSun, 
-        effective_radius = radius, #assuming this is the overall radius of the cluster
-        star_distribution = 'king',
-        star_distribution_w0 = 7.0,
-        star_metallicity = metallicity,
-    )
+    # cluster = new_star_cluster(
+    #     number_of_stars = star_count,
+    #     initial_mass_function = imf,
+    #     upper_mass_limit = 7 | units.MSun, 
+    #     effective_radius = radius, #assuming this is the overall radius of the cluster
+    #     star_distribution = 'king',
+    #     star_distribution_w0 = 7.0,
+    #     star_metallicity = metallicity,
+    # )
 
-    print("cluster generated")
+    mass_kroupa = new_kroupa_mass_distribution(star_count,
+                                                mass_min = 0.2 | units.MSun, 
+                                                mass_max = 7 | units.MSun)
+    
+    cluster = Particles(mass = mass_kroupa)
 
-    evolved_cluster = stellar_evolution(cluster, age, seed)
+    bodies = stellar_evolution(cluster, metallicity, age, seed)
+
+    converter = nbody_system.nbody_to_si(bodies.mass.sum(), radius)
+
+
+    evolved_cluster = new_king_model(star_count, W0 = 7, convert_nbody = converter)
+    evolved_cluster.scale_to_standard(converter)
+    evolved_cluster.mass = bodies.mass
+    evolved_cluster.luminosity = bodies.luminosity
+    evolved_cluster.temperature = bodies.temperature
 
     plot_snapshot_and_HR(evolved_cluster)
     
@@ -97,7 +112,3 @@ def make_globular_cluster(star_count, imf, radius, metallicity, age, seed):
 # IMPORTANT: The age has a large effect on the amount of evolved stars present (e.g. 3 vs 10 Gyr) 
 # QUESTION: evolve until the average age difference between populations in globular clusters
 # %%
-
-
-
-
