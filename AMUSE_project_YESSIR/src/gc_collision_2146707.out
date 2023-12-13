@@ -1,0 +1,132 @@
+[/bin/bash] #### Starting Python test
+[/bin/bash] ## This is s3805352 on node011 and this job has the ID 2146707
+[/bin/bash] ## current working directory: /home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src
+[/bin/bash] ## Run script
+36924.9414227 738498.828453
+ready for evolution
+Time 0.2 Myr
+Time 0.4 Myr
+Time 0.6 Myr
+Time 0.8 Myr
+Time 1.0 Myr
+Time 1.2 Myr
+Time 1.4 Myr
+Time 1.6 Myr
+Time 1.8 Myr
+Time 2.0 Myr
+Average mass of a SPH particle 0.05004756243608789.
+Mean density of the moelcular cloud 9.79208147684e-20 m**-3 * kg
+Starting with cluster velocity 20
+cluster generated
+Most massive star in cluster is  1.11153195526 MSun
+Collision started on node011 at time 2023-12-12_11-16-17
+Colliding with cluster velocity 20.0062602731
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 344.103109268 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.103109268 MSun
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 344.106503382 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.106503382 MSun
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 344.117586678 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.117586678 MSun
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 344.15345786 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.15345786 MSun
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 344.186019999 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.186019999 MSun
+Sinks in progress at 1.6  Myr.
+Post accretion cluster mass 344.233649181 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.233649181 MSun
+Sinks in progress at 1.7  Myr.
+Post accretion cluster mass 344.281694324 MSun
+Largest sink radius 0.239150330726 parsec
+Pre accretion cluster mass 344.281694324 MSun
+Sinks in progress at 1.8  Myr.
+Post accretion cluster mass 344.34679502 MSun
+Largest sink radius 0.247441300314 parsec
+Pre accretion cluster mass 344.34679502 MSun
+Sinks in progress at 1.9  Myr.
+Post accretion cluster mass 344.377510417 MSun
+Largest sink radius 0.24766381805 parsec
+Pre accretion cluster mass 344.377510417 MSun
+Sinks in progress at 2.0  Myr.
+Post accretion cluster mass 344.480113836 MSun
+Largest sink radius 0.247716594948 parsec
+Pre accretion cluster mass 344.480113836 MSun
+Sinks in progress at 2.1  Myr.
+Post accretion cluster mass 344.612507039 MSun
+Largest sink radius 0.247716594948 parsec
+Pre accretion cluster mass 344.612507039 MSun
+Sinks in progress at 2.2  Myr.
+Post accretion cluster mass 344.734003897 MSun
+Largest sink radius 0.247716594948 parsec
+Pre accretion cluster mass 344.734003897 MSun
+Sinks in progress at 2.3  Myr.
+Post accretion cluster mass 344.897890712 MSun
+Largest sink radius 0.248136439043 parsec
+Pre accretion cluster mass 344.897890712 MSun
+Sinks in progress at 2.4  Myr.
+Traceback (most recent call last):
+  File "/home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src/alice_collision.py", line 60, in <module>
+    post_collision_cluster = utils.let_them_collide_and_save(v,directory_path,tot_t,0.1,sinks,gravhydrobridge,channel,\
+  File "/home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src/utils.py", line 251, in let_them_collide_and_save
+    accrete_mass(sinks,particles_cloud,dt)
+  File "/home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src/utils.py", line 116, in accrete_mass
+    sinks[idx].mass += np.sum(dmass) | units.MSun
+  File "/cm/shared/easybuild/GenuineIntel/software/AMUSE/2023.5.1/lib/python3.10/site-packages/numpy/core/fromnumeric.py", line 2313, in sum
+    return _wrapreduction(a, np.add, 'sum', axis, dtype, out, keepdims=keepdims,
+  File "/cm/shared/easybuild/GenuineIntel/software/AMUSE/2023.5.1/lib/python3.10/site-packages/numpy/core/fromnumeric.py", line 88, in _wrapreduction
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (3,) + inhomogeneous part.
+[/bin/bash] ## Script finished
+[/bin/bash] #### Finished Python test. Have a nice day

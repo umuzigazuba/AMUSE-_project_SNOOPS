@@ -1,0 +1,89 @@
+[/bin/bash] #### Starting Python test
+[/bin/bash] ## This is s3805352 on node001 and this job has the ID 2147235
+[/bin/bash] ## current working directory: /home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src
+[/bin/bash] ## Run script
+36924.9414227 738498.828453
+ready for evolution
+Time 0.2 Myr
+Time 0.4 Myr
+Time 0.6 Myr
+Time 0.8 Myr
+Time 1.0 Myr
+Time 1.2 Myr
+Time 1.4 Myr
+Time 1.6 Myr
+Time 1.8 Myr
+Time 2.0 Myr
+Average mass of a SPH particle 0.05004756243608789.
+Mean density of the moelcular cloud 9.79208147684e-20 m**-3 * kg
+Starting with cluster velocity 20
+cluster generated
+Most massive star in cluster is  1.11153195526 MSun
+Collision started on node001 at time 2023-12-12_22-12-48
+Colliding with cluster velocity 20.0062602731
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 344.099628824 MSun
+Largest sink radius 0.239090956258 parsec
+Pre accretion cluster mass 344.099628824 MSun
+Sinks in progress at 1.1  Myr.
+Traceback (most recent call last):
+  File "/cm/shared/easybuild/GenuineIntel/software/AMUSE/2023.5.1/lib/python3.10/site-packages/amuse/support/core.py", line 518, in memof
+    return memof.d[arg]
+KeyError: (unit<none>, unit<MSun>)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src/alice_collision.py", line 60, in <module>
+    post_collision_cluster = utils.let_them_collide_and_save(v,directory_path,tot_t,0.1,sinks,gravhydrobridge,channel,\
+  File "/home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src/utils.py", line 254, in let_them_collide_and_save
+    
+  File "/home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src/utils.py", line 119, in accrete_mass
+    sinks[idx].mass += np.sum(dmass)
+  File "/cm/shared/easybuild/GenuineIntel/software/AMUSE/2023.5.1/lib/python3.10/site-packages/amuse/units/quantities.py", line 112, in __add__
+    factor = other.unit.conversion_factor_from(self.unit)
+  File "/cm/shared/easybuild/GenuineIntel/software/AMUSE/2023.5.1/lib/python3.10/site-packages/amuse/support/core.py", line 520, in memof
+    result=f(*arg)
+  File "/cm/shared/easybuild/GenuineIntel/software/AMUSE/2023.5.1/lib/python3.10/site-packages/amuse/units/core.py", line 302, in conversion_factor_from
+    raise IncompatibleUnitsException(x, self)
+amuse.units.core.IncompatibleUnitsException: Cannot express none in MSun, the units do not have the same bases
+[/bin/bash] ## Script finished
+[/bin/bash] #### Finished Python test. Have a nice day

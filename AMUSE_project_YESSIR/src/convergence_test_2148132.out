@@ -1,0 +1,270 @@
+[/bin/bash] #### Starting Python test
+[/bin/bash] ## This is s3805352 on node019 and this job has the ID 2148132
+[/bin/bash] ## current working directory: /home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src
+[/bin/bash] ## Run script
+7975.78734729 119636.810209
+ready for evolution
+Time 0.2 Myr
+Time 0.4 Myr
+Time 0.6 Myr
+Time 0.8 Myr
+Time 1.0 Myr
+Time 1.2 Myr
+Time 1.4 Myr
+Time 1.6 Myr
+Time 1.8 Myr
+Time 2.0 Myr
+Average mass of a SPH particle 0.06490870827977735.
+Mean density of the moelcular cloud 6.63733446056e-20 m**-3 * kg
+Starting with cluster velocity 20
+cluster generated
+Most massive star in cluster is  1.07993471348 MSun
+Collision started on node019 at time 2023-12-13_11-36-29
+Colliding with cluster velocity 19.9779247339
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.05  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.15000000000000002  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.25  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.35  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.39999999999999997  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.44999999999999996  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.49999999999999994  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.5499999999999999  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.65  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.7000000000000001  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.7500000000000001  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.8000000000000002  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.8500000000000002  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.9000000000000002  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 0.9500000000000003  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 1.0000000000000002  Myr.
+Post accretion cluster mass 72.4583907435 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4583907435 MSun
+Sinks in progress at 1.0500000000000003  Myr.
+Post accretion cluster mass 72.4584703699 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4584703699 MSun
+Sinks in progress at 1.1000000000000003  Myr.
+Post accretion cluster mass 72.4585498952 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4585498952 MSun
+Sinks in progress at 1.1500000000000004  Myr.
+Post accretion cluster mass 72.4585498952 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4585498952 MSun
+Sinks in progress at 1.2000000000000004  Myr.
+Post accretion cluster mass 72.4585498952 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4585498952 MSun
+Sinks in progress at 1.2500000000000004  Myr.
+Post accretion cluster mass 72.4585498952 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4585498952 MSun
+Sinks in progress at 1.3000000000000005  Myr.
+Post accretion cluster mass 72.4585498952 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4585498952 MSun
+Sinks in progress at 1.3500000000000005  Myr.
+Post accretion cluster mass 72.4591154432 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4591154432 MSun
+Sinks in progress at 1.4000000000000006  Myr.
+Post accretion cluster mass 72.4596772156 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4596772156 MSun
+Sinks in progress at 1.4500000000000006  Myr.
+Post accretion cluster mass 72.4622174551 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4622174551 MSun
+Sinks in progress at 1.5000000000000007  Myr.
+Post accretion cluster mass 72.4647249647 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4647249647 MSun
+Sinks in progress at 1.5500000000000007  Myr.
+Post accretion cluster mass 72.4658054193 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4658054193 MSun
+Sinks in progress at 1.6000000000000008  Myr.
+Post accretion cluster mass 72.4668807966 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4668807966 MSun
+Sinks in progress at 1.6500000000000008  Myr.
+Post accretion cluster mass 72.4683044921 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4683044921 MSun
+Sinks in progress at 1.7000000000000008  Myr.
+Post accretion cluster mass 72.4697207231 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4697207231 MSun
+Sinks in progress at 1.7500000000000009  Myr.
+Post accretion cluster mass 72.4732710999 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4732710999 MSun
+Sinks in progress at 1.800000000000001  Myr.
+Post accretion cluster mass 72.4767575009 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4767575009 MSun
+Sinks in progress at 1.850000000000001  Myr.
+Post accretion cluster mass 72.4867449025 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.4867449025 MSun
+Sinks in progress at 1.900000000000001  Myr.
+Post accretion cluster mass 72.495515491 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.495515491 MSun
+Sinks in progress at 1.950000000000001  Myr.
+Post accretion cluster mass 72.5045506362 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.5045506362 MSun
+Sinks in progress at 2.000000000000001  Myr.
+Post accretion cluster mass 72.5128950412 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.5128950412 MSun
+Sinks in progress at 2.0500000000000007  Myr.
+Post accretion cluster mass 72.5141509367 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.5141509367 MSun
+Sinks in progress at 2.1000000000000005  Myr.
+Post accretion cluster mass 72.5153982046 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.5153982046 MSun
+Sinks in progress at 2.1500000000000004  Myr.
+Post accretion cluster mass 72.5166369301 MSun
+Largest sink radius 0.23229437725 parsec
+Pre accretion cluster mass 72.5166369301 MSun
+Sinks in progress at 2.2  Myr.
+Post accretion cluster mass 72.5974703289 MSun
+Largest sink radius 0.232313103204 parsec
+Pre accretion cluster mass 72.5974703289 MSun
+Sinks in progress at 2.25  Myr.
+Post accretion cluster mass 72.6114240201 MSun
+Largest sink radius 0.232331803341 parsec
+Pre accretion cluster mass 72.6114240201 MSun
+Sinks in progress at 2.3  Myr.
+Post accretion cluster mass 72.6134024944 MSun
+Largest sink radius 0.232348134805 parsec
+Pre accretion cluster mass 72.6134024944 MSun
+Sinks in progress at 2.3499999999999996  Myr.
+Post accretion cluster mass 72.6153690692 MSun
+Largest sink radius 0.232364446554 parsec
+Pre accretion cluster mass 72.6153690692 MSun
+Sinks in progress at 2.3999999999999995  Myr.
+Post accretion cluster mass 72.6197831687 MSun
+Largest sink radius 0.232364446554 parsec
+Pre accretion cluster mass 72.6197831687 MSun
+Sinks in progress at 2.4499999999999993  Myr.
+Post accretion cluster mass 72.624116964 MSun
+Largest sink radius 0.232364446554 parsec
+Pre accretion cluster mass 72.624116964 MSun
+Sinks in progress at 2.499999999999999  Myr.
+Post accretion cluster mass 72.6263073157 MSun
+Largest sink radius 0.232364446554 parsec
+Pre accretion cluster mass 72.6263073157 MSun
+Sinks in progress at 2.549999999999999  Myr.
+Post accretion cluster mass 72.6284751061 MSun
+Largest sink radius 0.232364446554 parsec
+Pre accretion cluster mass 72.6284751061 MSun
+Sinks in progress at 2.5999999999999988  Myr.
+Post accretion cluster mass 72.6321632656 MSun
+Largest sink radius 0.232364446554 parsec
+Pre accretion cluster mass 72.6321632656 MSun
+Sinks in progress at 2.6499999999999986  Myr.
+Post accretion cluster mass 72.6358030178 MSun
+Mass snapshots saved.
+Collision finished (running time: 1145.2s)
+
+
+In this session you have used the AMUSE modules below. 
+Please cite any relevant articles:
+
+
+	"AMUSE-BHTree (2023.5.1)"
+		ADS:1986Natur.324..446B (Barnes, J., Hut, P., *Nature*, **4**, 324 (1986))
+
+
+	"AMUSE-Fi (2023.5.1)"
+		ADS:1989ApJS...70..419H ** (Hernquist & Katz, 1989, ApJS 70, 419)
+		ADS:2004A&A...422...55P ** (Pelupessy, van der Werf & Icke, 2004, A&A 422, 55)
+		ADS:2005PhDT........17P (Pelupessy, PhD thesis 2005, Leiden Observatory)
+		ADS:1997A&A...325..972G (Gerritsen & Icke, 1997, A&A 325, 972)
+
+
+	"AMUSE-SeBa (2023.5.1)"
+		ADS:1996A&A...309..179P (Portegies Zwart S.F. & Verbunt F., 1996, A&A, 309, 179:
+		... "Population synthesis of high-mass binaries")
+		ADS:2012A&A...546A..70T (Toonen, S., Nelemans, G., Portegies Zwart S.F., 2012, A&A, 546A, 70T
+		... "Supernova Type Ia progenitors from merging double white dwarfs. Using a new population synthesis model")
+
+
+	"AMUSE (2023.5.1)"
+		DOI:10.5281/zenodo.1435860
+		ADS:2018araa.book.....P (Portegies Zwart, S. & McMillan, S.L.W., 2018)
+		ADS:2013CoPhC.183..456P ** (Portegies Zwart, S. et al., 2013)
+		ADS:2013A&A...557A..84P ** (Pelupessy, F. I. et al., 2013)
+		ADS:2009NewA...14..369P (Portegies Zwart, S. et al., 2009)
+
+[/bin/bash] ## Script finished
+[/bin/bash] #### Finished Python test. Have a nice day

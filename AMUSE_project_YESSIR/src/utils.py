@@ -97,9 +97,15 @@ def free_fall_time(star,particles,binary_particles,time_step):
             acquired_mass = mean_rho * 4*np.pi*(free_fall_radius**3)/3 
             acquired_mass = acquired_mass.value_in(units.MSun)
             dm.append(acquired_mass)
+
+    dmass = dm
+
+    if len(dm) > 0:
+        print("dm is", dm)
+
+    dmass = dmass | units.MSun
     
-    dm = dm | units.MSun
-    return binaries,dm
+    return binaries,dmass
 
 
 def accrete_mass(sinks, hydro_particles,time_step):
@@ -117,7 +123,6 @@ def accrete_mass(sinks, hydro_particles,time_step):
             sinks[idx].mass += np.sum(dmass)
             #Update particles mass for the particle cloud
             bounded_particles.mass -= dmass
-
             for i in range(len(bounded_particles)):
                 if bounded_particles[i].mass.value_in(units.MSun) <= 1e-15:
                     hydro_particles.remove_particle(bounded_particles[i])
@@ -127,8 +132,8 @@ def accrete_mass(sinks, hydro_particles,time_step):
                     
 
 
-def make_cluster_with_vinit(velocity,position,random_seed):
-    star_cluster = make_globular_cluster(star_count = 200,
+def make_cluster_with_vinit(velocity,position,random_seed,number):
+    star_cluster = make_globular_cluster(star_count = number,
                                         imf = "kroupa", 
                                         radius = 4 | units.pc,
                                         metallicity = 0.002, 
@@ -185,7 +190,7 @@ def AMUSE_bridge_initialization(dt,star_cluster,converter_cluster,init_cloud,ini
     # #start the hydro code for the gas
     converter_cloud = init_cloud_converter
     particles_cloud = init_cloud.copy()
-    hydro_cloud = hydro_code(Code = Fi, dt = 0.1 | units.Myr,
+    hydro_cloud = hydro_code(Code = Fi, dt = dt | units.Myr,
                             converter = converter_cloud,
                             particles = particles_cloud,
                             seed = 1312)
@@ -200,7 +205,7 @@ def AMUSE_bridge_initialization(dt,star_cluster,converter_cluster,init_cloud,ini
     gravhydrobridge = bridge.Bridge(use_threading = False)
     gravhydrobridge.add_system(gravity_code, (hydro_cloud,) )
     gravhydrobridge.add_system(hydro_cloud, (gravity_code,) )
-    gravhydrobridge.timestep = dt | units.Myr
+    gravhydrobridge.timestep = dt*2 | units.Myr
 
     return gravhydrobridge,sinks,channel,particles_cloud,gravity_code,hydro_cloud
 
@@ -236,7 +241,6 @@ def let_them_collide_and_save(name,directory_path,t_end,dt,sinks,gravhydrobridge
         print("Pre accretion cluster mass", sinks.mass.sum().in_(units.MSun))
         
         model_time += dt
-        model_time = model_time.round(1)
         # evolve the gravity and hydro codes through our bridge
         gravhydrobridge.evolve_model(model_time)
 
@@ -255,25 +259,11 @@ def let_them_collide_and_save(name,directory_path,t_end,dt,sinks,gravhydrobridge
         channel["from_sinks"].copy()
         channel["from_cloud"].copy()
 
-        # save necessary diagnostics of each step
-        rho,_,_,_ = make_3Dmap(hydro_cloud,20,20)
-        rho = rho.value_in(units.amu / units.cm**3)
         sinks_mass_snapshots.append(sinks.mass.value_in(units.MSun))
         star_position.append(sinks.position.value_in(units.pc))
-        cloud_density_cubes.append(rho)
-
-        if model_time+dt >= t_end:
-            _, xgrid, ygrid, zgrid = make_3Dmap(hydro_cloud,20,20)
 
         print("Post accretion cluster mass", sinks.mass.sum().in_(units.MSun))
         # print(len(particles_cloud.mass), "number of cloud particles now")
-
-        density_plots_path = os.path.join(directory_path,"density_snapshots/")
-        plot_cloud_and_star_cluster(model_time, hydro_cloud, sinks, x_lim, y_lim, N,density_map,saveto=density_plots_path)
-
-    animation_path = os.path.join(directory_path, f"collision animation at{current_velocity}.html")
-    fig = animate_collision_3D(star_position,cloud_density_cubes,xgrid,ygrid,zgrid)
-    fig.write_html(animation_path)
 
     mass_difference = sinks_mass_snapshots[-1] - sinks_mass_snapshots[0]
 
@@ -288,23 +278,6 @@ def let_them_collide_and_save(name,directory_path,t_end,dt,sinks,gravhydrobridge
 
     mask = np.where(mass_difference > 1e-15)
     sinks_mass_snapshots = np.array(sinks_mass_snapshots)
-    relative_mass = sinks_mass_snapshots - sinks_mass_snapshots[0,:]
-
-    plt.plot(np.arange(0, t_end.value_in(units.Myr), dt.value_in(units.Myr)), \
-             relative_mass)
-    plt.xlabel("time [Myr]")
-    plt.ylabel("mass [Msun]")
-    plt.title('Collision with velocity '+str(name)+' kms')
-    plt.savefig(os.path.join(directory_path, f"Sink mass with accretion_{current_velocity}.png"))
-    plt.show()
-    plt.close()
-
-    mass_ratio = np.array(mass_difference)[mask[0]]/np.array(sinks_mass_snapshots[0])[mask[0]]
-    plt.hist(mass_ratio*100, bins  = 30)
-    plt.xlabel("Relative mass difference [%]")
-    plt.title('Collision with velocity '+str(name)+' kms')
-    plt.savefig(os.path.join(directory_path, f"Accreted mass hist_{current_velocity}.png"))
-    plt.close()
 
     final_cluster = sinks.copy()
 
