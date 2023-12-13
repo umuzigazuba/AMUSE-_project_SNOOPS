@@ -89,7 +89,7 @@ def free_fall_time(star,particles,binary_particles,time_step):
         binaries.add_particle(binary)
 
         if free_fall_radius >= distance:
-            dm.append(binary.mass.value_in(units.MSun))
+            dm.append(binary.mass.value_in(units.MSun)[0])
 
         else:
             gas_rho = binary_particles.mass[a[i]]/(4/3*np.pi*distance**3)
@@ -99,10 +99,6 @@ def free_fall_time(star,particles,binary_particles,time_step):
             dm.append(acquired_mass)
 
     dmass = dm
-
-    if len(dm) > 0:
-        print("dm is", dm)
-
     dmass = dmass | units.MSun
     
     return binaries,dmass
@@ -133,8 +129,7 @@ def accrete_mass(sinks, hydro_particles,time_step):
 
 
 def make_cluster_with_vinit(velocity,position,random_seed,number):
-    star_cluster = make_globular_cluster(star_count = number,
-                                        imf = "kroupa", 
+    star_cluster = make_globular_cluster(star_count = number,                                        
                                         radius = 4 | units.pc,
                                         metallicity = 0.002, 
                                         age = 10 | units.Gyr, 

@@ -1,13 +1,13 @@
 #!/bin/bash
-#SBATCH --job-name=gc_collision
+#SBATCH --job-name=random_cloud_cluster
 #SBATCH --output=%x_%j.out
 #SBATCH --mail-user="yiqiwu@strw.leidenuniv.nl"
 #SBATCH --mail-type="ALL"
 #SBATCH --mem=16G
-#SBATCH --time=23:00:00
-#SBATCH --partition=cpu-medium
+#SBATCH --time=04:00:00
+#SBATCH --partition=cpu-short
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=10
+#SBATCH --cpus-per-task=20
 
 # load modules (assuming you start from the default environment)
 # we explicitly call the modules to improve reproducibility
@@ -23,7 +23,7 @@ echo "[$SHELL] ## current working directory: "$CWD
 
 # Run the file
 echo "[$SHELL] ## Run script"
-python3 alice_collision.py
+python3 alice_random_seed.py
 echo "[$SHELL] ## Script finished"
 
 echo "[$SHELL] #### Finished Python test. Have a nice day"
