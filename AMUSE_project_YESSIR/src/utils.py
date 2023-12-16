@@ -52,27 +52,29 @@ def detect_bounded_gas(star, particles, hardness):
 
         star (object): AMUSE sink particle 
 
-        particles (object): AMUSE particle set containing the molecular cloud particles that lie within the sink radius of the star
+        particles (object): AMUSE particle set containing the molecular cloud
+        particles that lie within the sink radius of the star
 
         hardness (float): Harshness of the gravitationally bound criterion
 
     Return:
 
-        bounded_particles (object): AMUSE particle set containing the molecular cloud particles that are gravitationally bound to the star
+        bounded_particles (object): AMUSE particle set containing the molecular
+        cloud particles that are gravitationally bound to the star
     '''
 
     N = len(particles)
 
     if N == 0:
         return Particles()
-    
+    # compute the energy limit to detect agravitationally bound binary
     total_kinetic_energy = (0.5 * particles.mass * (particles.vx**2 + particles.vy**2 + particles.vz**2)).sum()
     average_kinetic_energy = total_kinetic_energy / particles.mass.sum()
     limit_energy = hardness * average_kinetic_energy
 
     sorted_idx = np.argsort(particles.x.number)
     bounded_particles = Particles()
-
+    # evaluate each pair of star - i-th gas particle
     for i in range(N):
 
         r2 = (star.x - particles.x[sorted_idx[i]])**2 + \
@@ -101,7 +103,8 @@ def free_fall_time(star, particles, bounded_particles, time_step):
     Description:
 
         Return the particles that are gravitationally bound to a star 
-        and how the amount of mass that is accreted per particle by the star within one time step
+        and how the amount of mass that is accreted per particle by the star
+        within one time step
 
         The amount of mass depends on the free-fall time
 
@@ -109,17 +112,21 @@ def free_fall_time(star, particles, bounded_particles, time_step):
 
         star (object): AMUSE sink particle 
 
-        particles (object): AMUSE particle set containing the molecular cloud particles that lie within the sink radius of the star
+        particles (object): AMUSE particle set containing the molecular cloud
+        particles that lie within the sink radius of the star
 
-        bounded_particles (object): AMUSE particle set containing the gravitationally bound molecular cloud particles
+        bounded_particles (object): AMUSE particle set containing the
+        gravitationally bound molecular cloud particles
 
         time_step (units.quantity): Time interval within which mass is accreted
 
     Return:
 
-        bounded_particles (object): AMUSE particle set containing the gravitationally bound molecular cloud particles
+        bounded_particles (object): AMUSE particle set containing the
+        gravitationally bound molecular cloud particles
 
-        accreted_mass (numpy.ndarray): The amount of mass accreted from each gravitationally bound particle
+        accreted_mass (numpy.ndarray): The amount of mass accreted from each
+        gravitationally bound particle
     '''
 
     N = len(bounded_particles)
@@ -163,13 +170,15 @@ def accrete_mass(sinks, hydro_particles, time_step):
     '''
     Description:
 
-        Determine the accretion of molecular cloud particles by a star cluster within a certain timestep
+        Determine the accretion of molecular cloud particles by a star cluster
+        within a certain timestep
 
     Inputs:
 
         sinks (object): AMUSE sink particle set represeting the star cluster
 
-        hydro_particles (object): AMUSE particle set represeting the molecular cloud particles
+        hydro_particles (object): AMUSE particle set represeting the molecular
+        cloud particles
 
         time_step (units.quantity): Time interval within which mass is accreted
 
@@ -186,8 +195,9 @@ def accrete_mass(sinks, hydro_particles, time_step):
         # Select the particles that are gravitationally bound to the sink
         bounded_particles = detect_bounded_gas(sinks[idx], adjacent_particles[idx], hardness = 0.1)
         # Calculate the amount of mass that is accreted from each particle
-        bounded_particles, accreted_mass = free_fall_time(sinks[idx], adjacent_particles[idx],\
-                                                          bounded_particles, time_step)
+        bounded_particles, accreted_mass = free_fall_time(sinks[idx],
+                                                adjacent_particles[idx],
+                                                bounded_particles, time_step)
         
         if len(bounded_particles) != 0:
             # Update the mass of the sink
@@ -210,7 +220,8 @@ def accrete_mass(sinks, hydro_particles, time_step):
                     
 # %%
 
-def make_cluster_with_posvel(position, velocity, W0, random_seed, number_of_stars = 200):
+def make_cluster_with_posvel(position, velocity, W0, random_seed,
+                             number_of_stars = 200):
     '''
     Description:
 
@@ -232,7 +243,8 @@ def make_cluster_with_posvel(position, velocity, W0, random_seed, number_of_star
 
         star_cluster (object): AMUSE particel set for the star cluster
 
-        converter_cluster (object): AMUSE generic unit converter for the star cluster
+        converter_cluster (object): AMUSE generic unit converter for the star
+        cluster
     '''
 
     star_cluster = make_globular_cluster(star_count = number_of_stars, 
@@ -271,7 +283,8 @@ def hydrodynamics_code(code, time_step, particles_cloud, converter_cloud, seed):
 
         particles_cloud (object): AMUSE particle set for the molecular cloud
 
-        converter_cloud (object): AMUSE generic unit converter for the molecular cloud
+        converter_cloud (object): AMUSE generic unit converter for the
+        molecular cloud
 
         seed (int): Randomness of the function
 
@@ -296,16 +309,19 @@ def hydrodynamics_code(code, time_step, particles_cloud, converter_cloud, seed):
     hydro.gas_particles.add_particles(particles_cloud)
    
     return hydro    
+##############################################################################
+# The following functions are hard coded for the convenience of running the
+# simulation in batch
+##############################################################################
 
-# The following functions are hard coded for the convenience of running the simulation in batch
 
-# %%
-
-def code_bridge_channel_initaization(time_step, star_cluster, converter_cluster, particles_cloud, converter_cloud, seed):
+def code_bridge_channel_initaization(time_step, star_cluster, converter_cluster,
+                                     particles_cloud, converter_cloud, seed):
     '''
     Description:
 
-        Initialize the codes, channels and bridge for the collsion of a star cluster and molecular cloud
+        Initialize the codes, channels and bridge for the collsion of a star
+        cluster and molecular cloud
     
     Inputs:
 
@@ -313,11 +329,13 @@ def code_bridge_channel_initaization(time_step, star_cluster, converter_cluster,
 
         star_cluster (object): AMUSE particel set for the star cluster
 
-        converter_cluster (object): AMUSE generic unit converter for the star cluster
+        converter_cluster (object): AMUSE generic unit converter for the star
+        cluster
 
         particles_cloud (object): AMUSE particle set for the molecular cloud
 
-        converter_cloud (object): AMUSE generic unit converter for the molecular cloud
+        converter_cloud (object): AMUSE generic unit converter for the
+        molecular cloud
 
         seed (int): Randomness of the function
     
@@ -327,13 +345,17 @@ def code_bridge_channel_initaization(time_step, star_cluster, converter_cluster,
 
         gravity_code (object): AMUSE gravity integrator for the star cluster
 
-        stellar_evolution_code (object): AMUSE stellar evolution integrator for the star cluster
+        stellar_evolution_code (object): AMUSE stellar evolution integrator for
+        the star cluster
 
-        hydro_code (object): AMUSE hydrodynamics integrator for the molecular cloud
+        hydro_code (object): AMUSE hydrodynamics integrator for the molecular
+        cloud
 
-        channels (dictionary): Channels between the particle sets and code.particles
+        channels (dictionary): Channels between the particle sets and
+        code.particles
 
-        gravity_hydro_bridge (object): AMUSE bridge integrator between the gravity and hydrodynamics codes
+        gravity_hydro_bridge (object): AMUSE bridge integrator between the
+        gravity and hydrodynamics codes
     '''
 
     # Create a sink particle set with the same properties as the star cluster
