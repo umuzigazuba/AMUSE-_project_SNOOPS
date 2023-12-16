@@ -1,6 +1,8 @@
-import os
-os.chdir('/home/kostas/AMUSE/AMUSE_project_YESSIR/AMUSE_project_YESSIR/')
-os.chdir('./src')
+# %%
+
+# import os
+# os.chdir('/home/kostas/AMUSE/AMUSE_project_YESSIR/AMUSE_project_YESSIR/')
+# os.chdir('./src')
 
 import numpy as np
 import matplotlib.pyplot as plt

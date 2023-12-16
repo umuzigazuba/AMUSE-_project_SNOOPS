@@ -1,47 +1,41 @@
-# AMUSE_project_YESSIR
+# Simulation and Modeling in Astrophysics 2023/2024 project: YESSIR
 
 Authors:
 ------------
-Yiqi Wu, Kostas Tsalapatas and Erin Umuzigazuba
+	Kostas Tsalapatas - s3479765
+	Erin Umuzigazuba - s3634701
+	Yiqi Wu - s3805352
 
 Short Description:
 ------------
-The formation of a second generation of stars in a globular cluster after a collision with a molecular cloud
+	The formation of a second stellar population in a globular cluster after a collision with a molecular cloud
 
 General Concepts:
 ------------
-	We simulate the collision of a globular cluster with a certain velocity and inclination, and a dense molecular cloud that is actively forming stars, 
-	in the Galactic disk. We are interested in the formation mechanism of a second generation of stars in the globular cluster. 
+	We simulate the head-on collision of a metal-poor globular cluster with a certain velocity, and a dense, metal-rich molecular cloud. 
+	During the collision, the accretion of material from the molecular cloud by stars is ascertained.
+	By studying the amount of accreted mass, which is coupled to an increase in metallicty, we verify our hypothesis.  
 
-Experimental setup:
-------------
-
-- Fixed parameters: mass and density for cluster and cloud
-
-- Free parameters: impact parameters and velocity (change one at a time)
-
-- Simulate for free fall time scale + ~2Myr years post collision
-	Star formation detection
-	Check if there are any new stars bound to the cluster 
-	Optionally: see if mass is accreted to the first generation of stars
-		Are they rejuvenated?
-
-More details can be found inside the AMUSE_project_YESSIR folder
-
-Passing Grade:
+Grade requirements:
 ---------------
-- MINIMUM passing grade:
-	Sending a globular cluster of sink cells through the molecular cloud and observe the mass accretion. Bridge N-body and Hydro. Compared with theoretical mass accretion values.
+- Minimum passing grade:
+	- Main goal: Send a globular cluster, saved in a sink particle set, through a molecular cloud and observe the mass accretion. Do this by bridging the gravity code of the cluster and the hydrodynamics code of the cloud. Compare the results to real observations of clusters with multiple stellar populations. 
+		- Done
+	
+	- Plot the amount of accreted mass as a function of time for the individual stars as they passing through the cloud. (dM VS T)
+		- Done
 
-	- The change in mass accretion rate of the individual stars as they passing through the cloud. (dM VS T)
-
-	- A histogram of final accreted mass and compare with the amount of mass accretion needed for multiple population. (dM VS N(dM))
+	- Plot a histogram of the final amount of accreted mass. Compare to the amount of mass accretion needed to observe multiple stellar populations. (dM VS N(dM))
+		- Done
 
 - Bouns points:
-	- Testing with different velocity and impact parameters, see if they have any effect on the mass accretion.
-	- Adding stellar evolution in the sink cell particles, observe the effect of stellar dynamics (wind preventing accretion)
+	- Repeat the experiment for different velocities and impact parameters and analyse its effect on the mass accretion.
+		- Done for different velocities
+	
+	- Add a stellar evolution code and analyse its effect on the mass accretion. Especially the effect of stellar dynamics, e.g. wind preventing accretion.
+		- Done
 
-
+More details can be found inside the AMUSE_project_YESSIR folder
 
 ------------
 
@@ -51,7 +45,7 @@ Passing Grade:
 
 **S**tar clusters after
 
-**S**mashing with the dense
+**S**mashing with dense
 
 **I**nterstellar clouds leading to the
 

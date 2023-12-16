@@ -6,6 +6,7 @@ from amuse.units import units
 import numpy as np
 from matplotlib import pyplot as plt
 import plotly.graph_objects as go
+
 # %%
 
 def plot_snapshot_and_HR(cluster, save_to = None):
@@ -26,14 +27,14 @@ def plot_snapshot_and_HR(cluster, save_to = None):
     velocity = (cluster.vx**2 + cluster.vy**2 + cluster.vz**2).sqrt()
     mass = cluster.mass
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize = (8, 3))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize = (9, 3))
 
     ax1.scatter(cluster.temperature.value_in(units.K),
                 cluster.luminosity.value_in(units.LSun), 
                 c = 'k',
                 s = 8)
-    ax1.set_xlimit(8.5E+3, 2.5E+3) 
-    ax1.set_ylimit(1.e-6, 1.e+3)
+    ax1.set_xlim(8.5E+3, 2.5E+3) 
+    ax1.set_ylim(1.e-6, 1.e+3)
     ax1.loglog()
     ax1.set_xlabel("Temperature [K]")
     ax1.set_ylabel("Luminosity [$L_\odot$]")
@@ -174,7 +175,7 @@ def plot_cloud_and_star_cluster(time, hydro, sinks, x_limit, y_limit, N, density
     colors = np.array(["black", "aliceblue"])
     colors_sink = np.array([0 if sink.name == "Unchanged star" else 1 for sink in sinks])
 
-    fig = plt.figure(figsize = (9, 5))
+    fig = plt.figure(figsize = (10, 5))
 
     plt.imshow(np.log10(rho.value_in(units.amu/units.cm**3)), cmap = "plasma", extent = [-x_limit, x_limit, -y_limit, y_limit])
     plt.scatter(sinks.position.x.value_in(units.pc), sinks.position.y.value_in(units.pc), c = colors[colors_sink], s = sinks.mass.value_in(units.MSun)*5)
@@ -185,7 +186,7 @@ def plot_cloud_and_star_cluster(time, hydro, sinks, x_limit, y_limit, N, density
     plt.xlim([-x_limit, x_limit])
     plt.ylim([-y_limit, y_limit])
 
-    colorbar_axis = fig.add_axes([0.95, 0.1, 0.02, 0.85])
+    colorbar_axis = fig.add_axes([0.85, 0.1, 0.02, 0.85])
     colorbar = plt.colorbar(density_map_MC, cax = colorbar_axis, fraction = 0.046, pad = 0.04)
     colorbar.set_label('log density [$amu/cm^3$]', labelpad = 5)
 
@@ -199,7 +200,7 @@ def plot_cloud_and_star_cluster(time, hydro, sinks, x_limit, y_limit, N, density
 
 # %%
 
-def plot_evolution_mass_accretion(sinks_mass_evolution, end_time, dt, velocity, save_to = None):
+def plot_evolution_mass_accretion(sinks_mass_evolution, end_time, time_step, velocity, save_to = None):
     '''
     Description:
         Plot the amount of accreted mass as a function of time for each star in a cluster that accretes mass
@@ -209,7 +210,7 @@ def plot_evolution_mass_accretion(sinks_mass_evolution, end_time, dt, velocity, 
 
         end_time (units.quantity): Total time of the collision
 
-        dt (units.quantity): Timestep of the collision
+        time_step (units.quantity): Timestep of the collision
 
         velocity (int): Cluster velocity
 
@@ -217,20 +218,21 @@ def plot_evolution_mass_accretion(sinks_mass_evolution, end_time, dt, velocity, 
 
     Return:
         None
-
     '''
 
     sinks_mass_evolution = np.array(sinks_mass_evolution)
-    mass_difference = sinks_mass_evolution[-1] - sinks_mass_evolution[-1]
+    mass_difference = sinks_mass_evolution[-1] - sinks_mass_evolution[0]
 
-    mask = np.where(mass_difference > 1e-15)
+    mask = np.where(abs(mass_difference) > 1e-15)
     accreted_mass = sinks_mass_evolution - sinks_mass_evolution[0]
 
-    time_steps = np.arange(0, end_time.value_in(units.Myr), dt.value_in(units.Myr))
+    fig, ax = plt.subplots(figsize=(7, 5))
+    ax.set_facecolor('whitesmoke')
 
-    plt.plot(time_steps, accreted_mass[:, mask[0]])
+    time = np.arange(0, end_time.value_in(units.Myr), time_step.value_in(units.Myr))
+
+    plt.plot(time, accreted_mass[:, mask[0]])
     plt.grid(alpha = 0.3)
-    plt.xscale("log")
     plt.xlabel("Time [Myr]")
     plt.ylabel("Accreted mass [Msun]")
     plt.title(f"Collision with a cluster velocity = {velocity} km/s")
@@ -244,19 +246,44 @@ def plot_evolution_mass_accretion(sinks_mass_evolution, end_time, dt, velocity, 
         plt.show()
 
 # %%
+
 def plot_relative_mass(sinks_mass_evolution, velocity, save_to = None):
+    '''
+    Description:
+        Plot the relative accreted mass for each star in a cluster that accretes mass
+
+    Inputs:
+        sinks_mass_evolution (numpy.ndarray): Two-dimensional array containing the mass of each star in a star cluster at each timestep
+
+        velocity (int): Cluster velocity
+
+        save_to (str): Path to the folder where the image should be saved
+
+    Return:
+        None
+    '''
+
+    from matplotlib.ticker import ScalarFormatter
 
     sinks_mass_evolution = np.array(sinks_mass_evolution)
-    mass_difference = sinks_mass_evolution[-1] - sinks_mass_evolution[-1]
+    mass_difference = sinks_mass_evolution[-1] - sinks_mass_evolution[0]
 
-    mask = np.where(mass_difference > 1e-15)
+    mask = np.where(abs(mass_difference) > 1e-15)
     relative_mass = 100*mass_difference[mask[0]]/sinks_mass_evolution[0][mask[0]]
 
+    fig, ax = plt.subplots(figsize = (7, 5))
+    ax.set_facecolor('whitesmoke')
 
-    plt.hist(relative_mass, bins  = 30)
+    bins = np.logspace(np.min(np.log10(relative_mass)), np.max(np.log10(relative_mass)), 30)
+    plt.hist(relative_mass, bins = bins, color = '#0c2577')
+    plt.axvline(5, c = "red", linestyle = "dashed", linewidth = 1.5, label = "Approximate limit for a second polulation")
+
+    plt.grid(alpha = 0.3)
     plt.xscale("log")
     plt.xlabel("Relative mass difference [%]")
+    ax.xaxis.set_major_formatter(ScalarFormatter())
     plt.ylabel("N")
+    plt.legend()
     plt.title(f"Collision with a cluster velocity = {velocity} km/s")
 
     if save_to is not None:
@@ -425,8 +452,6 @@ def animate_collision_3D(star_position, cloud_density_cubes, xgrid, ygrid, zgrid
     fig.show()
 
     return fig
-
-
 
 # %%
 

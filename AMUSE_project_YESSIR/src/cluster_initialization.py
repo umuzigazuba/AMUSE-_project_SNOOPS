@@ -17,7 +17,7 @@ def stellar_evolution(stars, metallicity, end_time, seed):
         Evolve a star particle set to a desired age 
         
     Inputs:
-        stars (Object): AMUSE particle set for a star system
+        stars (object): AMUSE particle set for a star system
 
         metallicity (float): Metallicity of the star system
         
@@ -28,6 +28,7 @@ def stellar_evolution(stars, metallicity, end_time, seed):
     Returns:
         stars (Object): AMUSE particle set for the evolved star system
     '''
+    
     np.random.seed(seed)
 
     stellar_evolution_code = SeBa()
@@ -38,11 +39,11 @@ def stellar_evolution(stars, metallicity, end_time, seed):
     stellar_channel.copy()
     
     model_time = 0 | units.Myr
-    dt = end_time / 50
+    time_step = end_time / 50
 
     while(model_time < end_time):
 
-        model_time += dt
+        model_time += time_step
 
         stellar_evolution_code.evolve_model(model_time)
         stellar_channel.copy()
@@ -52,19 +53,21 @@ def stellar_evolution(stars, metallicity, end_time, seed):
 
 #%%
 
-def make_globular_cluster(star_count, radius, metallicity, age, seed):
+def make_globular_cluster(star_count, radius, metallicity, age, W0, seed):
     '''
     Description:
         Generate a globular cluster particle set
 
     Inputs:
-        star_count (Int): Number of stars in the cluster
+        star_count (int): Number of stars in the cluster
         
         radius (units.quantity): Core radius of the cluster
         
         metallicity (float): Metallicity of the stars
         
         age (units.quantity): Stellar evolution's timescale 
+
+        W0 (float): King model parameter
 
         seed (int): Randomness of the function
     
@@ -83,7 +86,7 @@ def make_globular_cluster(star_count, radius, metallicity, age, seed):
     converter = nbody_system.nbody_to_si(evolved_stars.mass.sum(), radius)
 
 
-    evolved_cluster = new_king_model(star_count, W0 = 7, convert_nbody = converter)
+    evolved_cluster = new_king_model(star_count, W0 = W0, convert_nbody = converter)
     evolved_cluster.scale_to_standard(converter)
     
     evolved_cluster.mass = evolved_stars.mass
