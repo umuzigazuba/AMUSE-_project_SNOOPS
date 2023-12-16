@@ -1,5 +1,5 @@
 import os
-os.chdir('/home/kostas/AMUSE/AMUSE_project_YESSIR/AMUSE_project_YESSIR/')
+#os.chdir('/home/kostas/AMUSE/AMUSE_project_YESSIR/AMUSE_project_YESSIR/')
 os.chdir('./src')
 
 import numpy as np
@@ -9,10 +9,11 @@ from amuse.units import units
 from amuse.community.seba.interface import SeBa
 from amuse.datamodel import Particles
 #%%
-
-file_path = '../results/tests_with_animation/20/Sink mass_19.977764918756957.txt'
+collision_velocity = 20
+directory_path = '../results/final_with_stellar_evolution/20 kms/'
+mass_file = 'Sink mass_19.977764918756957.txt'
 # import the mass snapshots file (in Solar Mass)
-sinks_mass_snapshots = np.loadtxt(file_path)
+sinks_mass_snapshots = np.loadtxt(directory_path + mass_file)
 # get the masses of the Cluster's stars before and after the collision
 initial_masses = sinks_mass_snapshots[0]
 final_masses = sinks_mass_snapshots[-1]
@@ -73,14 +74,18 @@ fig, ax = plt.subplots(figsize=(8, 6))
 ax.set_facecolor('whitesmoke')
 ax.grid(alpha=alpha/2)
 
-ax.hist(altered_metallicities, bins  = 30, color = '#0c2577', label =  'altered Z')
+ax.hist(altered_metallicities, bins  = 30,
+        color = '#0c2577', label =  'altered Z')
 ax.axvline(x=0.002, linestyle = '--', color = 'k', label = 'initial Z')
 
-ax.set_xlim(0.0018, 0.012)
-fig.supylabel('N')
-fig.supxlabel('Z')
-ax.legend()
+
+fig.supylabel('#', size = 'x-large')
+fig.supxlabel('Z', size = 'x-large')
+fig.suptitle('Collision with velocity '+ str(collision_velocity) +' kms',
+             size = 'x-large')
+ax.legend(fontsize = 14)
 plt.tight_layout()
+plt.savefig(directory_path+'metallicity_hist.png')
 
 #%%
 # make the mask for the non-accreting stars
@@ -178,6 +183,7 @@ for i in range(len(rejuvenated_population)):
 
 
 #%%
+
 # HR DIAGRAMME
 fig, ax = plt.subplots( figsize=(9,6))
 ax.set_facecolor('whitesmoke')
@@ -185,24 +191,63 @@ ax.grid(alpha=alpha/2)
 
 ax.scatter(old_population.temperature.value_in(units.K),
                 old_population.luminosity.value_in(units.LSun), 
-                c='k', s= 4,
-                label = 'old population')
+                c='k', s= 12,
+                label = 'Stars without accretion')
 
 
 ax.scatter(rejuvenated_population.temperature.value_in(units.K),
                   rejuvenated_population.luminosity.value_in(units.LSun), 
-                  c='red', s=4,
+                  c='red', s=6,
+                  label = 'Stars with accretion')
+
+ax.set_xlim(8E+3, 3.15E+3)
+ax.set_ylim(1E-4, 5E0)
+
+plt.axvspan(3150, 3500, facecolor='sandybrown', alpha=0.7, zorder = 0)
+plt.axvspan(3500, 5000, facecolor='navajowhite', alpha=0.7, zorder = 0)
+plt.axvspan(5000, 6000, facecolor='khaki', alpha=0.7, zorder = 0)
+plt.axvspan(6000, 7500, facecolor='lightyellow', alpha=0.7, zorder = 0)
+plt.axvspan(7500, 8000, facecolor='lightcyan', alpha=0.7, zorder = 0)
+# MS TRACK, ZOOMED IN
+#ax.set_xlim(6.5E+3, 3.15E+3)
+#ax.set_ylim(1E-3, 5E0)
+########################################
+
+x1, x2, y1, y2 = 3.55E+3, 4E+3, 5E-3, 5E-2  # subregion of the original image
+axins = ax.inset_axes(
+    [.15, 0.3, .2, .4],
+    xlim=(x1, x2), ylim=(y1, y2), xticklabels=[], yticklabels=[])
+
+axins.set_facecolor('whitesmoke')
+
+axins.scatter(old_population.temperature.value_in(units.K),
+                old_population.luminosity.value_in(units.LSun), 
+                c='k', s= 12,
+                label = 'old population')
+
+axins.scatter(rejuvenated_population.temperature.value_in(units.K),
+                  rejuvenated_population.luminosity.value_in(units.LSun), 
+                  c='red', s=12,
                   label = 'rejuvenated population')
 
-ax.set_xlim(10E+3, 2.5E+3)
-#ax.set_ylim(1.e+3, 1.e+7)
+
+axins.set_xlim(4E+3, 3.55E+3)
+axins.get_xaxis().set_visible(False)
+axins.set_ylim(5E-3, 5E-2)
+axins.get_yaxis().set_visible(False)
+axins.loglog()
+
+
+
+
+##################################################
+ax.indicate_inset_zoom(axins, edgecolor="black")
 ax.loglog()
-ax.legend()
-ax.set_xlabel("T [K]")
-ax.set_ylabel(r"L [L$_{\odot}$]")
-#plt.savefig('./first_HR.pdf')
-
-
-
-
+ax.legend(fontsize = 14)
+ax.set_xlabel("T [K]", size = 'x-large')
+ax.set_ylabel(r"L [L$_{\odot}$]", size = 'x-large')
+fig.suptitle('Collision with velocity '+ str(collision_velocity) +' kms',
+             size = 'x-large')
+plt.tight_layout()
+plt.savefig(directory_path+'HR_spctrl.png')
 
