@@ -484,3 +484,166 @@ def animate_collision_3D(star_position, cloud_density_cubes,
 
     return fig
 
+#%%
+
+
+
+def metallicity_histogram(metallicities, N_bins,
+                          collision_velocity, alpha = 1.0,
+                          save_to = None):
+    '''
+    Description:
+        This function plots a histogram of the stars' (altered) metallicity
+        in log-space.
+    
+    Inputs:
+        metallicities (np.array): An array of the metallicity values to plot
+        
+        N_bins (int): The number of bins
+        
+        alpha, optional (float): the transparency parameter
+        
+        collision_velocity (float): The collision velocity in kms
+        (for the title)
+        
+        save_to (str): Path to the folder where the image should be saved
+        
+    Outputs:
+        None
+    '''
+    # evenly spaced bins in log-space
+    bins = np.logspace(np.min(np.log10(metallicities)),
+                       np.max(np.log10(metallicities)), N_bins)
+    
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ax.set_facecolor('whitesmoke')
+    ax.grid(alpha=alpha/2)
+
+    ax.hist(metallicities, bins  = bins,
+            color = '#0c2577', label =  'altered Z')
+    ax.axvline(x=0.002, linestyle = '--', color = 'k', label = 'initial Z')
+    ax.set_xscale('log')
+
+    fig.supylabel('#', size = 'x-large')
+    fig.supxlabel('Z', size = 'x-large')
+    fig.suptitle('Collision with velocity '+ str(collision_velocity) +' kms',
+                 size = 'x-large')
+    ax.legend(fontsize = 14)
+    plt.tight_layout()
+    if save_to is not None:
+        os.makedirs(save_to, exist_ok = True)
+        plt.savefig(os.path.join(save_to, f"Altered_metallicities_for_cluster_velocity_{collision_velocity}_kms.png"))
+        plt.close()
+    
+    else:
+        plt.show()
+
+
+
+def HR_diagramme(old_population, rejuvenated_population, collision_velocity,
+                 x_min_inset = 3.55E+3, x_max_inset =  4E+3,
+                 y_min_inset = 5E-3, y_max_inset =  5E-2,
+                 alpha = 1.0, save_to = None):
+    '''
+    
+    Description:
+        This function plots an HR diagramme of two different stellar
+        populations. It also contains an inseted, zoomed-in subplot.
+    
+    Inputs:
+        old_population (object): An AMUSE particle set with attributes of 
+        Luminosity and Temperature
+        
+        rejuvenated_population (object): An AMUSE particle set with attributes 
+        of Luminosity and Temperature
+        
+        x_min_inset, x_max_inset optionals (floats): The range of the inset
+        plot
+        
+        y_min_inset, y_max_inset optionals (floats): The range of the inset
+        plot
+        
+        alpha optional (float): the transparency parameter
+        
+        collision_velocity (float): The collision velocity in kms
+        (for the title)
+        
+        save_to (str): Path to the folder where the image should be saved
+        
+    Outputs:
+        None
+        
+    '''
+    
+    fig, ax = plt.subplots( figsize=(9,6))
+    ax.set_facecolor('whitesmoke')
+    ax.grid(alpha=alpha/2)
+    # HR diagramme of the stars with no accretion
+    ax.scatter(old_population.temperature.value_in(units.K),
+                    old_population.luminosity.value_in(units.LSun), 
+                    c='k', s= 12,
+                    label = 'Stars without accretion')
+
+    # HR diagramme of the stars with accretion
+    ax.scatter(rejuvenated_population.temperature.value_in(units.K),
+                      rejuvenated_population.luminosity.value_in(units.LSun), 
+                      c='red', s=6,
+                      label = 'Stars with accretion')
+
+    ax.set_xlim(8E+3, 3.15E+3)
+    ax.set_ylim(1E-4, 5E0)
+    # coloured background based on spectral type
+    plt.axvspan(3150, 3500, facecolor='sandybrown', alpha=0.7, zorder = 0)
+    plt.axvspan(3500, 5000, facecolor='navajowhite', alpha=0.7, zorder = 0)
+    plt.axvspan(5000, 6000, facecolor='khaki', alpha=0.7, zorder = 0)
+    plt.axvspan(6000, 7500, facecolor='lightyellow', alpha=0.7, zorder = 0)
+    plt.axvspan(7500, 8000, facecolor='lightcyan', alpha=0.7, zorder = 0)
+    #######################################
+    # MS TRACK, ZOOMED IN
+    ########################################
+
+    
+    # place the inset in the desired position (bounds parameter) in the graph 
+    axins = ax.inset_axes(bounds =
+        [.15, 0.3, .2, .4],
+        xlim=(x_min_inset, x_max_inset),
+        ylim=(y_min_inset, y_max_inset), xticklabels=[], yticklabels=[])
+
+    axins.set_facecolor('whitesmoke')
+    # same diagrammes, in the inset 
+    axins.scatter(old_population.temperature.value_in(units.K),
+                    old_population.luminosity.value_in(units.LSun), 
+                    c='k', s= 12,
+                    label = 'old population')
+
+    axins.scatter(rejuvenated_population.temperature.value_in(units.K),
+                      rejuvenated_population.luminosity.value_in(units.LSun), 
+                      c='red', s=12,
+                      label = 'rejuvenated population')
+
+    # x-axis is inverted in HR diagrammes
+    axins.set_xlim(x_max_inset, x_min_inset)
+    axins.get_xaxis().set_visible(False)
+    axins.set_ylim(y_min_inset, y_max_inset)
+    axins.get_yaxis().set_visible(False)
+    axins.loglog()
+
+    ##################################################
+    ax.indicate_inset_zoom(axins, edgecolor="black")
+    ax.loglog()
+    ax.legend(fontsize = 14)
+    ax.set_xlabel("T [K]", size = 'x-large')
+    ax.set_ylabel(r"L [L$_{\odot}$]", size = 'x-large')
+    fig.suptitle('Collision with velocity '+ str(collision_velocity) +' kms',
+                 size = 'x-large')
+    plt.tight_layout()
+   
+    if save_to is not None:
+        os.makedirs(save_to, exist_ok = True)
+        plt.savefig(os.path.join(save_to, f"HR_diagramme_for_cluster_velocity_{collision_velocity}_kms.png"))
+        plt.close()
+    
+    else:
+        plt.show()
+
+
