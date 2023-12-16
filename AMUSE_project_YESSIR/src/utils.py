@@ -1,463 +1,502 @@
-##This file contains functions that are hard coded for the purpose of colliding a 
-#globular cluster with a molecular cloud with our specific parameters 
+# This file contains functions that are hard coded for the purpose of colliding a 
+# globular cluster with a molecular cloud with our specific parameters 
 
-from molecular_cloud_initialization import *
-from plotters import *
-from cluster_cloud_initialization import *
+# %%
+ 
+from cluster_initialization import make_globular_cluster
+from plotters import plot_cloud_and_star_cluster, plot_evolution_mass_accretion, plot_relative_mass
+
+from amuse.units import units
+from amuse.lab import Particles, nbody_system
+from amuse.ext.sink import new_sink_particles
+from amuse.community.bhtree.interface import Bhtree
+from amuse.community.sse.interface import SSE
+from amuse.community.fi.interface import Fi
+from amuse.couple import bridge
 
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-from amuse.community.fi.interface import Fi
-from amuse.lab import Particles, nbody_system
-from amuse.couple import bridge
-from amuse.units import units
-from amuse.community.bhtree.interface import Bhtree
-from amuse.ext.sink import new_sink_particles
-from amuse.community.sse.interface import SSE
 
+# %%
 
 def bondi_radius(stellar_mass):
-    sound_speed = 0.2 | units.kms
-    R = 2 * units.constants.G * stellar_mass /(sound_speed **2)
+    '''
+    Description:
 
-    return R
+        Calculate the bondi radius of a star
 
-def bondi_accretion_rate(rho,v,r):
-    dM = units.constants.pi * (r**2) * rho * v
+    Input:
 
-    return dM
+        stellar_mass (units.quantity): Mass of the star
 
-def detect_bounded_gas(star,particles,hardness):
+    Return:
 
-    n = len(particles)
+        bondi_radius (units.quantity): Bondi radius of the star
+    '''
 
-    if n == 0:
+    sound_speed = 0.2 | units.kms # Sound speed in a typical molecular cloud
+    bondi_radius = 2 * units.constants.G * stellar_mass / sound_speed**2
+
+    return bondi_radius
+
+# %%
+
+def detect_bounded_gas(star, particles, hardness):
+    '''
+    Description:
+
+        Return the particles that are gravitationally bound to a star
+
+    Input:
+
+        star (object): AMUSE sink particle 
+
+        particles (object): AMUSE particle set containing the molecular cloud particles that lie within the sink radius of the star
+
+        hardness (float): Harshness of the gravitationally bound criterion
+
+    Return:
+
+        bounded_particles (object): AMUSE particle set containing the molecular cloud particles that are gravitationally bound to the star
+    '''
+
+    N = len(particles)
+
+    if N == 0:
         return Particles()
     
-    total_Ek=(0.5*particles.mass*(particles.vx**2+particles.vy**2+particles.vz**2)).sum()
-    average_Ek=total_Ek/particles.mass.sum()
-    limitE=hardness*average_Ek
+    total_kinetic_energy = (0.5 * particles.mass * (particles.vx**2 + particles.vy**2 + particles.vz**2)).sum()
+    average_kinetic_energy = total_kinetic_energy / particles.mass.sum()
+    limit_energy = hardness * average_kinetic_energy
 
-    a=np.argsort(particles.x.number)
-    binaries = Particles()
+    sorted_idx = np.argsort(particles.x.number)
+    bounded_particles = Particles()
 
-    for i in range(n):
-        r2=(star.x-particles.x[a[i]])**2+ \
-            (star.y-particles.y[a[i]])**2+ \
-            (star.z-particles.z[a[i]])**2 
-        v2=(star.vx-particles.vx[a[i]])**2+ \
-            (star.vy-particles.vy[a[i]])**2+ \
-            (star.vz-particles.vz[a[i]])**2 
-        r=r2**0.5
+    for i in range(N):
+
+        r2 = (star.x - particles.x[sorted_idx[i]])**2 + \
+             (star.y - particles.y[sorted_idx[i]])**2 + \
+             (star.z - particles.z[sorted_idx[i]])**2 
+        
+        v2 = (star.vx - particles.vx[sorted_idx[i]])**2 + \
+             (star.vy - particles.vy[sorted_idx[i]])**2 + \
+             (star.vz - particles.vz[sorted_idx[i]])**2 
+        
+        r = r2**0.5
+
         #Specific binding energy in units energy per mass
-        eb=abs(units.constants.G*(particles.mass[a[i]]+star.mass)/r-0.5*v2)
-        if eb > limitE:
-            binary=particles[[a[i]]].copy()
-            binary.hardness=eb/average_Ek
-            binaries.add_particle(binary)
-    
-    return binaries
+        binding_enegry = abs(units.constants.G * (particles.mass[sorted_idx[i]] + star.mass) / r - 0.5*v2)
 
-def free_fall_time(star,particles,binary_particles,time_step):
+        if binding_enegry > limit_energy:
+            valid_particle = particles[[sorted_idx[i]]].copy()
+            bounded_particles.add_particle(valid_particle)
+    
+    return bounded_particles
 
-    n = len(binary_particles)
-    dm = []
-    
-    if n == 0:
-        return Particles(), dm
-    
-    a = np.argsort(binary_particles.x.number)
-    binaries = Particles()
-    
-    bg_rho = particles.mass.sum()/(4/3*np.pi*star.sink_radius**3)
-    
+# %%
 
+def free_fall_time(star, particles, bounded_particles, time_step):
+    '''
+    Description:
 
-    for i in range(n):
+        Return the particles that are gravitationally bound to a star 
+        and how the amount of mass that is accreted per particle by the star within one time step
+
+        The amount of mass depends on the free-fall time
+
+    Inputs:
+
+        star (object): AMUSE sink particle 
+
+        particles (object): AMUSE particle set containing the molecular cloud particles that lie within the sink radius of the star
+
+        bounded_particles (object): AMUSE particle set containing the gravitationally bound molecular cloud particles
+
+        time_step (units.quantity): Time interval within which mass is accreted
+
+    Return:
+
+        bounded_particles (object): AMUSE particle set containing the gravitationally bound molecular cloud particles
+
+        accreted_mass (numpy.ndarray): The amount of mass accreted from each gravitationally bound particle
+    '''
+
+    N = len(bounded_particles)
+    accreted_mass = []
+    
+    if N == 0:
+        return Particles(), accreted_mass
+    
+    sorted_idx = np.argsort(bounded_particles.x.number)
+    accreted_particles = Particles()
+    
+    background_density = particles.mass.sum() / (4 * np.pi * star.sink_radius**3 / 3)
+
+    for i in range(N):
         
-        distance = np.sqrt((star.x-binary_particles.x[a[i]])**2 + \
-                            (star.y-binary_particles.y[a[i]])**2 + \
-                            (star.z-binary_particles.z[a[i]])**2)
+        distance = ((star.x - bounded_particles.x[sorted_idx[i]])**2 + \
+                    (star.y - bounded_particles.y[sorted_idx[i]])**2 + \
+                    (star.z - bounded_particles.z[sorted_idx[i]])**2)**0.5
         
-        free_fall_radius = (2*time_step*np.sqrt(2*units.constants.G \
-                                            *(star.mass + binary_particles.mass[a[i]]))/np.pi)**(2/3)
-        free_fall_radius = free_fall_radius.in_(units.m)
+        free_fall_radius = (2 * time_step * np.sqrt(2 * units.constants.G \
+                              * (star.mass + bounded_particles.mass[sorted_idx[i]])) / np.pi)**(2/3)
         
-    
-        binary = binary_particles[[a[i]]].copy()
-        binaries.add_particle(binary)
+        valid_particle = bounded_particles[[sorted_idx[i]]].copy()
+        accreted_particles.add_particle(valid_particle)
 
         if free_fall_radius >= distance:
-            dm.append(binary.mass.value_in(units.MSun))
+            accreted_mass.append(valid_particle.mass.value_in(units.MSun)[0])
 
         else:
-            gas_rho = binary_particles.mass[a[i]]/(4/3*np.pi*distance**3)
-            mean_rho = (0.5*bg_rho+1.5*gas_rho)/2
-            acquired_mass = mean_rho * 4*np.pi*(free_fall_radius**3)/3 
-            acquired_mass = acquired_mass.value_in(units.MSun)
-            dm.append(acquired_mass)
+            valid_particle_denisty = valid_particle.mass / (4 * np.pi * distance**3 / 3)
+            mean_rho = (0.5 * background_density + 1.5 * valid_particle_denisty) / 2
+            acquired_mass = (mean_rho * 4 * np.pi * free_fall_radius**3) / 3 
+            accreted_mass.append(acquired_mass.value_in(units.MSun)[0])
     
-    dm = dm | units.MSun
-    return binaries,dm
+    accreted_mass = accreted_mass | units.MSun
+    return accreted_particles, accreted_mass
 
+# %%
 
-def accrete_mass(sinks, hydro_particles,time_step):
+def accrete_mass(sinks, hydro_particles, time_step):
+    '''
+    Description:
+
+        Determine the accretion of molecular cloud particles by a star cluster within a certain timestep
+
+    Inputs:
+
+        sinks (object): AMUSE sink particle set represeting the star cluster
+
+        hydro_particles (object): AMUSE particle set represeting the molecular cloud particles
+
+        time_step (units.quantity): Time interval within which mass is accreted
+
+    Return:
+
+        None
+    '''
+
     # For each sink, find the hydro particles that are located within the sink radius
-    particles_within_sink_radius = sinks.select_too_close(hydro_particles)
+    adjacent_particles = sinks.select_too_close(hydro_particles)
 
     for idx in range(len(sinks)):
-        # Select the ones that are gravitationally bound to the sink
-        bounded_particles = detect_bounded_gas(sinks[idx], particles_within_sink_radius[idx], hardness = 0.001)
-        bounded_particles,dmass = free_fall_time(sinks[idx],particles_within_sink_radius[idx],\
-                                               bounded_particles, time_step)
+
+        # Select the particles that are gravitationally bound to the sink
+        bounded_particles = detect_bounded_gas(sinks[idx], adjacent_particles[idx], hardness = 0.1)
+        # Calculate the amount of mass that is accreted from each particle
+        bounded_particles, accreted_mass = free_fall_time(sinks[idx], adjacent_particles[idx],\
+                                                          bounded_particles, time_step)
+        
         if len(bounded_particles) != 0:
             # Update the mass of the sink
             sinks[idx].name = "Accreted star"
-            sinks[idx].mass += np.sum(dmass)
-            #Update particles mass for the particle cloud
-            bounded_particles.mass -= dmass
+            sinks[idx].mass += np.sum(accreted_mass)
+
+            #Update the mass of the molecular cloud particles
+            bounded_particles.mass -= accreted_mass
 
             for i in range(len(bounded_particles)):
+
                 if bounded_particles[i].mass.value_in(units.MSun) <= 1e-15:
                     hydro_particles.remove_particle(bounded_particles[i])
-                for particles in hydro_particles:
-                    if particles.key == bounded_particles.key[i]:
-                        particles.mass = bounded_particles.mass[i]
+
+                else:
+                    for particles in hydro_particles:   
+
+                        if particles.key == bounded_particles.key[i]:
+                            particles.mass = bounded_particles.mass[i]
                     
+# %%
 
+def make_cluster_with_posvel(position, velocity, W0, random_seed, number_of_stars = 200):
+    '''
+    Description:
 
-def make_cluster_with_vinit(velocity,position,random_seed):
-    star_cluster = make_globular_cluster(star_count = 200,
-                                        imf = "kroupa", 
-                                        radius = 4 | units.pc,
-                                        metallicity = 0.002, 
-                                        age = 10 | units.Gyr, 
-                                        seed = random_seed)
-    star_cluster.name = "Unchanged star"
+        Initialize a globular cluster, its position and velocity 
+
+    Inputs:
+
+        position (float): Position of the star cluster
+
+        velocity (float): Velocity of the star cluster
+
+        W0 (float): King model parameter
+
+        random_seed (int): Randomness of the cluster initialization
+
+        number_of_stars (int): Number of stars in the star cluster
+
+    Return:
+
+        star_cluster (object): AMUSE particel set for the star cluster
+
+        converter_cluster (object): AMUSE generic unit converter for the star cluster
+    '''
+
+    star_cluster = make_globular_cluster(star_count = number_of_stars, 
+                                         radius = 4 | units.pc,
+                                         metallicity = 0.002, 
+                                         age = 10 | units.Gyr, 
+                                         W0 = W0,
+                                         seed = random_seed)
     
-    print("Most massive star in cluster is ", max(star_cluster.mass.in_(units.MSun)))
+    star_cluster.name = "Unchanged star"
 
-    star_cluster.position +=  (-1.0, 0, 0) * (position | units.pc)
-    star_cluster.velocity += (1.0, 0, 0) * (velocity| units.kms)
+    print(f"Least massive star in the cluster has a mass {min(star_cluster.mass.in_(units.MSun))}.")  
+    print(f"Most massive star in the cluster has a mass {max(star_cluster.mass.in_(units.MSun))}.")
+
+    star_cluster.position += (-1.0, 0, 0) * (position | units.pc)
+    star_cluster.velocity += (1.0, 0, 0) * (velocity | units.kms)
 
     converter_cluster = nbody_system.nbody_to_si(star_cluster.mass.sum(), 
-                                    star_cluster.position.sum())
+                                                 star_cluster.position.sum())
  
-    return star_cluster,converter_cluster
+    return star_cluster, converter_cluster
 
+# %%
 
-#The following functions are hard coded for the convenience of running the
-#simulation in batch
-
-def hydro_code(Code, dt, converter, particles, seed):
+def hydrodynamics_code(code, time_step, particles_cloud, converter_cloud, seed):
     '''
-    This function contains the parameters we want to initialise the 
-    hydro code with. (hard Coded)
+    Description:
+
+        Initialize the hydrodynamics code for a molecular cloud
+    
+    Inputs:
+
+        code (object): AMUSE hydrodynamics code
+
+        time_step (units.quantity): Time step of the hydrodynamics code
+
+        particles_cloud (object): AMUSE particle set for the molecular cloud
+
+        converter_cloud (object): AMUSE generic unit converter for the molecular cloud
+
+        seed (int): Randomness of the function
+
+    Return:
+
+        hydro (object): AMUSE hydrodynamics integrator for the molecular cloud
     '''
     
     np.random.seed(seed)
 
-    hydro = Code(converter)
-    hydro.parameters.use_hydro_flag = True # Hydrodynamics flag. True means:
-                            # SPH hydro included, False means: gravity only.
-    hydro.parameters.gamma = 1 # gas polytropic index (1.6666667)
-                        # (default value:1.6666667). In this case-> Ideal Gas   
-    hydro.parameters.timestep = dt
-    hydro.parameters.eps_is_h_flag = True # Default value
-    hydro.parameters.radiation_flag = False # turns off radiatiative cooling/heat.
-    hydro.parameters.isothermal_flag = True  # Isothermal flag. True means:
-                                            # isothermal gas (requires integrate_entropy_flag == False)
-    hydro.parameters.integrate_entropy_flag = False #True means: integrate
-                                                     # entropy, else: internal energy. 
-    hydro.gas_particles.add_particles(particles) # add the particles
+    hydro = code(converter_cloud)
+
+    hydro.parameters.use_hydro_flag = True # SPH hydrodynamics is included alongside self-gravity
+    hydro.parameters.radiation_flag = False # Radiation flag  is included
+
+    hydro.parameters.timestep = time_step # Timestep used by the code
+
+    hydro.parameters.gamma = 1 # Gas polytropic index
+    hydro.parameters.isothermal_flag = True # Isothermal gas
+    hydro.parameters.integrate_entropy_flag = False # Integrate entropy
+
+    hydro.gas_particles.add_particles(particles_cloud)
    
     return hydro    
 
+# The following functions are hard coded for the convenience of running the simulation in batch
 
-def AMUSE_bridge_initialization(dt,star_cluster,converter_cluster,init_cloud,init_cloud_converter):
-    #initiate the gravity code with sink particles
-    gravity_code = Bhtree(converter_cluster)
+# %%
+
+def code_bridge_channel_initaization(time_step, star_cluster, converter_cluster, particles_cloud, converter_cloud, seed):
+    '''
+    Description:
+
+        Initialize the codes, channels and bridge for the collsion of a star cluster and molecular cloud
+    
+    Inputs:
+
+        time_step (units.quantity): Time step of the hydrodynamics code
+
+        star_cluster (object): AMUSE particel set for the star cluster
+
+        converter_cluster (object): AMUSE generic unit converter for the star cluster
+
+        particles_cloud (object): AMUSE particle set for the molecular cloud
+
+        converter_cloud (object): AMUSE generic unit converter for the molecular cloud
+
+        seed (int): Randomness of the function
+    
+    Return:
+
+        sinks (object): AMUSE sink particle set for the star cluster
+
+        gravity_code (object): AMUSE gravity integrator for the star cluster
+
+        stellar_evolution_code (object): AMUSE stellar evolution integrator for the star cluster
+
+        hydro_code (object): AMUSE hydrodynamics integrator for the molecular cloud
+
+        channels (dictionary): Channels between the particle sets and code.particles
+
+        gravity_hydro_bridge (object): AMUSE bridge integrator between the gravity and hydrodynamics codes
+    '''
+
+    # Create a sink particle set with the same properties as the star cluster
     sinks = new_sink_particles(star_cluster)
 
-    gravity_code.particles.add_particles(sinks)
-
-    # #start the hydro code for the gas
-    converter_cloud = init_cloud_converter
-    particles_cloud = init_cloud.copy()
-    hydro_cloud = hydro_code(Code = Fi, dt = 0.1 | units.Myr,
-                            converter = converter_cloud,
-                            particles = particles_cloud,
-                            seed = 1312)
-
-
-    channel = {"to_sinks": gravity_code.particles.new_channel_to(sinks),
-                "from_sinks": sinks.new_channel_to(gravity_code.particles),
-                "to_cloud": hydro_cloud.gas_particles.new_channel_to(particles_cloud),
-                "from_cloud": particles_cloud.new_channel_to(hydro_cloud.gas_particles)}
-
-
-    gravhydrobridge = bridge.Bridge(use_threading = False)
-    gravhydrobridge.add_system(gravity_code, (hydro_cloud,) )
-    gravhydrobridge.add_system(hydro_cloud, (gravity_code,) )
-    gravhydrobridge.timestep = dt | units.Myr
-
-    return gravhydrobridge,sinks,channel,particles_cloud,gravity_code,hydro_cloud
-
-
-
-def let_them_collide_and_save(name,directory_path,t_end,dt,sinks,gravhydrobridge,\
-                     channel,particles_cloud,gravity_code,hydro_cloud):
-    t_end = t_end | units.Myr
-    model_time = 0 | units.Myr
-    dt = dt | units.Myr
-    x_lim = int(abs(min(sinks.position.x).value_in(units.pc)))*1.2
-    y_lim = int(abs(min(sinks.position.y).value_in(units.pc)))*2
-    L=int(max(particles_cloud.x.value_in(units.pc)))*1.5
-    N = 300
-
-    sinks_mass_snapshots = []
-    star_position = []
-    cloud_density_cubes =[]
-
-    density_map = plot_hydro(model_time,hydro_cloud,L,L,N)
-
-    current_velocity = sum(sinks.vx.value_in(units.kms))/len(sinks.vx)
-    print("Colliding with cluster velocity", current_velocity)
-
-    while model_time < t_end:
-        
-        # define the accreting radius of the sinks particle based on its Bondi radius
-        # IMPORTANT: the mass changes after each accretion event
-        sinks.sink_radius = bondi_radius(sinks.mass).in_(units.pc)
-
-        print("Largest sink radius", max(sinks.sink_radius).in_(units.pc))
-
-        print("Pre accretion cluster mass", sinks.mass.sum().in_(units.MSun))
-        
-        model_time += dt
-        model_time = model_time.round(1)
-        # evolve the gravity and hydro codes through our bridge
-        gravhydrobridge.evolve_model(model_time)
-
-
-        # update channels (copy over from the codes.particles to the particle sets)
-        channel["to_sinks"].copy()
-        channel["to_cloud"].copy()
-
-
-        print("Sinks in progress at", model_time.value_in(units.Myr), " Myr.")
-        # add the acretted mass to the sinks's total mass
-
-        accrete_mass(sinks,particles_cloud,dt)
-
-        # update channels (copy the information from the particle set to the gravity code)
-        channel["from_sinks"].copy()
-        channel["from_cloud"].copy()
-
-        # save necessary diagnostics of each step
-        rho,_,_,_ = make_3Dmap(hydro_cloud,20,20)
-        rho = rho.value_in(units.amu / units.cm**3)
-        sinks_mass_snapshots.append(sinks.mass.value_in(units.MSun))
-        star_position.append(sinks.position.value_in(units.pc))
-        cloud_density_cubes.append(rho)
-
-        if model_time+dt >= t_end:
-            _, xgrid, ygrid, zgrid = make_3Dmap(hydro_cloud,20,20)
-
-        print("Post accretion cluster mass", sinks.mass.sum().in_(units.MSun))
-        # print(len(particles_cloud.mass), "number of cloud particles now")
-
-        density_plots_path = os.path.join(directory_path,"density_snapshots/")
-        plot_cloud_and_star_cluster(model_time, hydro_cloud, sinks, x_lim, y_lim, N,density_map,saveto=density_plots_path)
-
-    animation_path = os.path.join(directory_path, f"collision animation at{current_velocity}.html")
-    fig = animate_collision_3D(star_position,cloud_density_cubes,xgrid,ygrid,zgrid)
-    fig.write_html(animation_path)
-
-    mass_difference = sinks_mass_snapshots[-1] - sinks_mass_snapshots[0]
-
-    # Save the list to a text file
-    with open(os.path.join(directory_path, \
-                           f"Sink mass_{current_velocity}.txt"), 'w') as file:
-        for sublist in sinks_mass_snapshots:
-            line = ' '.join(map(str, sublist))  # Convert sublist to a space-separated string
-            file.write(line + '\n')
-
-    print("Mass snapshots saved.")
-
-    mask = np.where(mass_difference > 1e-15)
-    sinks_mass_snapshots = np.array(sinks_mass_snapshots)
-    relative_mass = sinks_mass_snapshots - sinks_mass_snapshots[0,:]
-
-    plt.plot(np.arange(0, t_end.value_in(units.Myr), dt.value_in(units.Myr)), \
-             relative_mass)
-    plt.xlabel("time [Myr]")
-    plt.ylabel("mass [Msun]")
-    plt.title('Collision with velocity '+str(name)+' kms')
-    plt.savefig(os.path.join(directory_path, f"Sink mass with accretion_{current_velocity}.png"))
-    plt.show()
-    plt.close()
-
-    mass_ratio = np.array(mass_difference)[mask[0]]/np.array(sinks_mass_snapshots[0])[mask[0]]
-    plt.hist(mass_ratio*100, bins  = 30)
-    plt.xlabel("Relative mass difference [%]")
-    plt.title('Collision with velocity '+str(name)+' kms')
-    plt.savefig(os.path.join(directory_path, f"Accreted mass hist_{current_velocity}.png"))
-    plt.close()
-
-    final_cluster = sinks.copy()
-
-    gravity_code.stop()
-    hydro_cloud.stop()
-    gravhydrobridge.stop()
-
-    return final_cluster
-
-def hydro_gravo_stella_bridge_initialization(star_cluster,converter_cluster,init_cloud,init_cloud_converter):
-    #initiate the gravity code with sink particles
+    # Initiate the gravity code for the star cluster
     gravity_code = Bhtree(converter_cluster)
-    sinks = new_sink_particles(star_cluster)
-
     gravity_code.particles.add_particles(sinks)
 
+    # Initiate the stellar evolution code for the star cluster
     stellar_evolution_code = SSE()
     stellar_evolution_code.parameters.metallicity = sinks[0].metallicity
     stellar_evolution_code.particles.add_particles(sinks)
 
+    # Initate the hydrodynamics code for the molecular cloud
+    hydro_code = hydrodynamics_code(code = Fi, 
+                                    time_step = time_step,
+                                    converter_cloud = converter_cloud,
+                                    particles_cloud = particles_cloud,
+                                    seed = seed)
 
-    # #start the hydro code for the gas
-    converter_cloud = init_cloud_converter
-    particles_cloud = init_cloud.copy()
-    hydro_cloud = hydro_code(Code = Fi, dt = 0.1 | units.Myr,
-                            converter = converter_cloud,
-                            particles = particles_cloud,
-                            seed = 1312)
-
-
-    channel = {"gravity_to_sinks": gravity_code.particles.new_channel_to(sinks),
+    # Initate the channels between the codes and particle sets
+    channels = {"gravity_to_sinks": gravity_code.particles.new_channel_to(sinks),
                 "gravity_from_sinks": sinks.new_channel_to(gravity_code.particles, attributes=["mass", "radius"], target_names=["mass", "radius"]),
                 "stellar_evolution_to_sinks": stellar_evolution_code.particles.new_channel_to(sinks),
                 "stellar_evolution_from_sinks": sinks.new_channel_to(stellar_evolution_code.particles),
-                "stellar_evolution_to_gravity": stellar_evolution_code.particles.new_channel_to(gravity_code.particles),
-                "hydro_to_cloud": hydro_cloud.gas_particles.new_channel_to(particles_cloud),
-                "hydro_from_cloud": particles_cloud.new_channel_to(hydro_cloud.gas_particles)}
+                "hydro_to_cloud": hydro_code.gas_particles.new_channel_to(particles_cloud),
+                "hydro_from_cloud": particles_cloud.new_channel_to(hydro_code.gas_particles)}
 
-    channel["stellar_evolution_to_sinks"].copy()
+    # Update the star cluster properties to the stellar evolution properties  
+    channels["stellar_evolution_to_sinks"].copy()
 
+    # Initate the bridge between the gravity and hydrodynamics codes
+    gravity_hydro_bridge = bridge.Bridge(use_threading = False)
+    gravity_hydro_bridge.add_system(gravity_code, (hydro_code,))
+    gravity_hydro_bridge.add_system(hydro_code, (gravity_code,))
+    gravity_hydro_bridge.timestep = 2 * time_step
 
-    gravhydrostellarbridge = bridge.Bridge(use_threading = False)
-    gravhydrostellarbridge.add_system(gravity_code, (hydro_cloud,))
-    gravhydrostellarbridge.add_system(hydro_cloud, (gravity_code,))
-    gravhydrostellarbridge.timestep = 0.1 | units.Myr
+    return sinks, gravity_code, stellar_evolution_code, hydro_code, channels, gravity_hydro_bridge 
 
-    return stellar_evolution_code,gravhydrostellarbridge,sinks,channel,particles_cloud,gravity_code,hydro_cloud
+# %%
 
+def cluster_cloud_collision(end_time, time_step, sinks, particles_cloud, gravity_code, stellar_evolution_code, \
+                            hydro_code, channels, gravity_hydro_bridge, directory_path, density_map):
+    '''
+    Description:
 
-def collision_with_stellar_evolution(name,directory_path,t_end,dt,sinks,gravhydrostellarbridge,\
-                     channel,particles_cloud,gravity_code,hydro_cloud,stellar_evolution_code):
-    t_end = t_end | units.Myr
+        Perform the collision of a star cluster and molecular cloud and save the results 
+
+    Inputs:
+
+        end_time (units.quantity): Duration of the collision
+
+        time_step (units.quantity): Time step of the collision
+
+        sinks (object): AMUSE sink particle set for the star cluster
+
+        particles_cloud (object): AMUSE particle set for the molecular cloud
+
+        gravity_code (object): AMUSE gravity integrator for the star cluster
+
+        stellar_evolution_code (object): AMUSE stellar evolution integrator for the star cluster
+
+        hydro_code (object): AMUSE hydrodynamics integrator for the molecular cloud
+
+        channels (dictionary): Channels between the particle sets and code.particles
+
+        gravity_hydro_bridge (object): AMUSE bridge integrator between the gravity and hydrodynamics codes
+
+        directory_path (str): Path to the folder where the results should be saved
+
+        density_map (matplotlib.image.AxesImage): AxesImage object for the log density map of the molecular cloud before collision
+
+    Return:
+
+        final_cluster (object): AMUSE sink particle set for the star cluster after the collision
+    '''
+
+    sinks_mass_evolution = []
+
+    current_velocity = np.mean(sinks.vx.value_in(units.kms))
+    print(f"Colliding with cluster velocity {current_velocity}")
+
     model_time = 0 | units.Myr
-    dt = dt | units.Myr
-    x_lim = int(abs(min(sinks.position.x).value_in(units.pc)))*1.2
-    y_lim = int(abs(min(sinks.position.y).value_in(units.pc)))*2
-    L=int(max(particles_cloud.x.value_in(units.pc)))*1.5
+
+    # Define the parameters for the density plot 
+    x_limit = int(abs(min(sinks.position.x).value_in(units.pc)))*1.2
+    y_limit = int(abs(min(sinks.position.y).value_in(units.pc)))*2
     N = 300
 
-    sinks_mass_snapshots = []
-    star_position = []
-    cloud_density_cubes =[]
+    density_plots_path = os.path.join(directory_path,"density_snapshots/")
+    plot_cloud_and_star_cluster(time = model_time, hydro = hydro_code, sinks = sinks, \
+                                x_limit = x_limit, y_limit = y_limit, N = N, density_map_MC = density_map, \
+                                save_to = density_plots_path)
 
-    density_map = plot_hydro(model_time,hydro_cloud,L,L,N)
+    while model_time < end_time:
 
-    current_velocity = sum(sinks.vx.value_in(units.kms))/len(sinks.vx)
-    print("Colliding with cluster velocity", current_velocity)
-
-    while model_time < t_end:
+        print(f"Collision time = {model_time.in_(units.Myr)}.")
               
-        model_time += dt
+        model_time += time_step
         model_time = model_time.round(1)
 
         stellar_evolution_code.evolve_model(model_time)
 
-        channel["stellar_evolution_to_sinks"].copy()
-        channel["gravity_from_sinks"].copy()
+        # Update the sink particles and gravity_code.particles through the channels 
+        channels["stellar_evolution_to_sinks"].copy()
+        channels["gravity_from_sinks"].copy()
         
-        sinks.sink_radius = [bondi_radius(sink.mass).in_(units.pc) for sink in sinks]
+        sinks.sink_radius = bondi_radius(sinks.mass).in_(units.pc)
 
-        print("Largest sink radius", max(sinks.sink_radius).in_(units.pc))
+        print(f"Largest sink radius {max(sinks.sink_radius).in_(units.pc)}.")
 
-        # evolve the gravity and hydro codes through our bridge
-        gravhydrostellarbridge.evolve_model(model_time)
+        # Evolve the gravity and hydrodynamics codes through the bridge
+        gravity_hydro_bridge.evolve_model(model_time)
 
-        # update channels (copy over from the codes.particles to the particle sets)
-        channel["gravity_to_sinks"].copy()
-        channel["hydro_to_cloud"].copy()
+        # Update the particle sets through the channels
+        channels["gravity_to_sinks"].copy()
+        channels["hydro_to_cloud"].copy()
 
-        print("Sinks in progress at", model_time.value_in(units.Myr), " Myr.")
-        # add the acretted mass to the sinks's total mass
-        accrete_mass(sinks, particles_cloud, dt)
+        print(f"Pre accretion cluster mass {sinks.mass.sum().in_(units.MSun)}.")
 
-        # update channels (copy the information from the particle set to the gravity code)
-        channel["stellar_evolution_from_sinks"].copy()
-        channel["gravity_from_sinks"].copy()
-        channel["hydro_from_cloud"].copy()
+        # Add the accreted mass to the sinks's total mass
+        accrete_mass(sinks, particles_cloud, time_step)
 
-        # save necessary diagnostics of each step
-        rho,_,_,_ = make_3Dmap(hydro_cloud,20,20)
-        rho = rho.value_in(units.amu / units.cm**3)
-        sinks_mass_snapshots.append(sinks.mass.value_in(units.MSun))
-        star_position.append(sinks.position.value_in(units.pc))
-        cloud_density_cubes.append(rho)
+        # Update codes.particles through the channels
+        channels["stellar_evolution_from_sinks"].copy()
+        channels["gravity_from_sinks"].copy()
+        channels["hydro_from_cloud"].copy()
 
-        if model_time+dt >= t_end:
-            _, xgrid, ygrid, zgrid = make_3Dmap(hydro_cloud,20,20)
+        print(f"Post accretion cluster mass {sinks.mass.sum().in_(units.MSun)}. \n")
 
-        print("Post accretion cluster mass", sinks.mass.sum().in_(units.MSun))
-        # print(len(particles_cloud.mass), "number of cloud particles now")
+        sinks_mass_evolution.append(sinks.mass.value_in(units.MSun))
 
-        density_plots_path = os.path.join(directory_path,"density_snapshots/")
-        plot_cloud_and_star_cluster(model_time, hydro_cloud, sinks, x_lim, y_lim, N,density_map,saveto=density_plots_path)
+        plot_cloud_and_star_cluster(time = model_time, hydro = hydro_code, sinks = sinks, \
+                                    x_limit = x_limit, y_limit = y_limit, N = N, density_map_MC = density_map, \
+                                    save_to = density_plots_path)
 
-    animation_path = os.path.join(directory_path, f"collision animation at{current_velocity}.html")
-    fig = animate_collision_3D(star_position,cloud_density_cubes,xgrid,ygrid,zgrid)
-    fig.write_html(animation_path)
+    # Save the stellar mass evolution to a text file
+    with open(os.path.join(directory_path, f"Sink_mass_{current_velocity}.txt"), 'w') as file:
 
-    mass_difference = sinks_mass_snapshots[-1] - sinks_mass_snapshots[0]
-
-    # Save the list to a text file
-    with open(os.path.join(directory_path, \
-                           f"Sink mass_{current_velocity}.txt"), 'w') as file:
-        for sublist in sinks_mass_snapshots:
+        for sublist in sinks_mass_evolution:
             line = ' '.join(map(str, sublist))  # Convert sublist to a space-separated string
             file.write(line + '\n')
 
     print("Mass snapshots saved.")
 
-    mask = np.where(mass_difference > 1e-15)
-    sinks_mass_snapshots = np.array(sinks_mass_snapshots)
-    relative_mass = sinks_mass_snapshots - sinks_mass_snapshots[0,:]
+    plot_evolution_mass_accretion(sinks_mass_evolution = sinks_mass_evolution, 
+                                  end_time = end_time, 
+                                  time_step = time_step, 
+                                  velocity = current_velocity, 
+                                  save_to = directory_path)
 
-    plt.plot(np.arange(0, t_end.value_in(units.Myr), dt.value_in(units.Myr)), \
-             relative_mass)
-    plt.xlabel("time [Myr]")
-    plt.ylabel("mass [Msun]")
-    plt.title('Collision with velocity '+str(name)+' kms')
-    plt.savefig(os.path.join(directory_path, f"Sink mass with accretion_{current_velocity}.png"))
-    plt.show()
-    plt.close()
-
-    mass_ratio = np.array(mass_difference)[mask[0]]/np.array(sinks_mass_snapshots[0])[mask[0]]
-    plt.hist(mass_ratio*100, bins  = 30)
-    plt.xlabel("Relative mass difference [%]")
-    plt.title('Collision with velocity '+str(name)+' kms')
-    plt.savefig(os.path.join(directory_path, f"Accreted mass hist_{current_velocity}.png"))
-    plt.close()
+    plot_relative_mass(sinks_mass_evolution = sinks_mass_evolution, 
+                       velocity = current_velocity, 
+                       save_to = directory_path)
 
     final_cluster = sinks.copy()
 
     gravity_code.stop()
-    hydro_cloud.stop()
-    gravhydrostellarbridge.stop()
+    stellar_evolution_code.stop()
+    hydro_code.stop()
+    gravity_hydro_bridge.stop()
 
     return final_cluster
+
+# %%
