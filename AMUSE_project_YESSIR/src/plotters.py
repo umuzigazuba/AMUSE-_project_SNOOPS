@@ -20,7 +20,7 @@ def plot_snapshot_and_HR(cluster, save_to = None):
 
         save_to (str): Path to the folder where the image should be saved
 
-    Return: 
+    Outputs: 
         None
     '''
 
@@ -74,7 +74,7 @@ def make_map(hydro, x_limit, y_limit, N):
 
         N (int): Number of grid points along one axis
 
-    Return: 
+    Outputs: 
         density (numpy.ndarray): Two-dimensional array for the density of the
         molecular cloud over the grid
     '''
@@ -116,7 +116,7 @@ def plot_hydro(time, hydro, x_limit, y_limit, N, save_to = None):
 
         save_to (str): Path to the folder where the image should be saved
 
-    Return:
+    Outputs:
         density_map (matplotlib.image.AxesImage): AxesImage object of the
         plotted log density map
     '''
@@ -172,7 +172,7 @@ def plot_cloud_and_star_cluster(time, hydro, sinks, x_limit, y_limit,
 
         save_to (str): Path to the folder where the image should be saved
 
-    Return:
+    Outputs:
         None
     '''
     
@@ -231,7 +231,7 @@ def plot_evolution_mass_accretion(sinks_mass_evolution, end_time, time_step,
 
         save_to (str): Path to the folder where the image should be saved
 
-    Return:
+    Outputs:
         None
     '''
 
@@ -277,7 +277,7 @@ def plot_relative_mass(sinks_mass_evolution, velocity, save_to = None):
 
         save_to (str): Path to the folder where the image should be saved
 
-    Return:
+    Outputs:
         None
     '''
 
@@ -328,7 +328,7 @@ def make_3Dmap(hydro, L, N):
 
         N (int): Number of grid points
 
-    Return: 
+    Outputs: 
        rho (numpy.ndarray): Three-dimensional array for the density of the
        molecular cloud over the grid
 
@@ -382,7 +382,7 @@ def animate_collision_3D(star_position, cloud_density_cubes,
         zgrid (numpy.ndarray): Three-dimensional array with the Z-coordinates
         of the grid's vertices
 
-    Return:
+    Outputs:
         fig (matplotlib.figure): The interactive 3D figure of the collision
     '''
 

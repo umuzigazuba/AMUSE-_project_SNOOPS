@@ -30,7 +30,7 @@ def bondi_radius(stellar_mass):
 
         stellar_mass (units.quantity): Mass of the star
 
-    Return:
+    Outputs:
 
         bondi_radius (units.quantity): Bondi radius of the star
     '''
@@ -57,7 +57,7 @@ def detect_bounded_gas(star, particles, hardness):
 
         hardness (float): Harshness of the gravitationally bound criterion
 
-    Return:
+    Outputs:
 
         bounded_particles (object): AMUSE particle set containing the molecular
         cloud particles that are gravitationally bound to the star
@@ -120,7 +120,7 @@ def free_fall_time(star, particles, bounded_particles, time_step):
 
         time_step (units.quantity): Time interval within which mass is accreted
 
-    Return:
+    Outputs:
 
         bounded_particles (object): AMUSE particle set containing the
         gravitationally bound molecular cloud particles
@@ -182,7 +182,7 @@ def accrete_mass(sinks, hydro_particles, time_step):
 
         time_step (units.quantity): Time interval within which mass is accreted
 
-    Return:
+    Outputs:
 
         None
     '''
@@ -239,7 +239,7 @@ def make_cluster_with_posvel(position, velocity, W0, random_seed,
 
         number_of_stars (int): Number of stars in the star cluster
 
-    Return:
+    Outputs:
 
         star_cluster (object): AMUSE particel set for the star cluster
 
@@ -288,7 +288,7 @@ def hydrodynamics_code(code, time_step, particles_cloud, converter_cloud, seed):
 
         seed (int): Randomness of the function
 
-    Return:
+    Outputs:
 
         hydro (object): AMUSE hydrodynamics integrator for the molecular cloud
     '''
@@ -339,7 +339,7 @@ def code_bridge_channel_initaization(time_step, star_cluster, converter_cluster,
 
         seed (int): Randomness of the function
     
-    Return:
+    Outputs:
 
         sinks (object): AMUSE sink particle set for the star cluster
 
@@ -429,7 +429,7 @@ def cluster_cloud_collision(end_time, time_step, sinks, particles_cloud, gravity
 
         density_map (matplotlib.image.AxesImage): AxesImage object for the log density map of the molecular cloud before collision
 
-    Return:
+    Outputs:
 
         final_cluster (object): AMUSE sink particle set for the star cluster after the collision
     '''

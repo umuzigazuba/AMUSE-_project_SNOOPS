@@ -6,9 +6,11 @@ import numpy as np
 
 def updated_metallicity(M_star, M_material, Z_star = 0.002, Z_material = 0.02):
     '''
-    This function computes the metallicity of a star that has accreted some 
-    material of mass M_material. The metallicity here is viewed as
-    the mass fraction of elements hevier than Helium (Z = 1-X-Y).
+    Description:
+
+        This function computes the metallicity of a star that has accreted some 
+        material of mass M_material. The metallicity here is viewed as
+        the mass fraction of elements hevier than Helium (Z = 1-X-Y).
     
     Inputs:
         
@@ -40,8 +42,10 @@ def updated_metallicity(M_star, M_material, Z_star = 0.002, Z_material = 0.02):
 
 def evolve_single_star(stars, indx, metallicity, end_time, step):
     '''
-    This function evolves each star in a particle set seperately. The
-    quantities of the evovled star is copied overe to the particle set
+    Description:
+    
+        This function evolves each star in a particle set seperately. The
+        quantities of the evovled star is copied overe to the particle set
     
     Inputs:
         
@@ -55,6 +59,10 @@ def evolve_single_star(stars, indx, metallicity, end_time, step):
         end_time (quantity): The duration of the simulation
         
         step (quantity): The time step of the simulation
+
+    Outputs:
+
+        None
     '''
     
     stellar = SeBa()
@@ -64,7 +72,7 @@ def evolve_single_star(stars, indx, metallicity, end_time, step):
     channels = {"to_stars": stellar.particles.new_channel_to(stars), 
                 "to_stellar": stars.new_channel_to(stellar.particles)}
     
-    model_time = 0.0 |units.Gyr
+    model_time = 0.0 | units.Gyr
 
     while model_time < end_time:
         

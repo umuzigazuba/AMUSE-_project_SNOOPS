@@ -28,7 +28,7 @@ def make_molecular_cloud(N_cloud, M_cloud, R_cloud, seed):
         
         seed (int): Randomness of the function
     
-    Returns:
+    Outputs:
 
         particles_cloud (object): AMUSE particle set for the molecular cloud
 
@@ -65,7 +65,7 @@ def evolve_molecular_cloud(particles_cloud, converter_cloud, end_time, time_step
 
         seed (int): Randomness of the function 
 
-    Return:
+    Outputs:
         particles_cloud (object): AMUSE particle set for the evolved molecular cloud
 
         density_map (matplotlib.image.AxesImage): AxesImage object containing the plotted log density map of the evolved molecular cloud
