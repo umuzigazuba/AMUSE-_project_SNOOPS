@@ -3,6 +3,7 @@ amuse-seba
 amuse-sse
 amuse-bhtree
 amuse-fi
+natsort
 numpy
 matplotlib
 plotly

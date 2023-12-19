@@ -25,7 +25,7 @@ def stellar_evolution(stars, metallicity, end_time, seed):
         
         seed (int): Randomness of the function
     
-    Returns:
+    Outputs:
         stars (Object): AMUSE particle set for the evolved star system
     '''
     
@@ -72,7 +72,7 @@ def make_globular_cluster(star_count, radius, metallicity, age, W0, seed):
 
         seed (int): Randomness of the function
     
-    Returns:
+    Outputs:
         evolved_cluster (object): AMUSE particle set for the globular cluster
     '''
 

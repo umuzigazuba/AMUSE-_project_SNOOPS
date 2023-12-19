@@ -15,6 +15,11 @@ Project Organization
     │
     ├── requirements.txt        <- The requirements file for reproducing the analysis environment
     │
+    ├── presentations           <- Slides of presentations done in class
+    │   │
+    │   ├── YESSIR_project_proposal.pdf           <- Presentation done before starting the project
+    │   └── YESSIR_project_results.pdf            <- Presentation done when finalising the project
+    │
     ├── notebooks               <- Jupyter notebooks
     │   │
     │   ├── plot_HR_proposal.ipynb                <- Create the HR diagram used for the proposal presentation
@@ -27,15 +32,16 @@ Project Organization
     │   ├── molecular_cloud_initialization.py     <- Initialize a molecular cloud before the collision
     │   ├── plotters.py                           <- All plotting functions used in this project
     │   ├── utils.py                              <- Functions used during the collision
-    │   └── main_cluster_cloud_collision.py       <- Simulate the the collision
+    │   ├── main_cluster_cloud_collision.py       <- Simulate the collision
+    │   ├── analysis_utils.py                     <- Functions used during the analysis of our results 
+    │   └── updating_stellar_metallicities.py     <- Calculate the updated metallicity of stars and create their HR diagram 
     │
-    ├── examples                <- Example script
+    ├── example                 <- Example script
     │   │
     │   └── collision_example.py                  <- Example collision with set inital conditions/parameters
     │
-    ├── results                 <- Plots and data generated during our numerous runs
-    │
-    └── testings                <- ??????
+    └── results                 <- Plots and data generated during our numerous runs
+
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
 

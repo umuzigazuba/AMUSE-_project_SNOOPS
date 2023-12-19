@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from plotters import plot_evolution_mass_accretion, plot_relative_mass
 from amuse.units import units
+from natsort import natsorted
+
 #%%
 
 
@@ -30,12 +32,13 @@ for folder in folders:
     folder_path = os.path.join(main_directory, folder)
     if os.path.isdir(folder_path):
         files = os.listdir(folder_path)
+        files = natsorted(files)
         for file in files:
             file_path = os.path.join(folder_path, file)
             all_path.append(file_path)
 
 all_path = np.reshape(all_path,(19,10))
-
+print(all_path)
 #calculatating average and standard deviation for total accreted mass
 #with respect to each velocity
 total_accretion = []
