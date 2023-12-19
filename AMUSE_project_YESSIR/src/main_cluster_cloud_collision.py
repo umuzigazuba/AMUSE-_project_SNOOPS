@@ -59,6 +59,7 @@ for idx in range(len(cluster_velocities)):
     # pre-evolve a cluster and assign it the position and velocity for the run
     star_cluster, converter_cluster = make_cluster_with_posvel(position = 30, # in parsecs
                                                                velocity = velocity, 
+                                                               W0 = 3,
                                                                random_seed = 207349, 
                                                                number_of_stars = 1000)
     # initialise the codes and the bridge
