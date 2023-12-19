@@ -1,0 +1,150 @@
+[/bin/bash] #### Starting Python test
+[/bin/bash] ## This is s3805352 on node011 and this job has the ID 2148912
+[/bin/bash] ## current working directory: /home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src
+[/bin/bash] ## Run script
+/home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src/plotters.py:45: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
+  plt.show()
+/home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src/utils.py:406: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
+  plt.show()
+2363.19625105 35447.9437658
+ready for evolution
+Time 0.2 Myr
+Time 0.4 Myr
+Time 0.6 Myr
+Time 0.8 Myr
+Time 1.0 Myr
+Time 1.2 Myr
+Time 1.4 Myr
+Time 1.6 Myr
+Time 1.8 Myr
+Time 2.0 Myr
+Average mass of a SPH particle 0.0688436580840193.
+Mean density of the moelcular cloud 1.26867891371e-20 m**-3 * kg
+Starting with cluster velocity 20
+Most massive star in cluster is  1.29961411226 MSun
+Collision started on node011 at time 2023-12-13_16-47-26
+Colliding with cluster velocity 20.0
+Largest sink radius 0.279547501441 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 456.781531299 MSun
+Largest sink radius 0.279547501441 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 456.781531299 MSun
+Largest sink radius 0.279547501441 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 456.781531299 MSun
+Largest sink radius 0.279547501441 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 456.781531299 MSun
+Largest sink radius 0.279547501441 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 456.781531299 MSun
+Largest sink radius 0.279547501441 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 456.850374957 MSun
+Largest sink radius 0.279547501441 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 456.87631596 MSun
+Largest sink radius 0.279547501441 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 456.913259317 MSun
+Largest sink radius 0.279547501441 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 456.942448844 MSun
+Largest sink radius 0.279581794193 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 456.980835989 MSun
+Largest sink radius 0.279581794193 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 457.0795188 MSun
+Largest sink radius 0.279581794193 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 457.086258597 MSun
+Largest sink radius 0.279581794193 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 457.123597294 MSun
+Largest sink radius 0.279581794193 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 457.151702962 MSun
+Largest sink radius 0.279581794193 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 457.192953732 MSun
+Largest sink radius 0.279581794193 parsec
+Sinks in progress at 1.6  Myr.
+Post accretion cluster mass 457.238412737 MSun
+Largest sink radius 0.279581794193 parsec
+Sinks in progress at 1.7  Myr.
+Post accretion cluster mass 457.289198637 MSun
+Largest sink radius 0.279581794193 parsec
+Sinks in progress at 1.8  Myr.
+Post accretion cluster mass 457.303668107 MSun
+Largest sink radius 0.279581794193 parsec
+Sinks in progress at 1.9  Myr.
+Post accretion cluster mass 457.452483985 MSun
+Largest sink radius 0.279581794193 parsec
+Sinks in progress at 2.0  Myr.
+Post accretion cluster mass 457.476394799 MSun
+Largest sink radius 0.279581794193 parsec
+Sinks in progress at 2.1  Myr.
+Post accretion cluster mass 457.483903504 MSun
+Largest sink radius 0.279657337182 parsec
+Sinks in progress at 2.2  Myr.
+Post accretion cluster mass 457.508538025 MSun
+Largest sink radius 0.279657337182 parsec
+Sinks in progress at 2.3  Myr.
+Post accretion cluster mass 457.509568374 MSun
+Largest sink radius 0.279657337182 parsec
+Sinks in progress at 2.4  Myr.
+Post accretion cluster mass 457.509949104 MSun
+Largest sink radius 0.279657337182 parsec
+Sinks in progress at 2.5  Myr.
+Post accretion cluster mass 457.509949104 MSun
+Largest sink radius 0.279657337182 parsec
+Sinks in progress at 2.6  Myr.
+Post accretion cluster mass 457.51061646 MSun
+Largest sink radius 0.279657337182 parsec
+Sinks in progress at 2.7  Myr.
+Post accretion cluster mass 457.51061646 MSun
+Largest sink radius 0.279657337182 parsec
+Sinks in progress at 2.8  Myr.
+Post accretion cluster mass 457.51061646 MSun
+Mass snapshots saved.
+Collision finished (running time: 692.3s)
+
+
+In this session you have used the AMUSE modules below. 
+Please cite any relevant articles:
+
+
+	"AMUSE-BHTree (2023.5.1)"
+		ADS:1986Natur.324..446B (Barnes, J., Hut, P., *Nature*, **4**, 324 (1986))
+
+
+	"AMUSE-Fi (2023.5.1)"
+		ADS:1989ApJS...70..419H ** (Hernquist & Katz, 1989, ApJS 70, 419)
+		ADS:2004A&A...422...55P ** (Pelupessy, van der Werf & Icke, 2004, A&A 422, 55)
+		ADS:2005PhDT........17P (Pelupessy, PhD thesis 2005, Leiden Observatory)
+		ADS:1997A&A...325..972G (Gerritsen & Icke, 1997, A&A 325, 972)
+
+
+	"AMUSE-SeBa (2023.5.1)"
+		ADS:1996A&A...309..179P (Portegies Zwart S.F. & Verbunt F., 1996, A&A, 309, 179:
+		... "Population synthesis of high-mass binaries")
+		ADS:2012A&A...546A..70T (Toonen, S., Nelemans, G., Portegies Zwart S.F., 2012, A&A, 546A, 70T
+		... "Supernova Type Ia progenitors from merging double white dwarfs. Using a new population synthesis model")
+
+
+	"AMUSE-SSE (2023.5.1)"
+		ADS:2000MNRAS.315..543H (Hurley J.R., Pols O.R., Tout C.A., 2000, MNRAS, 315, 543:
+		... "Comprehensive analytic formulae for stellar evolution as a function of mass and metallicity")
+
+
+	"AMUSE (2023.5.1)"
+		DOI:10.5281/zenodo.1435860
+		ADS:2018araa.book.....P (Portegies Zwart, S. & McMillan, S.L.W., 2018)
+		ADS:2013CoPhC.183..456P ** (Portegies Zwart, S. et al., 2013)
+		ADS:2013A&A...557A..84P ** (Pelupessy, F. I. et al., 2013)
+		ADS:2009NewA...14..369P (Portegies Zwart, S. et al., 2009)
+
+[/bin/bash] ## Script finished
+[/bin/bash] #### Finished Python test. Have a nice day

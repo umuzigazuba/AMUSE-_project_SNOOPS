@@ -1,0 +1,34 @@
+[/bin/bash] #### Starting Python test
+[/bin/bash] ## This is s3805352 on node005 and this job has the ID 2159206
+[/bin/bash] ## current working directory: /home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src
+[/bin/bash] ## Run script
+/home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src/plotters.py:413: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
+  plt.show()
+Evolution at 0.0 Gyr
+Evolution at 2.0 Gyr
+Evolution at 4.0 Gyr
+Evolution at 6.0 Gyr
+Evolution at 8.0 Gyr
+Evolution at 10.0 Gyr
+
+
+In this session you have used the AMUSE modules below. 
+Please cite any relevant articles:
+
+
+	"AMUSE-SeBa (2023.5.1)"
+		ADS:1996A&A...309..179P (Portegies Zwart S.F. & Verbunt F., 1996, A&A, 309, 179:
+		... "Population synthesis of high-mass binaries")
+		ADS:2012A&A...546A..70T (Toonen, S., Nelemans, G., Portegies Zwart S.F., 2012, A&A, 546A, 70T
+		... "Supernova Type Ia progenitors from merging double white dwarfs. Using a new population synthesis model")
+
+
+	"AMUSE (2023.5.1)"
+		DOI:10.5281/zenodo.1435860
+		ADS:2018araa.book.....P (Portegies Zwart, S. & McMillan, S.L.W., 2018)
+		ADS:2013CoPhC.183..456P ** (Portegies Zwart, S. et al., 2013)
+		ADS:2013A&A...557A..84P ** (Pelupessy, F. I. et al., 2013)
+		ADS:2009NewA...14..369P (Portegies Zwart, S. et al., 2009)
+
+[/bin/bash] ## Script finished
+[/bin/bash] #### Finished Python test. Have a nice day

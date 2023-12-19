@@ -1,0 +1,1783 @@
+[/bin/bash] #### Starting Python test
+[/bin/bash] ## This is s3805352 on node002 and this job has the ID 2158985
+[/bin/bash] ## current working directory: /home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src
+[/bin/bash] ## Run script
+/home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src/plotters.py:142: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
+  plt.show()
+/home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src/plotters.py:59: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
+  plt.show()
+/home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src/plotters.py:30: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`). Consider using `matplotlib.pyplot.close()`.
+  fig, (ax1, ax2) = plt.subplots(1, 2, figsize = (9, 3))
+7975.78734729 119636.810209
+ready for evolution
+Time 0.2 Myr
+Time 0.4 Myr
+Time 0.6 Myr
+Time 0.8 Myr
+Time 1.0 Myr
+Time 1.2 Myr
+Time 1.4 Myr
+Time 1.6 Myr
+Time 1.8 Myr
+Time 2.0 Myr
+Average mass of a SPH particle 0.06490870827977735.
+Mean density of the moelcular cloud 6.56828545627e-20 m**-3 * kg
+Starting with cluster velocity 65
+Most massive star in cluster is  1.12579380503 MSun
+Collision started on node002 at time 2023-12-17_12-28-43
+Colliding with cluster velocity 65.0
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 89.5183854354 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 89.5192266224 MSun
+Largest sink radius 0.242222189024 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 89.560292647 MSun
+Largest sink radius 0.242631454949 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 89.599212343 MSun
+Largest sink radius 0.242631454949 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 89.6889570264 MSun
+Largest sink radius 0.242690602472 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 89.7193050276 MSun
+Largest sink radius 0.242840077153 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 89.7230811502 MSun
+Largest sink radius 0.242840077153 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 89.7230811502 MSun
+Largest sink radius 0.242840077153 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 89.7230811502 MSun
+Largest sink radius 0.242840077153 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 89.7230811502 MSun
+Mass snapshots saved.
+Collision finished (running time: 322.9s)
+Starting with cluster velocity 55
+Most massive star in cluster is  1.12579380503 MSun
+Collision started on node002 at time 2023-12-17_12-34-10
+Colliding with cluster velocity 55.0
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 89.5183854354 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 89.5201286499 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 89.5303745845 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 89.5627232049 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 89.5953065682 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 89.6576558336 MSun
+Largest sink radius 0.242304267894 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 89.6987836313 MSun
+Largest sink radius 0.242427840276 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 89.7000663369 MSun
+Largest sink radius 0.242427840276 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 89.7000663369 MSun
+Largest sink radius 0.242427840276 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 89.7000663369 MSun
+Largest sink radius 0.242427840276 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 89.7000663369 MSun
+Mass snapshots saved.
+Collision finished (running time: 356.7s)
+Starting with cluster velocity 45
+Most massive star in cluster is  1.12579380503 MSun
+Collision started on node002 at time 2023-12-17_12-40-11
+Colliding with cluster velocity 45.0
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 89.5183854354 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 89.5183854354 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 89.5915455256 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 89.6872159447 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 89.7570764975 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 89.8407935723 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 89.8644382526 MSun
+Largest sink radius 0.242203367777 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 89.8791898384 MSun
+Largest sink radius 0.242337013771 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 89.8994805906 MSun
+Largest sink radius 0.242337013771 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 89.8994805906 MSun
+Largest sink radius 0.242337013771 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 89.8994805906 MSun
+Largest sink radius 0.242337013771 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 89.8994805906 MSun
+Largest sink radius 0.242337013771 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 89.8994805906 MSun
+Largest sink radius 0.242337013771 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 89.8994805906 MSun
+Largest sink radius 0.242337013771 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 89.8994805906 MSun
+Mass snapshots saved.
+Collision finished (running time: 481.5s)
+Starting with cluster velocity 35
+Most massive star in cluster is  1.12579380503 MSun
+Collision started on node002 at time 2023-12-17_12-48-16
+Colliding with cluster velocity 35.0
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 89.5183854354 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 89.5183854354 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 89.5192791498 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 89.5294742268 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 89.5520320442 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 89.5919956024 MSun
+Largest sink radius 0.242883625647 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 89.6068595845 MSun
+Largest sink radius 0.242883625647 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 89.693045658 MSun
+Largest sink radius 0.242883625647 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 89.7397540283 MSun
+Largest sink radius 0.242883625647 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 89.7612969828 MSun
+Largest sink radius 0.242883625647 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 89.8259370138 MSun
+Largest sink radius 0.24292656066 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 89.8377313867 MSun
+Largest sink radius 0.24292656066 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 89.8377313867 MSun
+Largest sink radius 0.24292656066 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 89.840617066 MSun
+Largest sink radius 0.24292656066 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 89.840617066 MSun
+Largest sink radius 0.24292656066 parsec
+Sinks in progress at 1.6  Myr.
+Post accretion cluster mass 89.840617066 MSun
+Largest sink radius 0.24292656066 parsec
+Sinks in progress at 1.7  Myr.
+Post accretion cluster mass 89.840617066 MSun
+Largest sink radius 0.24292656066 parsec
+Sinks in progress at 1.8  Myr.
+Post accretion cluster mass 89.840617066 MSun
+Largest sink radius 0.24292656066 parsec
+Sinks in progress at 1.9  Myr.
+Post accretion cluster mass 89.840617066 MSun
+Largest sink radius 0.24292656066 parsec
+Sinks in progress at 2.0  Myr.
+Post accretion cluster mass 89.840617066 MSun
+Mass snapshots saved.
+Collision finished (running time: 640.6s)
+Starting with cluster velocity 25
+Most massive star in cluster is  1.12579380503 MSun
+Collision started on node002 at time 2023-12-17_12-59-01
+Colliding with cluster velocity 25.0
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 89.5183854354 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 89.5183854354 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 89.5183854354 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 89.5183854354 MSun
+Largest sink radius 0.242158685694 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 89.5270529822 MSun
+Largest sink radius 0.242414390531 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 89.5461275847 MSun
+Largest sink radius 0.242414390531 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 89.6363259693 MSun
+Largest sink radius 0.242414390531 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 89.6871749847 MSun
+Largest sink radius 0.244595010095 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 89.7074725004 MSun
+Largest sink radius 0.244595010095 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 89.8002861709 MSun
+Largest sink radius 0.244595010095 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 89.8272837102 MSun
+Largest sink radius 0.244595010095 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 89.8451855995 MSun
+Largest sink radius 0.244595010095 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 89.8788683264 MSun
+Largest sink radius 0.244651109986 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 90.0531121506 MSun
+Largest sink radius 0.244782055008 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 90.1652462477 MSun
+Largest sink radius 0.244987704472 parsec
+Sinks in progress at 1.6  Myr.
+Post accretion cluster mass 90.2048963999 MSun
+Largest sink radius 0.246059766913 parsec
+Sinks in progress at 1.7  Myr.
+Post accretion cluster mass 90.2147932079 MSun
+Largest sink radius 0.246059766913 parsec
+Sinks in progress at 1.8  Myr.
+Post accretion cluster mass 90.2175875413 MSun
+Largest sink radius 0.246059766913 parsec
+Sinks in progress at 1.9  Myr.
+Post accretion cluster mass 90.2175875413 MSun
+Largest sink radius 0.246059766913 parsec
+Sinks in progress at 2.0  Myr.
+Post accretion cluster mass 90.2175875413 MSun
+Largest sink radius 0.246059766913 parsec
+Sinks in progress at 2.1  Myr.
+Post accretion cluster mass 90.2175875413 MSun
+Largest sink radius 0.246059766913 parsec
+Sinks in progress at 2.2  Myr.
+Post accretion cluster mass 90.2175875413 MSun
+Largest sink radius 0.246059766913 parsec
+Sinks in progress at 2.3  Myr.
+Post accretion cluster mass 90.2175875413 MSun
+Largest sink radius 0.246059766913 parsec
+Sinks in progress at 2.4  Myr.
+Post accretion cluster mass 90.2175875413 MSun
+Largest sink radius 0.246059766913 parsec
+Sinks in progress at 2.5  Myr.
+Post accretion cluster mass 90.2175875413 MSun
+Largest sink radius 0.246059766913 parsec
+Sinks in progress at 2.6  Myr.
+Post accretion cluster mass 90.2175875413 MSun
+Mass snapshots saved.
+Collision finished (running time: 841.5s)
+ready for evolution
+Time 0.2 Myr
+Time 0.4 Myr
+Time 0.6 Myr
+Time 0.8 Myr
+Time 1.0 Myr
+Time 1.2 Myr
+Time 1.4 Myr
+Time 1.6 Myr
+Time 1.8 Myr
+Time 2.0 Myr
+Average mass of a SPH particle 0.06490870827977735.
+Mean density of the moelcular cloud 6.59123836245e-20 m**-3 * kg
+Starting with cluster velocity 65
+Most massive star in cluster is  0.98022880369 MSun
+Collision started on node002 at time 2023-12-17_13-15-55
+Colliding with cluster velocity 65.0
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 89.5529814371 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 89.565693968 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 89.6584169904 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 89.673838929 MSun
+Largest sink radius 0.211078626251 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 89.6826357173 MSun
+Largest sink radius 0.211078626251 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 89.7001949418 MSun
+Largest sink radius 0.211078626251 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 89.7054926272 MSun
+Largest sink radius 0.211078626251 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 89.7054926272 MSun
+Largest sink radius 0.211078626251 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 89.7054926272 MSun
+Largest sink radius 0.211078626251 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 89.7054926272 MSun
+Mass snapshots saved.
+Collision finished (running time: 323.5s)
+Starting with cluster velocity 55
+Most massive star in cluster is  0.98022880369 MSun
+Collision started on node002 at time 2023-12-17_13-21-23
+Colliding with cluster velocity 55.0
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 89.5529814371 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 89.5529814371 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 89.5657560037 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 89.6518417594 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 89.7447337638 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 89.850046738 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 89.8748048056 MSun
+Largest sink radius 0.211098087898 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 89.8811808272 MSun
+Largest sink radius 0.21164693678 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 89.8811808272 MSun
+Largest sink radius 0.21164693678 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 89.8811808272 MSun
+Largest sink radius 0.21164693678 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 89.8811808272 MSun
+Mass snapshots saved.
+Collision finished (running time: 352.8s)
+Starting with cluster velocity 45
+Most massive star in cluster is  0.98022880369 MSun
+Collision started on node002 at time 2023-12-17_13-27-20
+Colliding with cluster velocity 45.0
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 89.5529814371 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 89.5529814371 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 89.5529814371 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 89.7024829197 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 89.71441674 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 89.7281124549 MSun
+Largest sink radius 0.211037552105 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 89.739192438 MSun
+Largest sink radius 0.211037552105 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 89.7576350301 MSun
+Largest sink radius 0.211037552105 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 89.8425414232 MSun
+Largest sink radius 0.211037552105 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 89.8502958952 MSun
+Largest sink radius 0.211037552105 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 89.8502958952 MSun
+Largest sink radius 0.211037552105 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 89.8508496644 MSun
+Largest sink radius 0.211037552105 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 89.8508496644 MSun
+Largest sink radius 0.211037552105 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 89.8508496644 MSun
+Largest sink radius 0.211037552105 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 89.8508496644 MSun
+Mass snapshots saved.
+Collision finished (running time: 478.6s)
+Starting with cluster velocity 35
+Most massive star in cluster is  0.98022880369 MSun
+Collision started on node002 at time 2023-12-17_13-35-22
+Colliding with cluster velocity 35.0
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 89.5529814371 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 89.5529814371 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 89.5529814371 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 89.5690145478 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 89.5760725412 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 89.6820756586 MSun
+Largest sink radius 0.213072164573 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 89.6866745019 MSun
+Largest sink radius 0.213213984411 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 89.7299341433 MSun
+Largest sink radius 0.213578596708 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 89.7874469766 MSun
+Largest sink radius 0.213578596708 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 89.808355597 MSun
+Largest sink radius 0.213578596708 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 89.9233367951 MSun
+Largest sink radius 0.213578596708 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 90.0100876217 MSun
+Largest sink radius 0.213578596708 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 90.0137562973 MSun
+Largest sink radius 0.213578596708 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 90.0137562973 MSun
+Largest sink radius 0.213578596708 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 90.0137562973 MSun
+Largest sink radius 0.213578596708 parsec
+Sinks in progress at 1.6  Myr.
+Post accretion cluster mass 90.0137562973 MSun
+Largest sink radius 0.213578596708 parsec
+Sinks in progress at 1.7  Myr.
+Post accretion cluster mass 90.0137562973 MSun
+Largest sink radius 0.213578596708 parsec
+Sinks in progress at 1.8  Myr.
+Post accretion cluster mass 90.0137562973 MSun
+Largest sink radius 0.213578596708 parsec
+Sinks in progress at 1.9  Myr.
+Post accretion cluster mass 90.0137562973 MSun
+Largest sink radius 0.213578596708 parsec
+Sinks in progress at 2.0  Myr.
+Post accretion cluster mass 90.0137562973 MSun
+Mass snapshots saved.
+Collision finished (running time: 633.3s)
+Starting with cluster velocity 25
+Most massive star in cluster is  0.98022880369 MSun
+Collision started on node002 at time 2023-12-17_13-45-59
+Colliding with cluster velocity 25.0
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 89.5529814371 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 89.5529814371 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 89.5529814371 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 89.5529814371 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 89.5540824501 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 89.5703271669 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 89.5742326208 MSun
+Largest sink radius 0.210847597243 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 89.6006348476 MSun
+Largest sink radius 0.211141171158 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 89.6598465989 MSun
+Largest sink radius 0.211141171158 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 89.681271226 MSun
+Largest sink radius 0.212492684531 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 89.7105700253 MSun
+Largest sink radius 0.212492684531 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 89.7305797098 MSun
+Largest sink radius 0.212492684531 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 89.7542710539 MSun
+Largest sink radius 0.212492684531 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 89.8371701044 MSun
+Largest sink radius 0.212492684531 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 89.9354351039 MSun
+Largest sink radius 0.212492684531 parsec
+Sinks in progress at 1.6  Myr.
+Post accretion cluster mass 90.0168459331 MSun
+Largest sink radius 0.212492684531 parsec
+Sinks in progress at 1.7  Myr.
+Post accretion cluster mass 90.0679966468 MSun
+Largest sink radius 0.212492684531 parsec
+Sinks in progress at 1.8  Myr.
+Post accretion cluster mass 90.0715618858 MSun
+Largest sink radius 0.212492684531 parsec
+Sinks in progress at 1.9  Myr.
+Post accretion cluster mass 90.0758729652 MSun
+Largest sink radius 0.212492684531 parsec
+Sinks in progress at 2.0  Myr.
+Post accretion cluster mass 90.0758729652 MSun
+Largest sink radius 0.212492684531 parsec
+Sinks in progress at 2.1  Myr.
+Post accretion cluster mass 90.0758729652 MSun
+Largest sink radius 0.212492684531 parsec
+Sinks in progress at 2.2  Myr.
+Post accretion cluster mass 90.0758729652 MSun
+Largest sink radius 0.212492684531 parsec
+Sinks in progress at 2.3  Myr.
+Post accretion cluster mass 90.0758729652 MSun
+Largest sink radius 0.212492684531 parsec
+Sinks in progress at 2.4  Myr.
+Post accretion cluster mass 90.0758729652 MSun
+Largest sink radius 0.212492684531 parsec
+Sinks in progress at 2.5  Myr.
+Post accretion cluster mass 90.0758729652 MSun
+Largest sink radius 0.212492684531 parsec
+Sinks in progress at 2.6  Myr.
+Post accretion cluster mass 90.0758729652 MSun
+Mass snapshots saved.
+Collision finished (running time: 825.4s)
+ready for evolution
+Time 0.2 Myr
+Time 0.4 Myr
+Time 0.6 Myr
+Time 0.8 Myr
+Time 1.0 Myr
+Time 1.2 Myr
+Time 1.4 Myr
+Time 1.6 Myr
+Time 1.8 Myr
+Time 2.0 Myr
+Average mass of a SPH particle 0.06490870827977735.
+Mean density of the moelcular cloud 6.48248788449e-20 m**-3 * kg
+Starting with cluster velocity 65
+Most massive star in cluster is  1.16813541078 MSun
+Collision started on node002 at time 2023-12-17_14-02-31
+Colliding with cluster velocity 65.0
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 89.9228672986 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 89.9255177842 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 89.9814546966 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 90.0105511321 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 90.0466277629 MSun
+Largest sink radius 0.251361498988 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 90.0583844481 MSun
+Largest sink radius 0.251361498988 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 90.0671845766 MSun
+Largest sink radius 0.251361498988 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 90.0671845766 MSun
+Largest sink radius 0.251361498988 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 90.0671845766 MSun
+Largest sink radius 0.251361498988 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 90.0671845766 MSun
+Mass snapshots saved.
+Collision finished (running time: 320.3s)
+Starting with cluster velocity 55
+Most massive star in cluster is  1.16813541078 MSun
+Collision started on node002 at time 2023-12-17_14-07-55
+Colliding with cluster velocity 55.0
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 89.9228672986 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 89.9228672986 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 89.9392680613 MSun
+Largest sink radius 0.251456303846 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 89.9700986334 MSun
+Largest sink radius 0.251501794891 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 89.9761238016 MSun
+Largest sink radius 0.251626452096 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 90.0206589313 MSun
+Largest sink radius 0.251885993532 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 90.0411471778 MSun
+Largest sink radius 0.251967765424 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 90.0455926122 MSun
+Largest sink radius 0.251967765424 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 90.0455926122 MSun
+Largest sink radius 0.251967765424 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 90.0455926122 MSun
+Largest sink radius 0.251967765424 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 90.0455926122 MSun
+Mass snapshots saved.
+Collision finished (running time: 353.1s)
+Starting with cluster velocity 45
+Most massive star in cluster is  1.16813541078 MSun
+Collision started on node002 at time 2023-12-17_14-13-52
+Colliding with cluster velocity 45.0
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 89.9228672986 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 89.9228672986 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 89.9314419253 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 89.9687632943 MSun
+Largest sink radius 0.251322862254 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 89.9839231675 MSun
+Largest sink radius 0.251322862254 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 89.9978367622 MSun
+Largest sink radius 0.251476774981 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 90.0288784734 MSun
+Largest sink radius 0.251476774981 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 90.0509842624 MSun
+Largest sink radius 0.251529432996 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 90.1097552177 MSun
+Largest sink radius 0.251529432996 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 90.1112138083 MSun
+Largest sink radius 0.251529432996 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 90.1112138083 MSun
+Largest sink radius 0.251529432996 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 90.1112138083 MSun
+Largest sink radius 0.251529432996 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 90.1112138083 MSun
+Largest sink radius 0.251529432996 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 90.1112138083 MSun
+Largest sink radius 0.251529432996 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 90.1112138083 MSun
+Mass snapshots saved.
+Collision finished (running time: 481.1s)
+Starting with cluster velocity 35
+Most massive star in cluster is  1.16813541078 MSun
+Collision started on node002 at time 2023-12-17_14-21-57
+Colliding with cluster velocity 35.0
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 89.9228672986 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 89.9228672986 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 89.9228672986 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 89.9351504056 MSun
+Largest sink radius 0.251527546321 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 89.9514224793 MSun
+Largest sink radius 0.251527546321 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 89.9642383223 MSun
+Largest sink radius 0.251709391785 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 89.9880740197 MSun
+Largest sink radius 0.251709391785 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 90.0364334176 MSun
+Largest sink radius 0.251709391785 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 90.1366368965 MSun
+Largest sink radius 0.251864834601 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 90.209032572 MSun
+Largest sink radius 0.251864834601 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 90.2294661058 MSun
+Largest sink radius 0.252017719018 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 90.242336658 MSun
+Largest sink radius 0.252017719018 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 90.2495855717 MSun
+Largest sink radius 0.252017719018 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 90.2495855717 MSun
+Largest sink radius 0.252017719018 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 90.2495855717 MSun
+Largest sink radius 0.252017719018 parsec
+Sinks in progress at 1.6  Myr.
+Post accretion cluster mass 90.2495855717 MSun
+Largest sink radius 0.252017719018 parsec
+Sinks in progress at 1.7  Myr.
+Post accretion cluster mass 90.2495855717 MSun
+Largest sink radius 0.252017719018 parsec
+Sinks in progress at 1.8  Myr.
+Post accretion cluster mass 90.2495855717 MSun
+Largest sink radius 0.252017719018 parsec
+Sinks in progress at 1.9  Myr.
+Post accretion cluster mass 90.2495855717 MSun
+Largest sink radius 0.252017719018 parsec
+Sinks in progress at 2.0  Myr.
+Post accretion cluster mass 90.2495855717 MSun
+Mass snapshots saved.
+Collision finished (running time: 631.5s)
+Starting with cluster velocity 25
+Most massive star in cluster is  1.16813541078 MSun
+Collision started on node002 at time 2023-12-17_14-32-33
+Colliding with cluster velocity 25.0
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 89.9228672986 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 89.9228672986 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 89.9228672986 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 89.9238866907 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 89.9305964929 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 89.9568347286 MSun
+Largest sink radius 0.251266381573 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 89.9745873182 MSun
+Largest sink radius 0.251433751765 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 90.0073601805 MSun
+Largest sink radius 0.251554434039 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 90.014246863 MSun
+Largest sink radius 0.251554434039 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 90.0194805953 MSun
+Largest sink radius 0.251669754375 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 90.0521900069 MSun
+Largest sink radius 0.251669754375 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 90.0688289611 MSun
+Largest sink radius 0.251780787986 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 90.0829038167 MSun
+Largest sink radius 0.251780787986 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 90.1218799661 MSun
+Largest sink radius 0.251900360408 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 90.1469501955 MSun
+Largest sink radius 0.25227421507 parsec
+Sinks in progress at 1.6  Myr.
+Post accretion cluster mass 90.1644535625 MSun
+Largest sink radius 0.25227421507 parsec
+Sinks in progress at 1.7  Myr.
+Post accretion cluster mass 90.2026855921 MSun
+Largest sink radius 0.25227421507 parsec
+Sinks in progress at 1.8  Myr.
+Post accretion cluster mass 90.2060835295 MSun
+Largest sink radius 0.25227421507 parsec
+Sinks in progress at 1.9  Myr.
+Post accretion cluster mass 90.2060835295 MSun
+Largest sink radius 0.25227421507 parsec
+Sinks in progress at 2.0  Myr.
+Post accretion cluster mass 90.2060835295 MSun
+Largest sink radius 0.25227421507 parsec
+Sinks in progress at 2.1  Myr.
+Post accretion cluster mass 90.2060835295 MSun
+Largest sink radius 0.25227421507 parsec
+Sinks in progress at 2.2  Myr.
+Post accretion cluster mass 90.2060835295 MSun
+Largest sink radius 0.25227421507 parsec
+Sinks in progress at 2.3  Myr.
+Post accretion cluster mass 90.2060835295 MSun
+Largest sink radius 0.25227421507 parsec
+Sinks in progress at 2.4  Myr.
+Post accretion cluster mass 90.2060835295 MSun
+Largest sink radius 0.25227421507 parsec
+Sinks in progress at 2.5  Myr.
+Post accretion cluster mass 90.2060835295 MSun
+Largest sink radius 0.25227421507 parsec
+Sinks in progress at 2.6  Myr.
+Post accretion cluster mass 90.2060835295 MSun
+Mass snapshots saved.
+Collision finished (running time: 827.7s)
+ready for evolution
+Time 0.2 Myr
+Time 0.4 Myr
+Time 0.6 Myr
+Time 0.8 Myr
+Time 1.0 Myr
+Time 1.2 Myr
+Time 1.4 Myr
+Time 1.6 Myr
+Time 1.8 Myr
+Time 2.0 Myr
+Average mass of a SPH particle 0.06490870827977735.
+Mean density of the moelcular cloud 6.38576427956e-20 m**-3 * kg
+Starting with cluster velocity 65
+Most massive star in cluster is  0.977788484316 MSun
+Collision started on node002 at time 2023-12-17_14-49-15
+Colliding with cluster velocity 65.0
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 92.2397850199 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 92.2426927305 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 92.2681476868 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 92.3238862193 MSun
+Largest sink radius 0.211268391174 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 92.3692967662 MSun
+Largest sink radius 0.211348047404 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 92.414899972 MSun
+Largest sink radius 0.211348047404 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 92.4261839579 MSun
+Largest sink radius 0.211348047404 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 92.4261839579 MSun
+Largest sink radius 0.211348047404 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 92.4261839579 MSun
+Largest sink radius 0.211348047404 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 92.4261839579 MSun
+Mass snapshots saved.
+Collision finished (running time: 323.1s)
+Starting with cluster velocity 55
+Most massive star in cluster is  0.977788484316 MSun
+Collision started on node002 at time 2023-12-17_14-54-42
+Colliding with cluster velocity 55.0
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 92.2397850199 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 92.2397850199 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 92.2453481441 MSun
+Largest sink radius 0.21042851611 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 92.2826170323 MSun
+Largest sink radius 0.21042851611 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 92.3240315681 MSun
+Largest sink radius 0.21042851611 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 92.4535462266 MSun
+Largest sink radius 0.212254017174 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 92.4718466405 MSun
+Largest sink radius 0.212757267988 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 92.543150049 MSun
+Largest sink radius 0.212757267988 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 92.543150049 MSun
+Largest sink radius 0.212757267988 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 92.543150049 MSun
+Largest sink radius 0.212757267988 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 92.543150049 MSun
+Mass snapshots saved.
+Collision finished (running time: 353.3s)
+Starting with cluster velocity 45
+Most massive star in cluster is  0.977788484316 MSun
+Collision started on node002 at time 2023-12-17_15-00-39
+Colliding with cluster velocity 45.0
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 92.2397850199 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 92.2397850199 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 92.2405640624 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 92.2879103473 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 92.325204138 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 92.377387 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 92.4504479965 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 92.4578758022 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 92.4911527712 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 92.4970411974 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 92.4970411974 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 92.4970411974 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 92.4970411974 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 92.4970411974 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 92.4970411974 MSun
+Mass snapshots saved.
+Collision finished (running time: 482.9s)
+Starting with cluster velocity 35
+Most massive star in cluster is  0.977788484316 MSun
+Collision started on node002 at time 2023-12-17_15-08-46
+Colliding with cluster velocity 35.0
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 92.2397850199 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 92.2397850199 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 92.2423228945 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 92.2423228945 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 92.2542116079 MSun
+Largest sink radius 0.2104007867 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 92.272391084 MSun
+Largest sink radius 0.2104007867 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 92.3072657441 MSun
+Largest sink radius 0.2104007867 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 92.3261220758 MSun
+Largest sink radius 0.2104007867 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 92.3631698214 MSun
+Largest sink radius 0.2104007867 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 92.3861849569 MSun
+Largest sink radius 0.2104007867 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 92.4338014191 MSun
+Largest sink radius 0.2104007867 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 92.49138713 MSun
+Largest sink radius 0.2104007867 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 92.4975989451 MSun
+Largest sink radius 0.2104007867 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 92.4981655778 MSun
+Largest sink radius 0.2104007867 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 92.4981655778 MSun
+Largest sink radius 0.2104007867 parsec
+Sinks in progress at 1.6  Myr.
+Post accretion cluster mass 92.4981655778 MSun
+Largest sink radius 0.2104007867 parsec
+Sinks in progress at 1.7  Myr.
+Post accretion cluster mass 92.4981655778 MSun
+Largest sink radius 0.2104007867 parsec
+Sinks in progress at 1.8  Myr.
+Post accretion cluster mass 92.4981655778 MSun
+Largest sink radius 0.2104007867 parsec
+Sinks in progress at 1.9  Myr.
+Post accretion cluster mass 92.4981655778 MSun
+Largest sink radius 0.2104007867 parsec
+Sinks in progress at 2.0  Myr.
+Post accretion cluster mass 92.4981655778 MSun
+Mass snapshots saved.
+Collision finished (running time: 634.1s)
+Starting with cluster velocity 25
+Most massive star in cluster is  0.977788484316 MSun
+Collision started on node002 at time 2023-12-17_15-19-24
+Colliding with cluster velocity 25.0
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 92.2397850199 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 92.2397850199 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 92.2397850199 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 92.2397850199 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 92.2407912253 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 92.255879183 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 92.3411386951 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 92.3753530945 MSun
+Largest sink radius 0.210322683595 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 92.3975285342 MSun
+Largest sink radius 0.210483687241 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 92.4326825888 MSun
+Largest sink radius 0.210595643659 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 92.4756026645 MSun
+Largest sink radius 0.210595643659 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 92.5181805674 MSun
+Largest sink radius 0.210595643659 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 92.5418181216 MSun
+Largest sink radius 0.210595643659 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 92.55749467 MSun
+Largest sink radius 0.210595643659 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 92.586342695 MSun
+Largest sink radius 0.214222358551 parsec
+Sinks in progress at 1.6  Myr.
+Post accretion cluster mass 92.5931986961 MSun
+Largest sink radius 0.214222358551 parsec
+Sinks in progress at 1.7  Myr.
+Post accretion cluster mass 92.663746201 MSun
+Largest sink radius 0.214222358551 parsec
+Sinks in progress at 1.8  Myr.
+Post accretion cluster mass 92.6657060299 MSun
+Largest sink radius 0.214222358551 parsec
+Sinks in progress at 1.9  Myr.
+Post accretion cluster mass 92.6657060299 MSun
+Largest sink radius 0.214222358551 parsec
+Sinks in progress at 2.0  Myr.
+Post accretion cluster mass 92.6667462715 MSun
+Largest sink radius 0.214222358551 parsec
+Sinks in progress at 2.1  Myr.
+Post accretion cluster mass 92.6667462715 MSun
+Largest sink radius 0.214222358551 parsec
+Sinks in progress at 2.2  Myr.
+Post accretion cluster mass 92.6667462715 MSun
+Largest sink radius 0.214222358551 parsec
+Sinks in progress at 2.3  Myr.
+Post accretion cluster mass 92.6667462715 MSun
+Largest sink radius 0.214222358551 parsec
+Sinks in progress at 2.4  Myr.
+Post accretion cluster mass 92.6667462715 MSun
+Largest sink radius 0.214222358551 parsec
+Sinks in progress at 2.5  Myr.
+Post accretion cluster mass 92.6667462715 MSun
+Largest sink radius 0.214222358551 parsec
+Sinks in progress at 2.6  Myr.
+Post accretion cluster mass 92.6667462715 MSun
+Mass snapshots saved.
+Collision finished (running time: 818.8s)
+ready for evolution
+Time 0.2 Myr
+Time 0.4 Myr
+Time 0.6 Myr
+Time 0.8 Myr
+Time 1.0 Myr
+Time 1.2 Myr
+Time 1.4 Myr
+Time 1.6 Myr
+Time 1.8 Myr
+Time 2.0 Myr
+Average mass of a SPH particle 0.06490870827977735.
+Mean density of the moelcular cloud 6.52611856388e-20 m**-3 * kg
+Starting with cluster velocity 65
+Most massive star in cluster is  1.28403540982 MSun
+Collision started on node002 at time 2023-12-17_15-35-59
+Colliding with cluster velocity 65.0
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 97.5298311235 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 97.5323433586 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 97.5454191421 MSun
+Largest sink radius 0.276260478686 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 97.5787319225 MSun
+Largest sink radius 0.276324995968 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 97.5857020252 MSun
+Largest sink radius 0.276324995968 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 97.6088312053 MSun
+Largest sink radius 0.276379651721 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 97.6093022086 MSun
+Largest sink radius 0.276379651721 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 97.6093022086 MSun
+Largest sink radius 0.276379651721 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 97.6093022086 MSun
+Largest sink radius 0.276379651721 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 97.6093022086 MSun
+Mass snapshots saved.
+Collision finished (running time: 320.6s)
+Starting with cluster velocity 55
+Most massive star in cluster is  1.28403540982 MSun
+Collision started on node002 at time 2023-12-17_15-41-24
+Colliding with cluster velocity 55.0
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 97.5298311235 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 97.5305204234 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 97.5755099012 MSun
+Largest sink radius 0.276235263314 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 97.5898507669 MSun
+Largest sink radius 0.276276819106 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 97.6896515346 MSun
+Largest sink radius 0.276310084626 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 97.7071596105 MSun
+Largest sink radius 0.276310084626 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 97.7249396783 MSun
+Largest sink radius 0.276496503313 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 97.7343835513 MSun
+Largest sink radius 0.276496503313 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 97.7343835513 MSun
+Largest sink radius 0.276496503313 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 97.7343835513 MSun
+Largest sink radius 0.276496503313 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 97.7343835513 MSun
+Mass snapshots saved.
+Collision finished (running time: 357.0s)
+Starting with cluster velocity 45
+Most massive star in cluster is  1.28403540982 MSun
+Collision started on node002 at time 2023-12-17_15-47-25
+Colliding with cluster velocity 45.0
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 97.5298311235 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 97.5298311235 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 97.5461954919 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 97.5719607281 MSun
+Largest sink radius 0.276423957082 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 97.6209426074 MSun
+Largest sink radius 0.280083433427 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 97.7116050017 MSun
+Largest sink radius 0.280153438567 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 97.7364457869 MSun
+Largest sink radius 0.280153438567 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 97.7661861465 MSun
+Largest sink radius 0.280238216278 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 97.8717726391 MSun
+Largest sink radius 0.280238216278 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 97.8717726391 MSun
+Largest sink radius 0.280238216278 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 97.8717726391 MSun
+Largest sink radius 0.280238216278 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 97.8717726391 MSun
+Largest sink radius 0.280238216278 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 97.8717726391 MSun
+Largest sink radius 0.280238216278 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 97.8717726391 MSun
+Largest sink radius 0.280238216278 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 97.8717726391 MSun
+Mass snapshots saved.
+Collision finished (running time: 483.5s)
+Starting with cluster velocity 35
+Most massive star in cluster is  1.28403540982 MSun
+Collision started on node002 at time 2023-12-17_15-55-33
+Colliding with cluster velocity 35.0
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 97.5298311235 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 97.5298311235 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 97.5298311235 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 97.5394478089 MSun
+Largest sink radius 0.276285763979 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 97.6156432354 MSun
+Largest sink radius 0.276285763979 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 97.7180006162 MSun
+Largest sink radius 0.276341440698 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 97.7479861731 MSun
+Largest sink radius 0.276410219299 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 97.7820209925 MSun
+Largest sink radius 0.276576583277 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 97.7948180293 MSun
+Largest sink radius 0.27665867321 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 97.815099182 MSun
+Largest sink radius 0.276704943607 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 97.8547838654 MSun
+Largest sink radius 0.277011749405 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 97.8776869409 MSun
+Largest sink radius 0.277011749405 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 97.8820190725 MSun
+Largest sink radius 0.27707189186 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 97.8820190725 MSun
+Largest sink radius 0.27707189186 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 97.8820190725 MSun
+Largest sink radius 0.27707189186 parsec
+Sinks in progress at 1.6  Myr.
+Post accretion cluster mass 97.8820190725 MSun
+Largest sink radius 0.27707189186 parsec
+Sinks in progress at 1.7  Myr.
+Post accretion cluster mass 97.8820190725 MSun
+Largest sink radius 0.27707189186 parsec
+Sinks in progress at 1.8  Myr.
+Post accretion cluster mass 97.8820190725 MSun
+Largest sink radius 0.27707189186 parsec
+Sinks in progress at 1.9  Myr.
+Post accretion cluster mass 97.8820190725 MSun
+Largest sink radius 0.27707189186 parsec
+Sinks in progress at 2.0  Myr.
+Post accretion cluster mass 97.8820190725 MSun
+Mass snapshots saved.
+Collision finished (running time: 639.6s)
+Starting with cluster velocity 25
+Most massive star in cluster is  1.28403540982 MSun
+Collision started on node002 at time 2023-12-17_16-06-16
+Colliding with cluster velocity 25.0
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 97.5298311235 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 97.5298311235 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 97.5298311235 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 97.5308931146 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 97.546929351 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 97.5565616759 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 97.5723123498 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 97.5948029461 MSun
+Largest sink radius 0.276196516482 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 97.6193846413 MSun
+Largest sink radius 0.276229579852 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 97.6289024947 MSun
+Largest sink radius 0.276229579852 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 97.6909006936 MSun
+Largest sink radius 0.276263369734 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 97.7375099551 MSun
+Largest sink radius 0.276297918404 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 97.7711139632 MSun
+Largest sink radius 0.276297918404 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 97.7951611145 MSun
+Largest sink radius 0.276297918404 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 97.8229625162 MSun
+Largest sink radius 0.276858058031 parsec
+Sinks in progress at 1.6  Myr.
+Post accretion cluster mass 97.8440961409 MSun
+Largest sink radius 0.276858058031 parsec
+Sinks in progress at 1.7  Myr.
+Post accretion cluster mass 97.8632597532 MSun
+Largest sink radius 0.276858058031 parsec
+Sinks in progress at 1.8  Myr.
+Post accretion cluster mass 97.8653888926 MSun
+Largest sink radius 0.276858058031 parsec
+Sinks in progress at 1.9  Myr.
+Post accretion cluster mass 97.867393205 MSun
+Largest sink radius 0.276858058031 parsec
+Sinks in progress at 2.0  Myr.
+Post accretion cluster mass 97.867393205 MSun
+Largest sink radius 0.276858058031 parsec
+Sinks in progress at 2.1  Myr.
+Post accretion cluster mass 97.867393205 MSun
+Largest sink radius 0.276858058031 parsec
+Sinks in progress at 2.2  Myr.
+Post accretion cluster mass 97.867393205 MSun
+Largest sink radius 0.276858058031 parsec
+Sinks in progress at 2.3  Myr.
+Post accretion cluster mass 97.867393205 MSun
+Largest sink radius 0.276858058031 parsec
+Sinks in progress at 2.4  Myr.
+Post accretion cluster mass 97.867393205 MSun
+Largest sink radius 0.276858058031 parsec
+Sinks in progress at 2.5  Myr.
+Post accretion cluster mass 97.867393205 MSun
+Largest sink radius 0.276858058031 parsec
+Sinks in progress at 2.6  Myr.
+Post accretion cluster mass 97.867393205 MSun
+Mass snapshots saved.
+Collision finished (running time: 833.3s)
+ready for evolution
+Time 0.2 Myr
+Time 0.4 Myr
+Time 0.6 Myr
+Time 0.8 Myr
+Time 1.0 Myr
+Time 1.2 Myr
+Time 1.4 Myr
+Time 1.6 Myr
+Time 1.8 Myr
+Time 2.0 Myr
+Average mass of a SPH particle 0.06490870827977735.
+Mean density of the moelcular cloud 6.41602736711e-20 m**-3 * kg
+Starting with cluster velocity 65
+Most massive star in cluster is  1.09210085106 MSun
+Collision started on node002 at time 2023-12-17_16-23-07
+Colliding with cluster velocity 65.0
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 87.4880926549 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 87.4880926549 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 87.5665071717 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 87.6037172729 MSun
+Largest sink radius 0.234962589221 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 87.6337938174 MSun
+Largest sink radius 0.234962589221 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 87.6535889668 MSun
+Largest sink radius 0.235245383931 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 87.6535889668 MSun
+Largest sink radius 0.235245383931 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 87.6535889668 MSun
+Largest sink radius 0.235245383931 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 87.6535889668 MSun
+Largest sink radius 0.235245383931 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 87.6535889668 MSun
+Mass snapshots saved.
+Collision finished (running time: 320.6s)
+Starting with cluster velocity 55
+Most massive star in cluster is  1.09210085106 MSun
+Collision started on node002 at time 2023-12-17_16-28-31
+Colliding with cluster velocity 55.0
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 87.4880926549 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 87.4891116258 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 87.4989828857 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 87.5147202869 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 87.6049964067 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 87.6180474502 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 87.6392311621 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 87.6440758025 MSun
+Largest sink radius 0.234978723311 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 87.644463321 MSun
+Largest sink radius 0.234978723311 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 87.644463321 MSun
+Largest sink radius 0.234978723311 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 87.644463321 MSun
+Mass snapshots saved.
+Collision finished (running time: 356.1s)
+Starting with cluster velocity 45
+Most massive star in cluster is  1.09210085106 MSun
+Collision started on node002 at time 2023-12-17_16-34-31
+Colliding with cluster velocity 45.0
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 87.4880926549 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 87.4880926549 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 87.4880926549 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 87.5211522631 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 87.5330089085 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 87.6054281118 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 87.625991961 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 87.6608354347 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 87.6776573217 MSun
+Largest sink radius 0.234958561347 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 87.6862781081 MSun
+Largest sink radius 0.234958561347 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 87.6876428486 MSun
+Largest sink radius 0.234958561347 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 87.6876428486 MSun
+Largest sink radius 0.234958561347 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 87.6876428486 MSun
+Largest sink radius 0.234958561347 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 87.6876428486 MSun
+Largest sink radius 0.234958561347 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 87.6876428486 MSun
+Mass snapshots saved.
+Collision finished (running time: 476.7s)
+Starting with cluster velocity 35
+Most massive star in cluster is  1.09210085106 MSun
+Collision started on node002 at time 2023-12-17_16-42-32
+Colliding with cluster velocity 35.0
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 87.4880926549 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 87.4880926549 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 87.4891787346 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 87.4896300005 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 87.4945202104 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 87.5141090333 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 87.5549536235 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 87.5676814184 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 87.6167593272 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 87.6378991792 MSun
+Largest sink radius 0.234998203576 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 87.6498749994 MSun
+Largest sink radius 0.23513451894 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 87.6544841853 MSun
+Largest sink radius 0.235199354679 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 87.6604255513 MSun
+Largest sink radius 0.235199354679 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 87.6611242186 MSun
+Largest sink radius 0.235199354679 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 87.6871301027 MSun
+Largest sink radius 0.235199354679 parsec
+Sinks in progress at 1.6  Myr.
+Post accretion cluster mass 87.6871301027 MSun
+Largest sink radius 0.235199354679 parsec
+Sinks in progress at 1.7  Myr.
+Post accretion cluster mass 87.6871301027 MSun
+Largest sink radius 0.235199354679 parsec
+Sinks in progress at 1.8  Myr.
+Post accretion cluster mass 87.6871301027 MSun
+Largest sink radius 0.235199354679 parsec
+Sinks in progress at 1.9  Myr.
+Post accretion cluster mass 87.6871301027 MSun
+Largest sink radius 0.235199354679 parsec
+Sinks in progress at 2.0  Myr.
+Post accretion cluster mass 87.6871301027 MSun
+Mass snapshots saved.
+Collision finished (running time: 632.9s)
+Starting with cluster velocity 25
+Most massive star in cluster is  1.09210085106 MSun
+Collision started on node002 at time 2023-12-17_16-53-08
+Colliding with cluster velocity 25.0
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.1  Myr.
+Post accretion cluster mass 87.4880926549 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.2  Myr.
+Post accretion cluster mass 87.4880926549 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.3  Myr.
+Post accretion cluster mass 87.4880926549 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.4  Myr.
+Post accretion cluster mass 87.4880926549 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.5  Myr.
+Post accretion cluster mass 87.4908865471 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.6  Myr.
+Post accretion cluster mass 87.4921718417 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.7  Myr.
+Post accretion cluster mass 87.5163479506 MSun
+Largest sink radius 0.234911318179 parsec
+Sinks in progress at 0.8  Myr.
+Post accretion cluster mass 87.5294542881 MSun
+Largest sink radius 0.235221838544 parsec
+Sinks in progress at 0.9  Myr.
+Post accretion cluster mass 87.5362719112 MSun
+Largest sink radius 0.235221838544 parsec
+Sinks in progress at 1.0  Myr.
+Post accretion cluster mass 87.5607209657 MSun
+Largest sink radius 0.235288658072 parsec
+Sinks in progress at 1.1  Myr.
+Post accretion cluster mass 87.5802293301 MSun
+Largest sink radius 0.235288658072 parsec
+Sinks in progress at 1.2  Myr.
+Post accretion cluster mass 87.6053770032 MSun
+Largest sink radius 0.235288658072 parsec
+Sinks in progress at 1.3  Myr.
+Post accretion cluster mass 87.6279351188 MSun
+Largest sink radius 0.235288658072 parsec
+Sinks in progress at 1.4  Myr.
+Post accretion cluster mass 87.6808085269 MSun
+Largest sink radius 0.235288658072 parsec
+Sinks in progress at 1.5  Myr.
+Post accretion cluster mass 87.7299289289 MSun
+Largest sink radius 0.235380771224 parsec
+Sinks in progress at 1.6  Myr.
+Post accretion cluster mass 87.7360158141 MSun
+Largest sink radius 0.235380771224 parsec
+Sinks in progress at 1.7  Myr.
+Post accretion cluster mass 87.7425611258 MSun
+Largest sink radius 0.235445092901 parsec
+Sinks in progress at 1.8  Myr.
+Post accretion cluster mass 87.7482950369 MSun
+Largest sink radius 0.235507953284 parsec
+Sinks in progress at 1.9  Myr.
+Post accretion cluster mass 87.7486621144 MSun
+Largest sink radius 0.235507953284 parsec
+Sinks in progress at 2.0  Myr.
+Post accretion cluster mass 87.7527953069 MSun
+Largest sink radius 0.235507953284 parsec
+Sinks in progress at 2.1  Myr.
+Post accretion cluster mass 87.7527953069 MSun
+Largest sink radius 0.235507953284 parsec
+Sinks in progress at 2.2  Myr.
+Post accretion cluster mass 87.7527953069 MSun
+Largest sink radius 0.235507953284 parsec
+Sinks in progress at 2.3  Myr.
+Post accretion cluster mass 87.7527953069 MSun
+Largest sink radius 0.235507953284 parsec
+Sinks in progress at 2.4  Myr.
+Post accretion cluster mass 87.7527953069 MSun
+Largest sink radius 0.235507953284 parsec
+Sinks in progress at 2.5  Myr.
+Post accretion cluster mass 87.7527953069 MSun
+Largest sink radius 0.235507953284 parsec
+Sinks in progress at 2.6  Myr.
+Post accretion cluster mass 87.7527953069 MSun
+Mass snapshots saved.
+Collision finished (running time: 822.1s)
+
+
+In this session you have used the AMUSE modules below. 
+Please cite any relevant articles:
+
+
+	"AMUSE-SeBa (2023.5.1)"
+		ADS:1996A&A...309..179P (Portegies Zwart S.F. & Verbunt F., 1996, A&A, 309, 179:
+		... "Population synthesis of high-mass binaries")
+		ADS:2012A&A...546A..70T (Toonen, S., Nelemans, G., Portegies Zwart S.F., 2012, A&A, 546A, 70T
+		... "Supernova Type Ia progenitors from merging double white dwarfs. Using a new population synthesis model")
+
+
+	"AMUSE-BHTree (2023.5.1)"
+		ADS:1986Natur.324..446B (Barnes, J., Hut, P., *Nature*, **4**, 324 (1986))
+
+
+	"AMUSE-SSE (2023.5.1)"
+		ADS:2000MNRAS.315..543H (Hurley J.R., Pols O.R., Tout C.A., 2000, MNRAS, 315, 543:
+		... "Comprehensive analytic formulae for stellar evolution as a function of mass and metallicity")
+
+
+	"AMUSE-Fi (2023.5.1)"
+		ADS:1989ApJS...70..419H ** (Hernquist & Katz, 1989, ApJS 70, 419)
+		ADS:2004A&A...422...55P ** (Pelupessy, van der Werf & Icke, 2004, A&A 422, 55)
+		ADS:2005PhDT........17P (Pelupessy, PhD thesis 2005, Leiden Observatory)
+		ADS:1997A&A...325..972G (Gerritsen & Icke, 1997, A&A 325, 972)
+
+
+	"AMUSE (2023.5.1)"
+		DOI:10.5281/zenodo.1435860
+		ADS:2018araa.book.....P (Portegies Zwart, S. & McMillan, S.L.W., 2018)
+		ADS:2013CoPhC.183..456P ** (Portegies Zwart, S. et al., 2013)
+		ADS:2013A&A...557A..84P ** (Pelupessy, F. I. et al., 2013)
+		ADS:2009NewA...14..369P (Portegies Zwart, S. et al., 2009)
+
+[/bin/bash] ## Script finished
+[/bin/bash] #### Finished Python test. Have a nice day

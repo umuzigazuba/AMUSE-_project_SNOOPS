@@ -2,3 +2,6 @@
 [/bin/bash] ## This is s3805352 on node002 and this job has the ID 2148613
 [/bin/bash] ## current working directory: /home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src
 [/bin/bash] ## Run script
+/home/s3805352/Desktop/AMUSE_project_YESSIR/AMUSE_project_YESSIR/src/plotters.py:45: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
+  plt.show()
+slurmstepd: error: *** JOB 2148613 ON node002 CANCELLED AT 2023-12-13T17:31:55 ***

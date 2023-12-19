@@ -96,7 +96,7 @@ def make_globular_cluster(star_count, radius, metallicity, age, seed):
     converter = nbody_system.nbody_to_si(bodies.mass.sum(), radius)
 
 
-    evolved_cluster = new_king_model(star_count, W0 = 7, convert_nbody = converter)
+    evolved_cluster = new_king_model(star_count, W0 = 3, convert_nbody = converter)
     evolved_cluster.scale_to_standard(converter)
     evolved_cluster.mass = bodies.mass
     evolved_cluster.luminosity = bodies.luminosity

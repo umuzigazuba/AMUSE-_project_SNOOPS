@@ -371,26 +371,14 @@ def collision_with_stellar_evolution(name,directory_path,t_end,dt,sinks,gravhydr
         channel["gravity_from_sinks"].copy()
         channel["hydro_from_cloud"].copy()
 
-        # save necessary diagnostics of each step
-        rho,_,_,_ = make_3Dmap(hydro_cloud,20,20)
-        rho = rho.value_in(units.amu / units.cm**3)
+
         sinks_mass_snapshots.append(sinks.mass.value_in(units.MSun))
         star_position.append(sinks.position.value_in(units.pc))
-        cloud_density_cubes.append(rho)
-
-        if model_time+dt >= t_end:
-            _, xgrid, ygrid, zgrid = make_3Dmap(hydro_cloud,20,20)
 
         print("Post accretion cluster mass", sinks.mass.sum().in_(units.MSun))
         # print(len(particles_cloud.mass), "number of cloud particles now")
 
-        density_plots_path = os.path.join(directory_path,"density_snapshots/")
-        plot_cloud_and_star_cluster(model_time, hydro_cloud, sinks, x_lim, y_lim, N,density_map,saveto=density_plots_path)
-
-    animation_path = os.path.join(directory_path, f"collision animation at{current_velocity}.html")
-    fig = animate_collision_3D(star_position,cloud_density_cubes,xgrid,ygrid,zgrid)
-    fig.write_html(animation_path)
-
+      
     mass_difference = sinks_mass_snapshots[-1] - sinks_mass_snapshots[0]
 
     # Save the list to a text file
@@ -401,26 +389,6 @@ def collision_with_stellar_evolution(name,directory_path,t_end,dt,sinks,gravhydr
             file.write(line + '\n')
 
     print("Mass snapshots saved.")
-
-    mask = np.where(mass_difference > 1e-15)
-    sinks_mass_snapshots = np.array(sinks_mass_snapshots)
-    relative_mass = sinks_mass_snapshots - sinks_mass_snapshots[0,:]
-
-    plt.plot(np.arange(0, t_end.value_in(units.Myr), dt.value_in(units.Myr)), \
-             relative_mass)
-    plt.xlabel("time [Myr]")
-    plt.ylabel("mass [Msun]")
-    plt.title('Collision with velocity '+str(name)+' kms')
-    plt.savefig(os.path.join(directory_path, f"Sink mass with accretion_{current_velocity}.png"))
-    plt.show()
-    plt.close()
-
-    mass_ratio = np.array(mass_difference)[mask[0]]/np.array(sinks_mass_snapshots[0])[mask[0]]
-    plt.hist(mass_ratio*100, bins  = 30)
-    plt.xlabel("Relative mass difference [%]")
-    plt.title('Collision with velocity '+str(name)+' kms')
-    plt.savefig(os.path.join(directory_path, f"Accreted mass hist_{current_velocity}.png"))
-    plt.close()
 
     final_cluster = sinks.copy()
 

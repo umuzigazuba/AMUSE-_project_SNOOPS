@@ -1,13 +1,13 @@
 #!/bin/bash
-#SBATCH --job-name=random_cloud_cluster
+#SBATCH --job-name=random_cloud_cluster_SSE
 #SBATCH --output=%x_%j.out
 #SBATCH --mail-user="yiqiwu@strw.leidenuniv.nl"
 #SBATCH --mail-type="ALL"
 #SBATCH --mem=16G
-#SBATCH --time=04:00:00
-#SBATCH --partition=cpu-short
+#SBATCH --time=23:00:00
+#SBATCH --partition=cpu-medium
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=20
+#SBATCH --cpus-per-task=24
 
 # load modules (assuming you start from the default environment)
 # we explicitly call the modules to improve reproducibility
