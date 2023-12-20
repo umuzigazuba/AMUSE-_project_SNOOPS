@@ -1,7 +1,6 @@
 # Simulation and Modeling in Astrophysics 2023/2024 project: YESSIR
 
 ## Authors:
-----------
 
 Kostas Tsalapatas - s3479765
 
@@ -10,14 +9,12 @@ Erin Umuzigazuba - s3634701
 Yiqi Wu - s3805352
 
 ## General Concepts:
-----------
 
 This package simulates and analyses the head-on collision of a metal-poor globular cluster and a metal-rich molecular cloud. During the collision, the globular cluster accretes material from the molecular cloud.
 
 This repository can be used to verify whether this increase in mass, which is coupled with an increase in metallicity, can create a second stellar population in the cluster, as observed in most Galactic globular clusters.
 
 ## Setup & Installation:
-----------
 
 The repository can only be downloaded from GitHub. Download the required packages by navigating to the directory in which you downloaded the repository (make sure that `AMUSE_PROJECT_YESSIR/` is in the working directory) and run 
 
@@ -28,12 +25,10 @@ pip install -r requirements.txt
 **Important**: The installation has only been tested on Windows (using Windows Subsystem for Linux or WSL) and Linux machines.
 
 ## Organization & Documentation:
-----------
 
 An overview of the repository, along with the purpose of every file and folder, can be found in `project_organization.md`. Additionally, each function includes a docstring, which can be accessed through the help() function in Python.
 
 ## Workflow:
-----------
 
 Our results can be reproduced as follows:
 
@@ -46,12 +41,10 @@ Our results can be reproduced as follows:
 The results of the simulations and the generated plots are saved in the `results` folder.
 
 ## Example:
-----------
 
 Several hours are needed to run the aforementioned scripts on a desktop computer. We therefore also provide an example script `example/cluster_cloud_collision.py` that simulates the collision for a cluster with a velocity = 20 km/s. The script also updates the metallicities of the stars after the collision and generates the cluster's Hertzsprung–Russell diagram. 
 
 ## Grade requirements:
-----------
 
 - Minimum passing grade:
 	- Main goal: Send a globular cluster, saved in a sink particle set, through a molecular cloud and observe the mass accretion. Do this by bridging the cluster's gravity code and the cloud's hydrodynamics code. Compare the results to real observations of clusters with multiple stellar populations. 
