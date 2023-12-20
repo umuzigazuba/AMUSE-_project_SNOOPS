@@ -1,6 +1,4 @@
-#%%
-import os
-os.chdir('../src')
+# %%
 
 import os
 import matplotlib.pyplot as plt
@@ -9,8 +7,7 @@ from plotters import plot_evolution_mass_accretion, plot_relative_mass
 from amuse.units import units
 from natsort import natsorted
 
-#%%
-
+# %%
 
 # Function to extract data from a text file
 def extract_data_from_file(file_path):
@@ -19,10 +16,9 @@ def extract_data_from_file(file_path):
     time = np.arange(1, len(data) + 1)
     return mass, time
 
-#%%
+# %%
 
-
-# extract data from runs with different random seeds
+# Extract data from runs with different random seeds
 main_directory = "../results/alice/random_seeds"
 folders = os.listdir(main_directory)
 
@@ -37,16 +33,17 @@ for folder in folders:
             file_path = os.path.join(folder_path, file)
             all_path.append(file_path)
 
-all_path = np.reshape(all_path,(19,10))
-print(all_path)
-#calculatating average and standard deviation for total accreted mass
-#with respect to each velocity
+all_path = np.reshape(all_path, (19, 10))
+# print(all_path) # Check that all runs are used to create the plot
+
+# Calculatating average and standard deviation for total accreted mass
+# With respect to each velocity
 total_accretion = []
 error = []
 for i in range(10):
     mass_diff = []
     for j in range(19):
-        mass,time = extract_data_from_file(all_path[j,i])
+        mass, time = extract_data_from_file(all_path[j, i])
         dm = np.sum(mass[-1] - mass[0])
         mass_diff.append(dm)
     mean = np.mean(mass_diff)
@@ -54,25 +51,25 @@ for i in range(10):
     total_accretion.append(mean)
     error.append(std)
 
-
-#Plot result with errors 
-
+# Plot result with errors 
 fig_path = os.path.join(main_directory,"total mass trend.png")
-v = np.array([20,25,30,35,40,45,50,55,60,65]) 
+cluster_velocitiies = np.array([20, 25, 30, 35, 40, 45, 50, 55, 60, 65]) 
 
-plt.errorbar(v,total_accretion,yerr=error, fmt='o', \
-             markersize=8, capsize=5, label='Total accretion with Error Bars')
+fig, ax = plt.subplots(figsize = (7, 5))
+ax.set_facecolor('whitesmoke')
 
-coefficients = np.polyfit(v, total_accretion, 1)
+plt.errorbar(cluster_velocitiies, total_accretion, yerr = error, fmt = 'o', color = '#0c2577', \
+             markersize = 8, capsize = 5, label = 'Total accretion with error bars')
+
+coefficients = np.polyfit(cluster_velocitiies, total_accretion, 1)
 poly_function = np.poly1d(coefficients)
-x_fit = np.linspace(min(v), max(v), 100)
+x_fit = np.linspace(min(cluster_velocitiies), max(cluster_velocitiies), 100)
 plt.plot(x_fit, poly_function(x_fit), color='red',linestyle = '--', label='Fitted Line')
 
-
-plt.xticks(v)
+plt.xticks(cluster_velocitiies)
 plt.xlabel('Cluster velocity [km/s]')
 plt.ylabel('Total mass accreted [MSun]')
-plt.title('Total mass accretion against different velocities')
+plt.title('Total mass accretion against different cluster velocities')
 plt.legend() 
 plt.grid(True)
 plt.savefig(fig_path)
@@ -91,7 +88,6 @@ plot_evolution_mass_accretion(sinks_mass_evolution = sinks_mass_evolution,
                                 velocity = 20)
 
 plot_relative_mass(sinks_mass_evolution = sinks_mass_evolution, 
-                    velocity = 20
-                    )
+                    velocity = 20)
 
 # %%
