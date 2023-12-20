@@ -520,11 +520,11 @@ def metallicity_histogram(metallicities, N_bins,
     ax.grid(alpha=alpha/2)
 
     ax.hist(metallicities, bins  = bins,
-            color = '#0c2577', label =  'altered Z')
-    ax.axvline(x=0.002, linestyle = '--', color = 'k', label = 'initial Z')
+            color = '#0c2577', label =  'Altered Z')
+    ax.axvline(x=0.002, linestyle = '--', color = 'k', label = 'Initial Z')
     ax.set_xscale('log')
 
-    fig.supylabel('#', size = 'x-large')
+    fig.supylabel('N', size = 'x-large')
     fig.supxlabel('Z', size = 'x-large')
     fig.suptitle('Collision with velocity '+ str(collision_velocity) +' kms',
                  size = 'x-large')
