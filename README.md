@@ -1,4 +1,5 @@
 # Simulation and Modeling in Astrophysics 2023/2024 project: YESSIR
+Package to study the formation of a second stellar population in a globular cluster after a collision with a molecular cloud.
 
 ## Authors:
 
