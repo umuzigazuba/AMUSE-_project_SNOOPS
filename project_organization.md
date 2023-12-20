@@ -13,9 +13,9 @@ Project Organization
     │
     ├── setup.py                <- Makes project pip installable (pip install -e .) so src can be imported
     │
-    ├── test_environment.py     <- Checks python version
+    ├── test_environment.py     <- Checks Python version
     │
-    ├── requirements.txt        <- List of the packages that need to be installed in order to use our package
+    ├── requirements.txt        <- List of the packages that need to be installed to use our package
     │
     ├── AMUSE_YESSIR_report.pdf <- Report
     │
@@ -43,17 +43,17 @@ Project Organization
     │
     ├── example                 <- Example script
     │   │
-    │   ├── collision_example.py                  <- Example collision with set inital conditions/parameters
+    │   ├── collision_example.py                  <- Example collision with set initial conditions/parameters
     │   └── results_example                       <- Results obtained using the collision_example.py script
     │
     └── results                 <- Plots and data generated during our numerous runs
         │
         ├── alice                                 <- Results exclusively obtained using ALICE: convergence test, simulations of 
         │                                            clusters with 200, 1000 and 10000 stars and simulations of clusters with
-        │                                            200 stars and ten different velocities, repeated using 19 different random seeds
+        │                                            200 stars and ten different velocities, repeated using 19 different seeds 
         └── final_with_stellar_evolution          <- Results obtained using our personal computers: simulations of clusters with
-                                                     1000 stars and five different velocities. Includes snapshots of the molecular cloud at
-                                                     z = 0 pc and the cluster at each timestep
+                                                     1000 stars and five different velocities. Includes snapshots of the molecular 
+                                                     cloud at z = 0 pc and the cluster at each timestep
 
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
