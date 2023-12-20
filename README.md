@@ -3,7 +3,9 @@
 ### Authors:
 
 Kostas Tsalapatas - s3479765
+
 Erin Umuzigazuba - s3634701
+
 Yiqi Wu - s3805352
 
 ### General Concepts:
@@ -30,11 +32,11 @@ An overview of the repository, along with the purpose of every file and folder, 
 
 Our results can be reproduced as follows:
 
-	- Run the `src/main_cluster_cloud_collision.py` script to simulate the collision for multiple cluster velocities between 20 and 60 km/s. For each velocity, the script generates a plot of the mass accretion evolution for each star in the cluster and a histogram of the relative accreted mass of the cluster.
+- Run the `src/main_cluster_cloud_collision.py` script to simulate the collision for multiple cluster velocities between 20 and 60 km/s. For each velocity, the script generates a plot of the mass accretion evolution for each star in the cluster and a histogram of the relative accreted mass of the cluster.
 
-	- Run the `src/updating_stellar_metallicites.py` script to update the metallicity of the stars that accreted mass, post-collision, and generate the cluster's Hertzsprung–Russell diagram. **Important**: you first need to specify which file containing the post-collision cluster must be used within the script. By default, the script uses the file containing the cluster with a velocity = 20 km/s and 1000 stars, which is the file used to make the plots in our report. 
+- Run the `src/updating_stellar_metallicites.py` script to update the metallicity of the stars that accreted mass, post-collision, and generate the cluster's Hertzsprung–Russell diagram. **Important**: you first need to specify which file containing the post-collision cluster must be used within the script. By default, the script uses the file containing the cluster with a velocity = 20 km/s and 1000 stars, which is the file used to make the plots in our report. 
 
-	- Run the `src/alice_analysis.py` script to create a plot of the total mass accreted by a cluster as a function of its velocity. For a cluster velocity = 20 km/s, a plot of the mass accretion evolution and a histogram of the relative accreted mass are also created. This script uses the results obtained using the ALICE HPC cluster at Leiden University.
+- Run the `src/alice_analysis.py` script to create a plot of the total mass accreted by a cluster as a function of its velocity. For a cluster velocity = 20 km/s, a plot of the mass accretion evolution and a histogram of the relative accreted mass are also created. This script uses the results obtained using the ALICE HPC cluster at Leiden University.
 
 The results of the simulations and the generated plots are saved in the `results` folder.
 
