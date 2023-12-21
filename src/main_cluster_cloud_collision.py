@@ -10,7 +10,7 @@ from datetime import datetime
 import numpy as np
 
 from molecular_cloud_initialization import make_molecular_cloud, evolve_molecular_cloud
-from utils import make_cluster_with_posvel, code_bridge_channel_initaization, cluster_cloud_collision
+from collision_utils import make_cluster_with_posvel, code_bridge_channel_initaization, cluster_cloud_collision
 
 # %%
 

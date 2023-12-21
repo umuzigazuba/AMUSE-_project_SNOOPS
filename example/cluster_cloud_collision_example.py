@@ -15,7 +15,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from molecular_cloud_initialization import make_molecular_cloud, evolve_molecular_cloud
-from utils import make_cluster_with_posvel, code_bridge_channel_initaization, cluster_cloud_collision
+from collision_utils import make_cluster_with_posvel, code_bridge_channel_initaization, cluster_cloud_collision
 from analysis_utils import updated_metallicity, evolve_single_star
 from plotters import metallicity_histogram, HR_diagramme
 
@@ -87,11 +87,6 @@ if __name__ == "__main__":
     print("Collision finished (running time: {0:.1f} s)".format(time() - start_time))
 
 # %%
-    
-velocity = 20
-end_time = 2.8 | units.Myr
-
-directory_path = '../example/results_example/'
 
 mass_file = 'Sink_mass_20.0.txt'
 sinks_mass_snapshots = np.loadtxt(directory_path + mass_file)

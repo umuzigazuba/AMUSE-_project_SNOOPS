@@ -1,11 +1,13 @@
 # %%
 
+from amuse.units import units
+
 import os
+from natsort import natsorted
 import matplotlib.pyplot as plt
 import numpy as np
+
 from plotters import plot_evolution_mass_accretion, plot_relative_mass
-from amuse.units import units
-from natsort import natsorted
 
 # %%
 

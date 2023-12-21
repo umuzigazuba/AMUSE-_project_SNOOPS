@@ -35,7 +35,7 @@ Project Organization
     │   ├── cluster_initialization.py             <- Initialize a cluster before the collision
     │   ├── molecular_cloud_initialization.py     <- Initialize a molecular cloud before the collision
     │   ├── plotters.py                           <- Plotting functions used in this project
-    │   ├── utils.py                              <- Functions used during the collision
+    │   ├── collision_utils.py                    <- Functions used during the collision
     │   ├── main_cluster_cloud_collision.py       <- Simulate the collision
     │   ├── analysis_utils.py                     <- Functions used during the analysis of our results 
     │   ├── updating_stellar_metallicities.py     <- Calculate the updated metallicity of stars and create their HR diagram 
